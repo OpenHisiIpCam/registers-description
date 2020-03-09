@@ -22,6 +22,8 @@ We describe only needed subsets, that are envolved in our tasks.**
 > Obviously you already have it and generate parts of documentation from it. 
 > This will let us avoid a lot of tedious work!
 
+Generated documentation is avalible on [our website](https://www.openhisiipcam.org/hardware/registers-description/). 
+
 ## :hammer: Usage
 
 Assumed that you have python3 and pip3 already installed.
@@ -107,6 +109,6 @@ regs.Addr(SOME_TEMPERATURE).Read()
 ```
 In case of massive register manipulation code, it makes less mental effort.
 
-## Contribution
+## :pray: Contribution
 
 At the moment there is only hi3516av200 family chips data, if you feel this is useful for you, you can help us improve data, we accept contribution for other chips via PRs.
