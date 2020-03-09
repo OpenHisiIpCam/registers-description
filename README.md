@@ -11,7 +11,7 @@
 
 ## :eyeglasses: About
 
-This is attempt to describe SoCs registers in SystemRDL notation. 
+This is attempt to describe HiSilicon SoCs registers in SystemRDL notation. 
 Unfortunately, vendor provides registers information only in as part of big pdf document.
 
 **There is no target to describe all registers, as it will take abnormal amount of time, also it is not needed. 
