@@ -9,7 +9,7 @@
 <p align="center">HiSilicon ip camera SoCs SystemRDL registers description</p>
 <p align="center"><em>Part of <a href="https://www.openhisiipcam.org">OpenHisiIpCam</a> project</em></p>
 
-## About
+## :eyeglasses: About
 
 This is attempt to describe SoCs registers in SystemRDL notation. 
 Unfortunately, vendor provides registers information only in as part of big pdf document.
@@ -22,7 +22,7 @@ We describe only needed subsets, that are envolved in our tasks.**
 > Obviously you already have it and generate parts of documentation from it. 
 > This will let us avoid a lot of tedious work!
 
-## Usage
+## :hammer: Usage
 
 Assumed that you have python3 and pip3 already installed.
 
@@ -55,12 +55,12 @@ Take a note, that overall data splitted into several files:
 
 Files alone are not valid SystemRDL data, files should be assembled (simply concatenated, that `./hi3516av200/Makefile` do) in complete valid document.
 
-## Notes
+## :pencil: Notes
 
 Initially there was idea to parse register initilization data from HiSilicon`s U-Boot to learn it in human readable way. 
-> There is also [good research](https://github.com/kakigate/hisi-initregtable-parser) about  it.
+> There is also [good research](https://github.com/kakigate/hisi-initregtable-parser) about hisi`s initial registers table.
 
-After an attempt to invent ~bycycle~ custom register description format, we choosed SystemRDL, 
+After an attempt to invent ~bicycle~ custom register description format, we choosed SystemRDL, 
 as notation with already implemented compiler, verification and even HTML docs generator.
 
 > Great set of [python tools and libs for SystemRDL](https://github.com/SystemRDL) by @amykyta3,
