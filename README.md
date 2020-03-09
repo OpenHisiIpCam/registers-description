@@ -25,8 +25,7 @@ Generated documentation is avalible on [our website](https://www.openhisiipcam.o
 > This will let us avoid a lot of tedious work!
 
 > *The SystemRDL language, supported by the SPIRIT Consortium, was specifically designed to describe and implement a wide variety of control status registers. 
-> Using SystemRDL, developers can automatically generate and synchronize register views for specification, hardware design, software development, verification, and documentation.*
-> - from [Wikipedia](https://en.wikipedia.org/wiki/SystemRDL).
+> Using SystemRDL, developers can automatically generate and synchronize register views for specification, hardware design, software development, verification, and documentation.* - [Wikipedia](https://en.wikipedia.org/wiki/SystemRDL).
 
 ## :hammer: Usage
 
