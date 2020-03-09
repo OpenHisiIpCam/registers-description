@@ -17,12 +17,16 @@ Unfortunately, vendor provides registers information only in as part of big pdf 
 **There is no target to describe all registers, as it will take abnormal amount of time, also it is not needed. 
 We describe only needed subsets, that are envolved in our tasks.**
 
+Generated documentation is avalible on [our website](https://www.openhisiipcam.org/hardware/registers-description/).
+
 > If some hardware engineer from HiSilicon will ever read this text, please take a note
 > that it will be great if you will put registers description to SDK in some machine readable format.
 > Obviously you already have it and generate parts of documentation from it. 
 > This will let us avoid a lot of tedious work!
 
-Generated documentation is avalible on [our website](https://www.openhisiipcam.org/hardware/registers-description/). 
+> *The SystemRDL language, supported by the SPIRIT Consortium, was specifically designed to describe and implement a wide variety of control status registers. 
+> Using SystemRDL, developers can automatically generate and synchronize register views for specification, hardware design, software development, verification, and documentation.*
+> - from [Wikipedia](https://en.wikipedia.org/wiki/SystemRDL).
 
 ## :hammer: Usage
 
