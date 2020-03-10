@@ -1,0 +1,447 @@
+regfile eMISC_CTRL {
+    name = "MISC register";
+
+    reg {
+        name = "VICAP/VPSS/MIPI PHY control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL0 @ 0x0000;
+    
+    reg {
+        name = "Peripheral function selection register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL1 @ 0x0004;
+
+    reg {
+        name = "PCIe/USB 3.0 read outstanding limit control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL2 @ 0x0008;
+
+    reg {
+        name = "Power switch control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL3 @ 0x000C;
+
+    reg {
+        name = "RET1N control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL4 @ 0x0010;
+
+    reg {
+        name = "System bus arbitration control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL5 @ 0x0014;
+
+    reg {
+        name = "System bus arbitration control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL6 @ 0x0018;
+
+    reg {
+        name = "System bus arbitration control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL7 @ 0x001C;
+
+    reg {
+        name = "System bus priority control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL8 @ 0x0020;
+
+    reg {
+        name = "System bus priority control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL9 @ 0x0024;
+
+    reg {
+        name = "Media 0 bus arbitration control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL11 @ 0x002C;
+
+    reg {
+        name = "Media 0 bus arbitration control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL12 @ 0x0030;
+
+    reg {
+        name = "Media 0 bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL14 @ 0x0038;
+
+    reg {
+        name = "Media 1 bus arbitration control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL15 @ 0x003C;
+
+    reg {
+        name = "Media 1 bus arbitration control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL16 @ 0x0040;
+
+    reg {
+        name = "Media 1 bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL18 @ 0x0048;
+
+    reg {
+        name = "DDR QoS control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL21 @ 0x0054;
+
+    reg {
+        name = "DDR QoS control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL22 @ 0x0058;
+
+    reg {
+        name = "DDR QoS control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL23 @ 0x005C;
+
+    reg {
+        name = "DDR QoS control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL24 @ 0x0060;
+
+    reg {
+        name = "DDR QoS control register 4";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL25 @ 0x0064;
+
+    reg {
+        name = "DDR QoS control register 5";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL26 @ 0x0068;
+
+    reg {
+        name = "DDR QoS control register 6";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL27 @ 0x006C;
+
+    reg {
+        name = "DDR QoS control register 7";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL28 @ 0x0070;
+
+    reg {
+        name = "USB 3.0 control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL29 @ 0x0074;
+
+    reg {
+        name = "USB 2.0 control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL30 @ 0x0078;
+
+    reg {
+        name = "Test clock and USB 2.0 PHY access test channel mode selection register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL31 @ 0x007C;
+
+    reg {
+        name = "USB 2.0 PHY test channel register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL32 @ 0x0080;
+
+    reg {
+        name = "COMB PHY test channel register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL33 @ 0x0084;
+
+    reg {
+        name = "PCIe and USB 3.0 PHY control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL34 @ 0x0088;
+
+    reg {
+        name = "Audio CODEC ANA register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL45 @ 0x00B4;
+
+    reg {
+        name = "Audio CODEC ANA register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL46 @ 0x00B8;
+
+    reg {
+        name = "Audio CODEC ANA register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL47 @ 0x00BC;
+
+    reg {
+        name = "Audio CODEC ANA register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL48 @ 0x00C0;
+
+    reg {
+        name = "Audio CODEC DIG control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL51 @ 0x00CC;
+
+    reg {
+        name = "Audio CODEC DIG control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL52 @ 0x00D0;
+
+    reg {
+        name = "Audio CODEC DIG control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL53 @ 0x00D4;
+
+    reg {
+        name = "Audio CODEC DIG control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL54 @ 0x00D8;
+
+    reg {
+        name = "I2S channel selection control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL56 @ 0x00E0;
+
+    reg {
+        name = "MDDRC scrambling random seed lower 32 bits register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL62 @ 0x00F8;
+
+    reg {
+        name = "MDDRC scrambling random seed upper 32 bits register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL63 @ 0x00FC;
+
+    reg {
+        name = "MDDRC scrambling control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL64 @ 0x0100;
+
+    reg {
+        name = "eMMC DLL control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL80 @ 0x0140;
+
+    reg {
+        name = "eMMC DLL control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL81 @ 0x0144;
+
+    reg {
+        name = "Peripheral bus arbitration control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL85 @ 0x0154;
+
+    reg {
+        name = "Peripheral bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL88 @ 0x0160;
+
+    reg {
+        name = "Peripheral bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL89 @ 0x0164;
+
+    reg {
+        name = "VDP_AIAO bus arbitration control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL93 @ 0x0174;
+
+    reg {
+        name = "VO_AIO bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL94 @ 0x0178;
+
+    reg {
+        name = "VICAP bus arbitration control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL95 @ 0x017C;
+
+    reg {
+        name = "VICAP bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL96 @ 0x0180;
+
+    reg {
+        name = "IOCO bus arbitration control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL97 @ 0x0184;
+
+    reg {
+        name = "IOCO bus priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } MISC_CTRL98 @ 0x018C;
+
+    reg {
+        name = "rootkey_aes lower 32 bits register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_ROOTKEY_AES_0 @ 0x3000;
+
+    reg {
+        name = "rootkey_aes bits 63–32 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_ROOTKEY_AES_1 @ 0x3004;
+
+    reg {
+        name = "rootkey_aes bits 95–64 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_ROOTKEY_AES_2 @ 0x3008;
+
+    reg {
+        name = "rootkey_aes bits 127–96 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_ROOTKEY_AES_3 @ 0x300C;
+
+    reg {
+        name = "OTP ctrlbit programming mode control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_CTRLBIT_PG_MODE @ 0x5000;
+
+    reg {
+        name = "OTP ctrlbit programming mode status register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } OTP_CTRLBIT_PG_BUSY @ 0x5004;
+
+    reg {
+        name = "OTP ctrlbit bit 0 programming control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_CTRLBIT_PG_BIT0 @ 0x5008;
+
+    reg {
+        name = "OTP ctrlbit bit 1 programming control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_CTRLBIT_PG_BIT1 @ 0x500C;
+
+    reg {
+        name = "OTP ctrlbit bit 2 programming control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_CTRLBIT_PG_BIT2 @ 0x5010;
+
+    reg {
+        name = "OTP ctrlbit bit 3 programming control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } OTP_CTRLBIT_PG_BIT3 @ 0x5014;
+
+};
+

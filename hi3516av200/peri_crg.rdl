@@ -1,0 +1,1621 @@
+regfile ePERI_CRG {
+    name = "CRG register";
+/******************************************************************************/
+    reg {
+        name = "APLL configuration register 0";
+
+        field {
+            name = "Level-2 output frequency divider of the APLL";
+        } apll_postdiv2[30:28];
+
+        field {
+            name = "Level-1 output frequency divider of the APLL";
+        } apll_postdiv1[26:24];
+
+        field {
+            name = "Decimal part of the APLL frequency multiplication coefficient";
+        } apll_frac[23:0];
+
+    } PERI_CRG_PLL0 @ 0x0000;
+/******************************************************************************/
+    reg {
+        name = "APLL configuration register 1";
+	
+	field {
+		enum apll_foutvco2xpd_enum {
+			normal = 0x0 { desc = "normal output clock"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "APLL VCO2X output power-down control";
+		encode = apll_foutvco2xpd_enum;
+	}apll_foutvco2xpd[27:27];
+
+	field {
+		enum apll_bypass_enum {
+			no = 0x0 { desc = "not bypassed"; };
+			bypass = 0x1 { desc = "bypassed"; };
+		};
+		name = "APLL clock frequency division bypass";
+		encode = apll_bypass_enum;
+	} apll_bypass[26:26];
+
+	field {
+		enum apll_dacpd_enum {
+			normal = 0x0 { desc = "normal operating mode"; };
+			down = 0x1 { desc = "power-down mode"; };
+		};
+		name = "APLL test signal control";
+		encode = apll_dacpd_enum;
+	} apll_dacpd[25:25];
+
+	field {
+		enum apll_dsmpd_enum {
+			decimal = 0x0 { desc = "decimal frequency-division mode"; };
+			integral = 0x1 { desc = "integral frequency-division mode"; };
+		};
+		name = "APLL decimal division control";
+		encode = apll_dsmpd_enum;
+	} apll_dsmpd[24:24];
+
+	field {
+		enum apll_pd_enum {
+			normal = 0x0 { desc = "normal operating mode"; };
+			down = 0x1 { desc = "power-down mode"; };
+		};
+		name = "APLL power-down control";
+		encode = apll_pd_enum;
+
+	} apll_pd[23:23];
+
+	field {
+		enum apll_foutvcopd_enum {
+			normal = 0x0 { desc = "normal output clock"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "APLL VCO output power-down control";
+		encode = apll_foutvcopd_enum;
+	} apll_foutvcopd [22:22];
+
+        field {
+		enum apll_postdivpd_enum {
+			normal = 0x0 { desc = "normal clock output"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+
+            	name = "APLL FOUT output power-down control";
+           	encode = apll_postdivpd_enum;
+        } apll_postdivpd[21:21];
+
+        field {
+
+        	enum apll_fout4phasepd_enum {
+            		normal = 0x0 { desc = "normal output clock"; };
+            		no = 0x1 { desc = "no output clock"; };
+        	};
+            	name = "APLL FOUT output power-down control";
+            	encode = apll_fout4phasepd_enum;
+        } apll_fout4phasepd[20:20];
+
+        field {
+            name = "Frequency divider of the APLL reference clock";
+        } apll_refdiv[17:12];
+
+        field {
+            name = "Integral part of the APLL frequency multiplication coefficient";
+        } apll_fbdiv[11:0];
+
+    } PERI_CRG_PLL1 @ 0x0004;
+/******************************************************************************/
+    reg {
+        name = "DPLL configuration register 0";
+	field {
+		name = "Level-2 output divider of DPLL";
+	} dpll_postdiv2[30:28];
+	field {
+		name = "Level-1 output divider of DPLL";
+	} dpll_postdiv1[26:24];
+        field {
+            	name = "Decimal part of the DPLL frequency multiplication coefficient";
+        } dpll_frac[23:0];
+
+    } PERI_CRG_PLL4 @ 0x0010;
+/******************************************************************************/
+    reg {
+        name = "DPLL configuration register 1";
+
+	field {
+		enum dpll_foutvco2xpd_enum {
+			normal = 0x0 { desc = "normal output clock"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "DPLL VCO2X output power-down control";
+		encode = dpll_foutvco2xpd_enum;
+	} dpll_foutvco2xpd[27:27];
+
+	field {
+		enum dpll_bypass_enum {
+			no = 0x0 { desc = "not bypassed"; };
+			bypass = 0x1 { desc = "bypassed"; };
+		};
+		name = "DPLL clock frequency division bypass";
+		encode = dpll_bypass_enum;
+	} dpll_bypass[26:26];
+
+	field {
+		enum dpll_dacpd_enum {
+			normal = 0x0 { desc = "normal operating mode"; };
+			down = 0x1 { desc = "power-down mode"; };
+		};	
+		name = "DPLL test signal control";
+		encode = dpll_dacpd_enum;
+	} dpll_dacpd[25:25];
+
+	field {
+		enum dpll_dsmpd_encode {
+			decimal = 0x0 { desc = "decimal frequency-division mode"; };
+			integral = 0x1 { desc = "integral frequency-division mode"; };
+		};
+		name = "DPLL decimal division control";
+		encode = dpll_dsmpd_encode;
+	} dpll_dsmpd[24:24];
+
+	field {
+		enum dpll_pd_enum {
+			normal = 0x0 { desc = "normal operating mode"; };
+			down = 0x1 { desc = "power-down mode"; };
+		};
+		name = "DPLL power-down control";
+		encode = dpll_pd_enum;
+	} dpll_pd[23:23];
+
+	field {
+		enum dpll_foutvcopd_enum {	
+			normal = 0x0 { desc = "normal output clock"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "DPLL VCO output power-down control";
+		encode = dpll_foutvcopd_enum;
+	} dpll_foutvcopd[22:22];
+	field {
+		enum dpll_postdivpd_enum {
+			normal = 0x0 { desc = "normal clock output"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "DPLL POSTDIV output power-down control";
+		encode = dpll_postdivpd_enum;
+	} dpll_postdivpd[21:21];
+
+	field {
+		enum dpll_fout4phasepd_enum {
+			normal = 0x0 { desc = "normal output clock"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+		name = "DPLL FOUT output power-down control";
+		encode = dpll_fout4phasepd_enum;
+	} dpll_fout4phasepd[20:20];
+	field {
+		name = "Frequency divider of the DPLL reference clock";
+	} dpll_refdiv[17:12];
+        field {
+            name = "Integral part of the DPLL frequency multiplication coefficient";
+        } dpll_fbdiv[11:0];
+
+    } PERI_CRG_PLL5 @ 0x0014;
+/******************************************************************************/
+    reg {
+        name = "VPLL configuration register 0";
+
+	field {
+		name = "Level-2 output divider of VPLL";
+	} vpll_postdiv2[30:28];
+	field {
+		name = "Level-1 output divider of VPLL";
+	} vpll_postdiv1[26:24];
+        field {
+            name = "Decimal part of the VPLL frequency multiplication coefficient";
+        } vpll_frac[23:0];
+
+    } PERI_CRG_PLL6 @ 0x0018;
+/******************************************************************************/
+    reg {
+        name = "VPLL configuration register 1";
+/*
+VPLL VCO2X output power-down control
+[27]
+RW
+vpll_foutvco2xpd 0: normal output clock
+1: no output clock
+VPLL clock frequency division bypass
+[26]
+RW
+vpll_bypass
+0: not bypassed
+1: bypassed
+VPLL test signal control
+[25]
+RW
+vpll_dacpd
+0: normal operating mode
+1: power-down mode
+VPLL decimal division control
+[24]
+RW
+vpll_dsmpd
+0: decimal frequency-division mode
+1: integral frequency-division mode
+VPLL power-down control
+[23]
+RW
+vpll_pd
+0: normal operating mode
+1: power-down mode
+VPLL VCO output power-down control
+[22]
+RW
+vpll_foutvcopd
+0: normal output clock
+1: no output clock
+VPLL POSTDIV output power-down control
+[21]
+RW
+vpll_postdivpd
+0: normal output clock
+1: no output clock
+VPLL FOUT output power-down control
+[20]
+RW
+vpll_fout4phasepd 0: normal output clock
+1: no output clock
+
+*/
+	field {
+		desc = "Frequency divider of the VPLL reference clock";
+	} vpll_refdiv[17:12];
+        field {
+            desc = "Integral part of the VPLL frequency multiplication coefficient";
+        } vpll_fbdiv[11:0];
+
+    } PERI_CRG_PLL7 @ 0x001C;
+/******************************************************************************/
+    reg {
+        name = "EPLL configuration register 0";
+	field {
+		name = "Level-2 output divider of the EPLL";
+	} epll_postdiv2[30:28];
+	field {
+		name = "Level-1 output divider of the EPLL";
+	} epll_postdiv1[26:24];
+        field {
+            name = "Decimal part of the EPLL frequency multiplication coefficient";
+        } epll_frac[23:0];
+
+    } PERI_CRG_PLL8 @ 0x0020;
+/******************************************************************************/
+    reg {
+        name = "EPLL configuration register 1";
+/*
+EPLL VCO2X output power-down control
+[27]
+RW
+epll_foutvco2xpd
+0: normal output clock
+1: no output clock
+EPLL clock frequency division bypass
+[26]
+RW
+epll_bypass
+0: not bypassed
+1: bypassed
+EPLL test signal control
+[25]
+RW
+epll_dacpd
+0: normal operating mode
+1: power-down mode
+EPLL decimal division control
+[24]
+RW
+epll_dsmpd
+0: decimal frequency-division mode
+1: integral frequency-division mode
+EPLL power-down control
+[23]
+RW
+epll_pd
+0: normal operating mode
+1: power-down mode
+EPLL VCO output power-down control
+[22]
+RW
+epll_foutvcopd
+0: normal output clock
+1: no output clock
+EPLL POSTDIV output power-down control
+[21]
+RW
+epll_postdivpd
+0: normal output clock
+1: no output clock
+EPLL FOUT output power-down control
+[20]
+RW
+epll_fout4phasepd 0: normal output clock
+1: no output clock
+
+[19:18] RO reserved Reserved
+[17:12] RW epll_refdiv Frequency divider of the EPLL reference clock
+[11:0] RW epll_fbdiv Integral part of the EPLL frequency multiplication coefficient
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG_PLL9 @ 0x0024;
+/******************************************************************************/
+    reg {
+        name = "CoreSight & A17 clock reset configuration register";
+/*
+CoreSight TOP clock gating, valid only in manual mode
+[25]
+RW
+cs_clken
+0: clock disabled
+1: clock enabled
+[24] RW CoreSight TOP power-up mode
+cs_dbg_pwrup_mo
+0: automatic mode
+de
+1: manual mode
+[23:22] RO reserved
+Reserved
+A17 subsystem global clock gating.
+[21]
+RW
+a17_wakeup_clken 0: clock disabled
+1: clock enabled
+PCLKDBG clock gating
+[20]
+RW
+a17_toppdbg_clken 0: clock disabled
+1: clock enabled
+[19]
+RW
+Issue 01 (2018-07-05)
+A17 subsystem global soft reset.
+a17_wakeup_srst_r
+0: reset deasserted
+eq
+1: reset
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG10 @ 0x0028;
+/******************************************************************************/
+    reg {
+        name = "A7 clock reset configuration register";
+/*
+A7 global soft reset, valid only when the system boots from a
+a7_pcieboot_srst_r DDR of the slave chip over the PCIe interface
+eq
+0: reset deasserted
+1: reset
+[19:12]
+[11]
+RO
+RW
+reserved
+Reserved
+A7 global soft reset, valid only when the system does not boot
+a7_wakeup_srst_re from a DDR of the slave chip over the PCIe interface
+q
+0: reset deasserted
+1: reset
+[10:2]
+RO
+reserved
+Reserved
+A7 global clock gating
+[1]
+RW
+a7_wakeup_clken 0: clock disabled
+1: clock enabled
+A7 PCLKDBG clock gating
+[0]
+RW
+pclkdbg_clken
+0: clock disabled
+1: clock enabled
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG11 @ 0x002C;
+/******************************************************************************/
+    reg {
+        name = "DDR clock configuration register";
+/*
+DDR APB gating
+[6]
+RW
+ddr_apb_clken
+0: disabled
+1: enabled
+DDR HiPack gating
+[5]
+RW
+ddr_hipack_clken 0: disabled
+1: enabled
+DDR CFG gating
+[4]
+RW
+ddr_cfg_clken
+0: disabled
+1: enabled
+[3:2]
+RO
+reserved
+Reserved
+DDR APB soft reset
+[1]
+RW
+ddr_apb_srst_req
+0: reset deasserted
+1: reset
+[0]
+RW
+DDR HiPack soft reset
+ddr_hipack_srst_re
+0: reset deasserted
+q
+1: reset
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG12 @ 0x0030;
+/******************************************************************************/
+    reg {
+        name = "SoC frequency configuration register";
+/*
+SYSAXI clock select
+[13:12]
+RW
+sysaxi_clksel
+x0: 24 MHz clock
+x1: 198 MHz clock
+[11:10]
+RO
+reserved
+Reserved
+A7 clock select
+000: 24 MHz clock
+[9:7]
+RW
+010: APLL POSTDIV (maximum 800 MHz)
+a7_clksel
+011: 792 MHz clock
+100: 594 MHz clock
+Other values: reserved
+
+*/
+	field {
+		enum sysaxi_clksel_enum {
+			mhz24 = 2'b00 { desc = "24 MHz clock"; };
+
+			mhz198 = 2'b01 { desc = "198 MHz clock"; };
+		};
+		name = "SYSAXI clock select";
+		encode = sysaxi_clksel_enum;
+	} sysaxi_clksel[13:12];
+	field {
+		enum a7_clksel_enum {
+			mhz24 = 3'b000 { desc = "24 MHz clock"; };
+			postdiv = 3'b010 { desc = "APLL POSTDIV (maximum 800 MHz)"; };
+			mhz792 = 3'b011 { desc = "792 MHz clock"; };
+			mhz594 = 3'b100 { desc = "594 MHz clock"; };
+		};
+		name = "A7 clock select";
+		encode = a7_clksel_enum;
+	} a7_clksel[9:7];
+	field {
+		enum a17_clksel_enum {
+			mhz24 = 3'b000 { desc = "24 MHz clock"; };
+			foutvco = 3'b001 { desc = "APLL FOUTVCO (minimum 800 MHz and maximum 1.25GHz)"; };
+			postdiv = 3'b010 { desc = "APLL POSTDIV (maximum 800 MHz)"; };
+			mhz594 = 3'b011 { desc = "594 MHz clock"; };
+			mhz792 = 3'b100 { desc = "792 MHz clock"; };
+		};
+		name = "A17 CPU clock select";
+		encode = a17_clksel_enum;
+	} a17_clksel[6:4];
+        field {
+		enum ddr_clksel_enum {
+			mhz24 = 3'b000 { desc = "24 MHz crystal oscillator clock"; };
+			postdiv = 3'b001 { desc = "DPLL POSTDIV (maximum 466 MHz)"; };
+			mhz396 = 3'b011 { desc = "396 MHz clock"; };
+			mhz340 = 3'b100 { desc = "340 MHz clock"; };
+			mhz300 = 3'b101 { desc = "300 MHz clock"; };
+		};
+            	name = "DDR clock select";
+		encode = ddr_clksel_enum;
+        } ddr_clksel[2:0];
+	
+    } PERI_CRG13 @ 0x0034;
+/******************************************************************************/
+    reg {
+        name = "VI-MIPI clock reset configuration register";
+/*
+ISP1 clock gating
+[29]
+RW
+isp1_clken
+0: clock disabled
+1: clock enabled
+ISP0 clock gating
+[28]
+RW
+isp0_clken
+0: clock disabled
+1: clock enabled
+[27:26]
+RO
+reverse
+Reserved
+Phase of the VI1 interface clock
+[25]
+RW
+vi1_pctrl
+0: not inverted
+1: inverted
+VI1 clock gating
+[24]
+RW
+vi1_clken
+0: clock disabled
+1: clock enabled
+[23]
+[22]
+RO
+RW
+reserved
+Reserved
+Core soft reset of the MIPI controller channel 1 (Only the working
+mipi1_core_srst_re logic is reset and the configuration logic is not reset.)
+q
+0: reset deasserted
+1: reset
+
+ISP1 CFG soft reset (Only the configuration logic is reset and the
+working logic is not reset.)
+[21]
+RW
+isp1_cfg_srst_req
+0: reset deasserted
+1: reset
+ISP1 core soft reset (Only the working logic is reset and the
+configuration logic and other logic are not reset.)
+[20]
+RW
+isp1_core_srst_req
+0: reset deasserted
+1: reset
+[19]
+RO
+reserved
+Reserved
+Soft reset of the MIPI controller channel 1 (core and CFG)
+[18]
+RW
+mipi1_srst_req
+0: reset deasserted
+1: reset
+VI1 bus soft reset
+[17]
+RW
+vi1_hrst_req
+0: reset deasserted
+1: reset
+VI1 soft reset
+[16]
+RW
+vi1_srst_req
+0: reset deasserted
+1: reset
+[15:10]
+RO
+reserved
+Reserved
+Phase of the VI0 interface clock
+[9]
+RW
+vi0_pctrl
+0: not inverted
+1: inverted
+VI0 clock gating
+[8]
+RW
+vi0_clken
+0: clock disabled
+1: clock enabled
+[7]
+[6]
+RO
+RW
+reserved
+Reserved
+Core soft reset of the MIPI controller channel 0 (Only the working
+mipi0_core_srst_re logic is reset and the configuration logic is not reset.)
+q
+0: reset deasserted
+1: reset
+ISP0 CFG soft reset (Only the configuration logic is reset and the
+working logic is not reset.)
+[5]
+RW
+isp0_cfg_srst_req
+0: reset deasserted
+1: reset
+ISP0 core soft reset (Only the working logic is reset and the
+configuration logic is not reset.)
+[4]
+RW
+isp0_core_srst_req
+0: reset deasserted
+1: reset
+
+Soft reset of the MIPI controller bus
+[3]
+RW
+0: reset deasserted
+mipi_hrst_req
+1: reset
+Core and CFG soft reset of the MIPI controller channel 0 (Both
+the working logic and the configuration logic are reset.)
+[2]
+RW
+mipi0_srst_req
+0: reset deasserted
+1: reset
+VI0 bus soft reset
+[1]
+RW
+vi0_hrst_req
+0: reset deasserted
+1: reset
+VI0 soft reset
+[0]
+RW
+vi0_srst_req
+0: reset deasserted
+1: reset
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG15 @ 0x003C;
+/******************************************************************************/
+    reg {
+        name = "Sensor clock configuration register";
+/*
+Soft reset on the slave mode control module of sensor1
+sensor1_ctrl_srst_r
+0: reset deasserted
+eq
+1: reset
+[14]
+2
+0
+1
+0
+0
+0
+Sensor1 soft reset
+[13]
+RW
+sensor1_srst_req
+0: reset deasserted
+1: reset
+
+Sensor1 clock (reference clock output by the chip to the sensor)
+gating
+[12]
+RW
+sensor1_clken
+0: clock disabled
+1: clock enabled
+Sensor1 clock (reference clock output by the chip to the sensor)
+select
+0000: 74.25 MHz
+0001: 72 MHz
+0010: 54 MHz
+0011: 50 MHz
+[11:8]
+RW
+sensor1_clksel
+01xx: 24 MHz
+1000: 37.125 MHz
+1001: 36 MHz
+1010: 27 MHz
+1011: 25 MHz
+11xx: 12 MHz
+[7]
+[6]
+RO reserved
+Reserved
+RW Soft reset on the slave mode control module of sensor0
+sensor0_ctrl_srst_r
+0: reset deasserted
+eq
+1: reset
+Sensor0 soft reset
+[5]
+RW
+sensor0_srst_req
+0: reset deasserted
+1: reset
+Sensor0 clock (reference clock output by the chip to the sensor)
+gating
+[4]
+RW
+sensor0_clken
+0: clock disabled
+1: clock enabled
+Sensor0 clock (reference clock output by the chip to the sensor)
+select
+0000: 74.25 MHz
+0001: 72 MHz
+0010: 54 MHz
+0011: 50 MHz
+[3:0]
+RW
+sensor0_clksel
+01xx: 24 MHz
+1000: 37.125 MHz
+1001: 36 MHz
+1010: 27 MHz
+1011: 25 MHz
+11xx: 12 MHz
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG16 @ 0x0040;
+/******************************************************************************/
+    reg {
+        name = "VDP clock and reset control register";
+/*
+VDP working clock select
+[17]
+RW
+vdp_core_clksel
+0: 300 MHz
+1: 198 MHz
+VDP output clock (output clock of the chip) select
+000: 148.5 MHz
+001: 74.25 MHz
+010: 37.125 MHz
+[16:14]
+RW
+vdp_out_clksel
+011: 107 MHz
+100: 54 MHz
+101: 27 MHz
+110: LCD frequency divider clock
+111: reserved
+Clock divider of the VDP output clock (output clock of the chip)
+and the HD channel clock
+00: no division
+[13:12]
+RW
+hd_div_mode
+01: divided by 2
+10: divided by 3
+11: divided by 4
+VDAC clock gating
+[11]
+RW
+vdac_clken
+0: clock disabled
+1: clock enabled
+VDP SD clock gating
+[10]
+RW
+vdp_sd_clken
+0: clock disabled
+1: clock enabled
+
+VDP HD clock gating
+[9]
+RW
+vdp_hd_clken
+0: clock disabled
+1: clock enabled
+VDP output clock (output clock of the chip) gating
+[8]
+RW
+vdp_out_clken
+0: clock disabled
+1: clock enabled
+VDP AXI bus clock gating
+[7]
+RW
+vdp_aclken
+0: clock disabled
+1: clock enabled
+VDP APB clock gating
+[6]
+RW
+vdp_pclken
+0: clock disabled
+1: clock enabled
+VDP working clock gating
+[5]
+RW
+vdp_core_clken
+0: clock disabled
+1: clock enabled
+VDP CFG clock gating (internally configured)
+[4]
+RW
+vdp_cfg_clken
+0: clock disabled
+1: clock enabled
+VDAC clock phase
+[3]
+RW
+vdac_pctrl
+0: not inverted
+1: inverted
+VDP output clock (output clock of the chip) phase. The clock is
+inverted by default.
+[2]
+RW
+vdp_out_pctrl
+0: not inverted
+1: inverted
+[1]
+RO
+reserved
+Reserved
+VDP soft reset
+[0]
+RW
+vdp_srst_req
+0: reset deasserted
+1: reset
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG17 @ 0x0044;
+/******************************************************************************/
+    reg {
+        name = "LCD clock configuration register";
+	field {
+		enum lcd_clken_enum{
+			disable = 0x0 { desc = "clock disabled"; };
+			enable = 0x1 { desc = "clock enabled"; };
+		};
+		desc = "LCD frequency divider clock gating";
+		encode = lcd_clken_enum;
+	} lcd_clken[27:27];
+        field {
+            desc = "LCD frequency division clock (configurable)";
+		/*
+			Assume that the target frequency is X (MHz), the LCD frequency
+			division clock (lcd_mclk_div) is calculated as follows:
+			lcd_mclk_div = (X/1188) x 2pow27
+
+		*/
+        } lcd_mclk_div[26:0];
+
+    } PERI_CRG18 @ 0x0048;
+/******************************************************************************/
+    reg {
+        name = "Media CBB frequency profile configuration register 1";
+/*
+IVE clock select
+000: 300 MHz
+[21:19]
+RW
+ive_clksel
+001: 396 MHz
+010: 500 MHz
+Other values: reserved
+
+GDC clock select
+000: 340 MHz
+[18:16]
+RW
+gdc_clksel
+001: 475 MHz
+010: 400 MHz
+011: BPLL POSTDIV
+Other values: reserved
+VGS clock select
+000: 300 MHz
+[15:13]
+RW
+vgs_clksel
+001: 396 MHz
+010: 500 MHz
+Other values: reserved
+VEDU clock select
+001: 396 MHz
+[12:10]
+RW
+vedu_clksel
+010: 500 MHz
+011: 594 MHz
+Other values: reserved
+[9:8]
+RO
+reserved
+Reserved
+VPSS clock select
+000: 214 MHz
+[7:5]
+RW
+vpss_clksel
+001: 300 MHz
+010: 396 MHz
+Other values: reserved
+[4:3]
+RO
+reserved
+Reserved
+VI0 clock select
+000: 214 MHz
+001: 300 MHz
+[2:0]
+RW
+vi0_clksel
+010: 500 MHz
+011: 600 MHz
+100: 340 MHz
+101: 396 MHz
+Other values: reserved
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG19 @ 0x004C;
+/******************************************************************************/
+    reg {
+        name = "VEDU clock and soft reset control register";
+
+        field {
+                name = "VEDU clock gating";
+                enum vedu_clken_enum {
+                        disabled = 0x0 { desc = "clock disabled"; };
+                        enabled = 0x1 { desc = "clock enabled"; };
+                };
+                encode = vedu_clken_enum;
+        } vedu_clken[1:1];
+
+        field {
+                name = "VEDU soft reset";
+                enum vedu_srst_req_enum {
+                        deassert = 0x0 { desc = "reset deasserted"; };
+                        reset = 0x1 { desc = "reset"; };
+                };
+                encode = vedu_srst_req_enum;
+        } vedu_srst_req[0:0];
+
+    } PERI_CRG20 @ 0x0050;
+/******************************************************************************/
+    reg {
+        name = "Media CBB frequency configuration register 2";
+/*
+ISP0 clock select (maximum 600 MHz)
+00000: 214 MHz
+00001: 300 MHz
+00010: 340 MHz
+[18:14]
+RW
+isp0_clksel
+01xxx: VI0 clock. The maximum frequency of the VI0 clock is 600
+MHz when it is configured by using the PERI_CRG19 bit[2:0]
+register.
+10xxx: VI0 clock of which the divider is 2. The maximum
+frequency of the VI0 clock is 600 MHz when it is configured by
+using the PERI_CRG19 bit[2:0] register.
+Other values: reserved
+[13:11]
+RO
+reserved
+Reserved
+ISP1 clock select (maximum 300 MHz)
+00000: 214 MHz
+00001: 300 MHz
+[10:6]
+RW
+isp1_clksel
+01xxx: VI1 clock. The maximum frequency of the VI1 clock is 300
+MHz when it is configured by using the PERI_CRG21[2:0]
+register.
+10xxx: VI1 clock of which the divider is 2. The maximum
+frequency of the VI1 clock is 600 MHz when it is configured by
+using the PERI_CRG21 [2:0] register.
+Other values: reserved
+[5:3]
+RO
+reserved
+Reserved
+VI1 clock select
+000: 214 MHz
+001: 300 MHz
+[2:0]
+RW
+vi1_clksel
+010: 500 MHz
+011: 600 MHz
+100: 340 MHz
+101: 396 MHz
+Other values: reserved
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG21 @ 0x0054;
+/******************************************************************************/
+    reg {
+        name = "VPSS clock and soft reset control register";
+	field {
+		name = "VPSS clock gating";
+		enum vpss_clken_enum {
+			disabled = 0x0 { desc = "clock disabled"; };
+			enabled = 0x1 { desc = "clock enabled"; };
+		};
+		encode = vpss_clken_enum;
+	} vpss_clken[1:1];
+
+        field {
+        	name = "VPSS soft reset";
+		enum vpss_srst_req_enum {
+			deassert = 0x0 { desc = "reset deasserted"; };
+			reset = 0x1 { desc = "reset"; };
+		};
+		encode = vpss_srst_req_enum;
+        } vpss_srst_req[0:0];
+
+    } PERI_CRG22 @ 0x0058;
+/******************************************************************************/
+    reg {
+        name = "VGS clock and soft reset control register";
+
+        field {
+                name = "VGS clock gating";
+                enum vgs_clken_enum {
+                        disabled = 0x0 { desc = "clock disabled"; };
+                        enabled = 0x1 { desc = "clock enabled"; };
+                };
+                encode = vgs_clken_enum;
+        } vgs_clken[1:1];
+
+        field {
+                name = "VGS soft reset";
+                enum vgs_srst_req_enum {
+                        deassert = 0x0 { desc = "reset deasserted"; };
+                        reset = 0x1 { desc = "reset"; };
+                };
+                encode = vgs_srst_req_enum;
+        } vgs_srst_req[0:0];
+
+    } PERI_CRG23 @ 0x005C;
+/******************************************************************************/
+    reg {
+        name = "JPGE clock and soft reset control register";
+
+        field {
+                name = "JPGE clock gating";
+                enum jpge_clken_enum {
+                        disabled = 0x0 { desc = "clock disabled"; };
+                        enabled = 0x1 { desc = "clock enabled"; };
+                };
+                encode = jpge_clken_enum;
+        } jpge_clken[1:1];
+
+        field {
+                name = "JPGE soft reset";
+                enum jpge_srst_req_enum {
+                        deassert = 0x0 { desc = "reset deasserted"; };
+                        reset = 0x1 { desc = "reset"; };
+                };
+                encode = jpge_srst_req_enum;
+        } jpge_srst_req[0:0];
+
+
+    } PERI_CRG24 @ 0x0060;
+/******************************************************************************/
+    reg {
+        name = "TDE clock and soft reset control register";
+
+        field {
+                name = "TDE clock gating";
+                enum tde_clken_enum {
+                        disabled = 0x0 { desc = "clock disabled"; };
+                        enabled = 0x1 { desc = "clock enabled"; };
+                };
+                encode = tde_clken_enum;
+        } tde_clken[1:1];
+
+        field {
+                name = "TDE soft reset";
+                enum tde_srst_req_enum {
+                        deassert = 0x0 { desc = "reset deasserted"; };
+                        reset = 0x1 { desc = "reset"; };
+                };
+                encode = tde_srst_req_enum;
+        } tde_srst_req[0:0];
+
+    } PERI_CRG25 @ 0x0064;
+/******************************************************************************/
+    reg {
+        name = "IVE clock and soft reset control register";
+	field {
+		name = "IVE clock gating";
+		enum ive_clken_enum {
+			disabled = 0x0 { desc = "clock disabled"; };
+			enabled = 0x1 { desc = "clock enabled"; };
+		};
+		encode = ive_clken_enum;
+	}ive_clken[1:1];
+
+        field {
+        	name = "IVE soft reset";
+		enum ive_srst_req_enum {
+			deassert = 0x0 { desc = "reset deasserted"; };
+			reset = 0x1 { desc = "reset"; };
+		};
+		encode = ive_srst_req_enum;
+        }ive_srst_req[0:0];
+
+    } PERI_CRG27 @ 0x006C;
+/******************************************************************************/
+    reg {
+        name = "GDC clock and soft reset control register";
+
+        field {
+                name = "GDC clock gating";
+                enum gdc_clken_enum {
+                        disabled = 0x0 { desc = "clock disabled"; };
+                        enabled = 0x1 { desc = "clock enabled"; };
+                };
+                encode = gdc_clken_enum;
+        } gdc_clken[1:1];
+
+        field {
+                name = "GDC soft reset";
+                enum gdc_srst_req_enum {
+                        deassert = 0x0 { desc = "reset deasserted"; };
+                        reset = 0x1 { desc = "reset"; };
+                };
+                encode = gdc_srst_req_enum;
+        } gdc_srst_req[0:0];
+
+    } PERI_CRG29 @ 0x0074;
+/******************************************************************************/
+    reg {
+        name = "Hash/LSADC/Cipher clock and soft reset control register";
+/*
+Cipher clock select
+[6]
+RW
+0: 198 MHz
+ca_clksel
+1: 250 MHz
+Hash clock gating
+[5]
+RW
+hash_clken
+0: clock disabled
+1: clock enabled
+HASH soft reset
+[4]
+RW
+hash_srst_req
+0: reset deasserted
+1: reset
+LSADC clock gating
+[3]
+RW
+lsadc_clken
+0: clock disabled
+1: clock enabled
+LSADC soft reset
+[2]
+RW
+lsadc_srst_req
+0: reset deasserted
+1: reset
+Cipher clock gating
+[1]
+RW
+cipher_clken
+0: clock disabled
+1: clock enabled
+Cipher soft reset
+[0]
+RW
+cipher_srst_req
+0: reset deasserted
+1: reset
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG31 @ 0x007C;
+/******************************************************************************/
+    reg {
+        name = "AIAO clock reset control register";
+/* 
+AIAO MCLK PLL clock source select
+[3:2]
+RW
+aiao_clksel
+00: 1188 MHz
+01: 1500 MHz
+Other values: reserved
+AIAO bus clock gating
+[1]
+RW
+aiao_clken
+0: clock disabled
+1: clock enabled
+AIAO bus soft reset
+[0]
+RW
+aiao_srst_req
+0: reset deasserted
+1: reset
+
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG32 @ 0x0080;
+/******************************************************************************/
+    reg {
+        name = "GZIP clock and soft reset control register";
+/*
+GZIP clock gating
+[1]
+RW
+0: clock disabled
+gzip_clken
+1: clock enabled
+GZIP soft reset
+[0]
+RW
+gzip_srst_req
+0: reset deasserted
+1: reset
+
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG33 @ 0x0084;
+/******************************************************************************/
+    reg {
+        name = "COMB PHY clock reset control register";
+/*
+
+[9]
+3 System
+Internal clock source select for the COMB PHY reference clock
+combphy_refclk_se
+0: 100 MHz clock
+l
+1: 25 MHz clock
+RW
+COMB PHY reference clock gating
+In PCIe mode:
+0: clock disabled
+[8]
+combphy_ref_clken 1: clock enabled
+RW
+In USB mode:
+0: clock disabled
+1: clock enabled
+[7:2]
+RO
+[1]
+reserved
+Reserved
+Soft reset mode for the COMB PHY port (This bit needs to be set
+combphy_srst_req_ to 1 before working.)
+RW
+sel
+0: reserved
+1: The soft reset mode is controlled by PERI_CRG43 bit[0].
+Soft reset for the COMB PHY port
+[0]
+combphy_srst_req 0: reset deasserted
+RW
+1: reset
+
+*/
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG43 @ 0x00AC;
+/******************************************************************************/
+    reg {
+        name = "PCIe CTRL clock and soft reset control register";
+/*
+PAD OE control mode for the PCIe output differential clock
+[10:8]
+RW
+pcie_pad_oe
+000: PAD OE control is forcibly enabled.
+001: PAD OE control is forcibly disabled.
+Other values: reserved
+PCIe CTRL AUX clock gating
+[7]
+RW
+pcie_aux_clken
+0: clock disabled
+1: clock enabled
+PCIe CTRL PIPE clock gating
+[6]
+RW
+pcie_pipe_clken
+0: clock disabled
+1: clock enabled
+PCIe CTRL SYS clock gating
+[5]
+RW
+pcie_sys_clken
+0: clock disabled
+1: clock enabled
+PCIe CTRL bus clock gating
+[4]
+RW
+pcie_bus_clken
+0: clock disabled
+1: clock enabled
+[3]
+RO
+reserved
+Reserved
+PCIe CTRL soft reset
+[2]
+RW
+pcie_srst_req
+0: reset deasserted
+1: reset
+PCIe CTRL SYS soft reset
+[1]
+RW
+pcie_sys_srst_req 0: reset deasserted
+1: reset
+PCIe CTRL bus soft reset
+[0]
+RW
+pcie_bus_srst_req 0: reset deasserted
+1: reset
+
+
+*/
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG44 @ 0x00B0;
+/******************************************************************************/
+    reg {
+        name = "USB 2.0 clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG45 @ 0x00B4;
+/******************************************************************************/
+    reg {
+        name = "USB 3.0 CTRL clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG46 @ 0x00B8;
+/******************************************************************************/
+    reg {
+        name = "FMC clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG48 @ 0x00C0;
+/******************************************************************************/
+    reg {
+        name = "MMC0/1/2 clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG49 @ 0x00C4;
+/******************************************************************************/
+    reg {
+        name = "GSF/GMAC clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG51 @ 0x00CC;
+/******************************************************************************/
+    reg {
+        name = "DDRT and IO_HPM clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG54 @ 0x00D8;
+/******************************************************************************/
+    reg {
+        name = "PWM clock and reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG55 @ 0x00DC;
+/******************************************************************************/
+    reg {
+        name = "RSA/TRNG/KLAD/DMA clock and soft reset control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG56 @ 0x00E0;
+/******************************************************************************/
+    reg {
+        name = "Clock soft reset control register for other APB modules";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG57 @ 0x00E4;
+/******************************************************************************/
+    reg {
+        name = "CRG status register";
+	field {
+		name = "GZIP reset status";
+		enum gzip_rst_ok_enum {
+			not = 0x0 { desc = "not reset"; };
+			reset = 0x1 { desc = "reset"; };
+		};
+		encode = gzip_rst_ok_enum;
+	} gzip_rst_ok[8:8];
+	enum lock_unlock_enum {
+		unlocked = 0x0 { desc = "unlocked"; };
+		locked = 0x1 { desc = "locked"; };
+	};
+	field {
+		name = "EPLL lock status";
+		encode = lock_unlock_enum;
+	} epll_lock[4:4];
+	field {
+		name = "VPLL lock status";
+		encode = lock_unlock_enum;
+	} vpll_lock[3:3];
+	field {
+		name = "DPLL lock status";
+		encode = lock_unlock_enum;
+	} dpll_lock[2:2];
+        field {
+        	name  = "APLL lock status";
+		encode = lock_unlock_enum;
+        } apll_lock[0:0];
+
+    } PERI_CRG58 @ 0x00E8;
+/******************************************************************************/
+    reg {
+        name = "GMAC interface control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG59 @ 0x00EC;
+/******************************************************************************/
+    reg {
+        name = "GMAC interface status register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG60 @ 0x00F0;
+
+/******************************************************************************/
+	reg {
+		name = "UNDOCUMENTED";
+		field {
+			desc = "TODO";
+		} unknown[31:0];
+	}PERI_CRG68 @ 0x0110;
+
+/******************************************************************************/
+    reg {
+        name = "SoC frequency status register";
+	
+	field {
+		enum sysaxi_sc_seled_enum {
+			mhz24 = 0x0 { desc = "The clock is switched to a 24 MHz clock."; };
+			mhz198 = 0x1 { desc = "The clock is switched to a 198 MHz clock."; };
+		};
+		name = "SYSAXI clock switching completion indicator";
+		encode = sysaxi_sc_seled_enum;
+	} sysaxi_sc_seled[9:9];
+
+	field {
+		enum ddr_sc_seled_enum {
+			mhz24 = 3'b000 { desc = "The clock is switched to a 24 MHz clock."; };
+			postdiv = 3'b001 { desc = "The clock is switched to the DPLL POSTDIV clock."; };
+			mhz396 = 3'b011 { desc = "The clock is switched to a 396 MHz clock."; };
+			mhz340 = 3'b100 { desc = "The clock is switched to a 340 MHz clock."; };
+			mhz300 = 3'b101 { desc = "The clock is switched to a 300 MHz clock."; };
+		};
+		name = "DDR clock switching completion indicator";
+		encode = ddr_sc_seled_enum;
+	} ddr_sc_seled[8:6];
+
+	field {
+		enum a17_sc_seled_enum {
+                        mhz24 = 3'b000 { desc = "The clock is switched to a 24 MHz clock."; };
+			foutvco = 3'b001 { desc = "The clock is switched to the APLL FOUTVCO clock."; };
+                        postdiv = 3'b010 { desc = "The clock is switched to the APLL POSTDIV clock."; };
+                        mhz792 = 3'b011 { desc = "The clock is switched to a 792 MHz clock."; };
+                        mhz594 = 3'b100 { desc = "The clock is switched to a 594 MHz clock."; };
+		};
+		name = "A17 clock switching completion indicator";
+		encode = a17_sc_seled_enum;
+	} a17_sc_seled[5:3];
+
+        field {
+		enum a7_sc_seled_enum {
+			mhz24 = 3'b000 { desc = "The clock is switched to a 24 MHz clock."; };
+			postdiv = 3'b010 { desc = "The clock is switched to the APLL POSTDIV clock."; };
+			mhz792 = 3'b011 { desc = "The clock is switched to a 792 MHz clock."; };
+			mhz594 = 3'b100 { desc = "The clock is switched to a 594 MHz clock."; };
+		};
+            	name = "A7 clock switching completion indicator";
+		encode = a7_sc_seled_enum;
+        } a7_sc_seled[2:0];
+
+    } PERI_CRG79 @ 0x013C;
+/******************************************************************************/
+};
+

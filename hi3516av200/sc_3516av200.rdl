@@ -1,0 +1,14 @@
+regfile eSC3516av200 {
+    name = "System Controller Registers";
+
+    reg {
+        name = "System control register";
+        desc = "It is used to specify the operations to be performed by the system.";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SC_CTRL @ 0x0000;
+
+
+};
+

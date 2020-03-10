@@ -1,0 +1,72 @@
+regfile eMMDRC_DDR_PHY {
+    name = "MDDRC/DDR PHY register";
+
+    reg {
+        name = "Lock control register";
+        desc = "todo";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } AXI_CFG_LOCK @ 0x0004;
+
+   reg {
+	name = "Module clock gating register";
+	desc = "";
+	field {
+		desc = "TODO";
+	} todo = 0;
+   } AXI_CKG @ 0x0008;
+
+   reg {
+        name = "AXI operating mode register";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   } AXI_ACTION @ 0x0020;
+
+/*
+   reg {
+        name = "";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   }  @ 0x0008;
+
+   reg {
+        name = "";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   }  @ 0x0008;
+
+   reg {
+        name = "";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   }  @ 0x0008;
+
+   reg {
+        name = "";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   }  @ 0x0008;
+
+   reg {
+        name = "";
+        desc = "";
+        field {
+                desc = "TODO";
+        } todo = 0;
+   }  @ 0x0008;
+*/
+
+
+};
+

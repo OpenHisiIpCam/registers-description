@@ -1,0 +1,340 @@
+regfile ePERI_PMC {
+    name = "Power management control (PMC)";
+
+    reg {
+        name = "Core AVS PWM configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC0 @ 0x0000;
+
+    reg {
+        name = "A17 AVS PWM configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC1 @ 0x0004;
+
+    reg {
+        name = "DDR AVS PWM configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC2 @ 0x0008;
+
+    reg {
+        name = "MDA0 AVS PWM configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC3 @ 0x000C;
+
+    reg {
+        name = "AVS PWM output source select configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC4 @ 0x0010;
+
+    reg {
+        name = "Core AVS control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC5 @ 0x0014;
+
+    reg {
+        name = "A17 AVS control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC6 @ 0x0018;
+
+    reg {
+        name = "DDR AVS control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC7 @ 0x001C;
+
+    reg {
+        name = "MDA0 AVS control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC8 @ 0x0020;
+
+    reg {
+        name = "Core HPM control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC10 @ 0x0028;
+
+    reg {
+        name = "Core HPM status register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC11 @ 0x002C;
+
+    reg {
+        name = "Core HPM status register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC12 @ 0x0030;
+
+    reg {
+        name = "Core HPM control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC13 @ 0x0034;
+
+    reg {
+        name = "A17 HPM control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC14 @ 0x0038;
+
+    reg {
+        name = "A17 HPM status register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC15 @ 0x003C;
+
+    reg {
+        name = "A17 HPM status register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC16 @ 0x0040;
+
+    reg {
+        name = "A17 HPM control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC17 @ 0x0044;
+
+    reg {
+        name = "DDR HPM control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC18 @ 0x0048;
+
+    reg {
+        name = "DDR HPM status register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC19 @ 0x004C;
+
+    reg {
+        name = "DDR HPM status register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC20 @ 0x0050;
+
+    reg {
+        name = "DDR HPM control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC21 @ 0x0054;
+
+    reg {
+        name = "MDA0 HPM control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC22 @ 0x0058;
+
+    reg {
+        name = "MDA0 HPM status register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC23 @ 0x005C;
+
+    reg {
+        name = "MDA0 HPM status register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC24 @ 0x0060;
+
+    reg {
+        name = "MDA0 HPM control register 3";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC25 @ 0x0064;
+
+    reg {
+        name = "HPM cyclic monitoring fine-tuning control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC30 @ 0x0078;
+
+    reg {
+        name = "HPM cyclic monitoring fine-tuning control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC31 @ 0x007C;
+
+    reg {
+        name = "Tsensor control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC68 @ 0x0110 ;
+
+    reg {
+        name = "Tsensor overflow/underflow configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC69 @ 0x0114;
+
+    reg {
+        name = "Tsensor measurement value 0/1 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC70 @ 0x0118;
+
+    reg {
+        name = "Tsensor measurement value 2/3 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC71 @ 0x011C;
+
+    reg {
+        name = "Tsensor measurement value 4/5 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC72 @ 0x0120;
+
+    reg {
+        name = "Tsensor measurement value 6/7 register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC73 @ 0x0124;
+
+    reg {
+        name = "Tsensor overflow/underflow alarm flag register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC74 @ 0x0128;
+
+    reg {
+        name = "VICAP1 power-on/power-off control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC75 @ 0x012C;
+
+    reg {
+        name = "A17 power-on/power-off control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC76 @ 0x0130;
+
+    reg {
+        name = "A17 power-on/power-off control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC77 @ 0x0134;
+
+    reg {
+        name = "A17 and CCI low-power control configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC78 @ 0x0138;
+
+    reg {
+        name = "A17 power-on/power-off control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC79 @ 0x013C;
+
+    reg {
+        name = "A17 power-on times register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC80 @ 0x0140;
+
+    reg {
+        name = "A17 power-off times register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC81 @ 0x0144;
+
+    reg {
+        name = "A17 power-on time register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC82 @ 0x0148;
+
+    reg {
+        name = "A17 power-on time register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC83 @ 0x014C;
+
+    reg {
+        name = "A17 power-on time register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC84 @ 0x0150;
+
+    reg {
+        name = "A17 power-on time counting termination configuration register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC85 @ 0x0154;
+
+    reg {
+        name = "A17 power-off time register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC86 @ 0x0158;
+
+    reg {
+        name = "A17 power-off time register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC87 @ 0x015C;
+
+    reg {
+        name = "A17 power-off time register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERI_PMC88 @ 0x0160;
+};
+

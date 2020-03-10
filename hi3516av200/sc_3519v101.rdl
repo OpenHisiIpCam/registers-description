@@ -1,0 +1,147 @@
+regfile eSC3519v101 {
+    name = "System Controller Registers";
+
+    reg {
+        name = "System control register";
+        desc = "It is used to specify the operations to be performed by the system.";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SC_CTRL @ 0x0000;
+
+    reg {
+        name = "System soft reset register";
+        desc = "
+            When a value is written to this register, the system controller 
+            sends a system soft reset request to the reset module. 
+            Then the reset module resets the system.
+
+            !!! Caution
+                Write protection for this register can be enabled by configuring 
+                SC_LOCKEN. This register can be written only when write protection 
+                is disabled.
+        ";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SC_SYSRES @ 0x0004;
+
+    reg {
+        name = "Software interrupt register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SOFT_INT @ 0x001C;
+
+    reg {
+        name = "Key register lock register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SC_LOCKEN @ 0x0044;
+
+    reg {
+        name = "System status register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SYSSTAT @ 0x008C;
+
+
+	reg {
+		name = "UNDOCUMENTED";
+		field {
+            		desc = "TODO";
+        	} unknown[31:0];
+
+	} DDR_TRAINING_CFG @ 0x0090;
+
+        reg {
+                name = "UNDOCUMENTED";
+                field {
+                        desc = "TODO";
+                } unknown[31:0];
+
+        } DDRT_training_STAT @ 0x0098;
+
+        reg {
+                name = "UNDOCUMENTED";
+                field {
+                        desc = "TODO";
+                } unknown[31:0];
+
+        } DDRT_training_PATTERN @ 0x0094;
+
+        reg {
+                name = "UNDOCUMENTED";
+                field {
+                        desc = "TODO";
+                } unknown[31:0];
+
+        } PACK_PHYINITCTRL0 @ 0x00A0;
+
+
+/*************************************************************************/
+
+	/* hi3516av200 chip is DIFFERENT! */
+    reg {
+        name = "Chip ID register 0";
+        desc = "";
+
+        enum SCSYSID0_chipid_enum {
+            Hi3519RFCV101   = 0x01  { desc = "Hi3519RFCV101"; };
+            Hi3519RFIV101   = 0x11  { desc = "Hi3519RFIV101"; };
+        };
+
+        field {
+            name = "chipid";
+            desc = "Version";
+            encode = SCSYSID0_chipid_enum;
+        } chipid[31:24] = 0x01;
+
+        field {
+            name = "sysid0";
+            desc = "Reading this register returns 0x01.";
+        } sysid0[7:0] = 0x01;
+
+    } SCSYSID0 @ 0x0EE0;
+
+    reg {
+        name = "Chip ID register 1";
+        desc = "";
+
+        field {
+            name = "sysid1";
+            desc = "Reading this register returns 0x01.";
+        } sysid1[7:0] = 0x01;
+
+    } SCSYSID1 @ 0x0EE4;
+
+    reg {
+        name = "Chip ID register 2";
+        desc = "";
+
+        field {
+            name = "sysid2";
+            desc = "Reading this register returns 0x19.";
+        } sysid2[7:0] = 0x19;
+
+    } SCSYSID2 @ 0x0EE8;
+
+    reg {
+        name = "Chip ID register 3";
+        desc = "";
+        
+        field {
+            name = "sysid3";
+            desc = "Reading this register returns 0x35.";
+            //sw=r;
+        } sysid3[7:0] = 0x35;
+
+    } SCSYSID3 @ 0x0EEC;
+
+};
+

@@ -1,0 +1,189 @@
+addrmap hi3519v101 {
+    name = "hi3519v101 registers";
+    desc = "
+        [list]
+        [*] 0x0000_0000 0x03FF_FFFF Memory selected for address remapping. The address points to the on-chip RAM after remapping is cleared. 64 MB 
+        [*] 0x0400_0000 0x0400_FFFF BOOTROM address space 64 KB The actual size is 32 KB.
+        [*] 0x0401_0000 0x0401_FFFF BOOTRAM address space 64 KB The actual size is 32 KB.
+        [*] 0x0402_0000 0x0406_FFFF Reserved 320 KB 
+        [*] 0x0407_0000 0x0FFF_FFFF Reserved - 
+        [*] 0x1000_0000 0x1000_FFFF FMC register 64 KB 
+        [*] 0x1001_0000 0x1001_FFFF Reserved 64 KB 
+        [*] 0x1002_0000 0x1002_FFFF Reserved 64 KB 
+        [*] 0x1003_0000 0x1003_FFFF DMAC register 64 KB 
+        [*] 0x1004_0000 0x1004_FFFF Reserved 64 KB 
+        [*] 0x1005_0000 0x1005_FFFF GSF register 64 KB 
+        [*] 0x1006_0000 0x1006_FFFF Reserved 64 KB 
+        [*] 0x1007_0000 0x1007_FFFF Reserved 64 KB 
+        [*] 0x1008_0000 0x1008_FFFF Cipher register 64 KB 
+        [*] 0x1009_0000 0x1009_FFFF Hash register 64 KB 
+        [*] 0x100A_0000 0x100A_FFFF Reserved 64 KB 
+        [*] 0x100B_0000 0x100B_FFFF Reserved 64 KB 
+        [*] 0x100C_0000 0x100C_FFFF MMC0 register 64 KB 
+        [*] 0x100D_0000 0x100D_FFFF MMC1 register 64 KB 
+        [*] 0x100E_0000 0x100E_FFFF MMC2 register 64 KB
+        [*] 0x100F_0000 0x100F_FFFF Reserved 64 KB
+        [*] 0x1010_0000 0x1010_FFFF Reserved 64 KB
+        [*] 0x1011_0000 0x1011_FFFF USB 2.0 host OHCI register 64 KB
+        [*] 0x1012_0000 0x1012_FFFF USB 2.0 host EHCI register 64 KB
+        [*] 0x1013_0000 0x1013_FFFF USB 2.0 device register 64 KB
+        [*] 0x1014_0000 0x1014_FFFF Reserved 64 KB
+        [*] 0x1015_0000 0x1015_FFFF Reserved 64 KB
+        [*] 0x1016_0000 0x1016_FFFF Reserved 64 KB
+        [*] 0x1017_0000 0x1017_FFFF Reserved 64 KB
+        [*] 0x1018_0000 0x1018_FFFF USB 3.0 register 64 KB
+        [*] 0x1019_0000 0x1019_FFFF Reserved -
+        [*] 0x101A_0000 0x101A_FFFF Reserved 64 KB
+        [*] 0x101B_0000 0x101B_FFFF Reserved 64 KB
+        [*] 0x101C_0000 0x101D_FFFF Reserved 128 KB
+        [*] 0x101E_0000 0x101F_FFFF Reserved 128 KB
+        [*] 0x1020_0000 0x1020_FFFF Reserved 64 KB
+        [*] 0x1021_0000 0x102F_FFFF Reserved -
+        [*] 0x1030_0000 0x1030_FFFF GIC register 64 KB
+        [*] 0x1031_0000 0x103F_FFFF Reserved 64 KB
+        [*] 0x1040_0000 0x1051_FFFF Reserved 1088 KB
+        [*] 0x1060_0000 0x106F_FFFF Reserved -
+        [*] 0x1070_0000 0x1070_FFFF Reserved 64 KB
+        [*] 0x1071_0000 0x10FF_FFFF Reserved -
+        [*] 0x1100_0000 0x1100_FFFF VDP register 64 KB
+        [*] 0x1101_0000 0x1101_FFFF Reserved 64 KB
+        [*] 0x1102_0000 0x1102_FFFF Reserved 64 KB
+        [*] 0x1103_0000 0x1103_FFFF Reserved 64 KB
+        [*] 0x1104_0000 0x1104_FFFF IVE register 64 KB
+        [*] 0x1105_0000 0x1105_FFFF Reserved 64 KB
+        [*] 0x1107_0000 0x1107_FFFF Reserved 64 KB
+        [*] 0x1108_0000 0x1108_FFFF AIAO register 64 KB
+        [*] 0x1109_0000 0x1109_FFFF Reserved 64 KB
+        [*] 0x110A_0000 0x110A_FFFF Reserved 64 KB
+        [*] 0x110B_0000 0x110B_FFFF Reserved 64 KB
+        [*] 0x110C_0000 0x110C_FFFF GZIP register 64 KB
+        [*] 0x110D_0000 0x110F_FFFF Reserved -
+        [*] 0x1110_0000 0x1110_FFFF TDE register 64 KB
+        [*] 0x1111_0000 0x1111_FFFF GDC register 64 KB
+        [*] 0x1112_0000 0x1112_FFFF VGS register 64 KB
+        [*] 0x1113_0000 0x1117_FFFF Reserved -
+        [*] 0x1118_0000 0x1118_FFFF VPSS register 64 KB
+        [*] 0x1119_0000 0x1119_FFFF Reserved 64 KB
+        [*] 0x111A_0000 0x111A_FFFF Reserved 64 KB
+        [*] 0x111B_0000 0x111B_FFFF Reserved 64 KB
+        [*] 0x111C_0000 0x111F_FFFF Reserved -
+        [*] 0x1120_0000 0x1120_FFFF JPGE register 64 KB
+        [*] 0x1121_0000 0x1121_FFFF Reserved 64 KB
+        [*] 0x1122_0000 0x1123_FFFF Reserved -
+        [*] 0x1124_0000 0x1124_FFFF Reserved 64 KB
+        [*] 0x1125_0000 0x1125_FFFF Reserved 64 KB
+        [*] 0x1126_0000 0x1126_FFFF Reserved 64 KB
+        [*] 0x1127_0000 0x1127_FFFF Reserved 64 KB
+        [*] 0x1128_0000 0x1128_FFFF VEDU register 64 KB
+        [*] 0x1129_0000 0x1129_FFFF Reserved 64 KB
+        [*] 0x112A_0000 0x112A_FFFF Reserved 64 KB
+        [*] 0x112B_0000 0x112B_FFFF Reserved 64 KB
+        [*] 0x112C_0000 0x112F_FFFF Reserved 64 KB
+        [*] 0x1130_0000 0x1130_FFFF MIPI0/1 register 64 KB
+        [*] 0x1131_0000 0x1137_FFFF Reserved -
+        [*] 0x1138_0000 0x113E_FFFF VICAP0 register 448 KB
+        [*] 0x113F_0000 0x1147_FFFF Reserved -
+        [*] 0x1148_0000 0x114E_FFFF VICAP1 register 448 KB
+        [*] 0x114F_0000 0x11FF_FFFF Reserved - 
+        [*] 0x1200_0000 0x1200_0FFF Timer0/Timer1 register 4 KB 
+        [*] 0x1200_1000 0x1200_1FFF Timer2/Timer3 register 4 KB 
+        [*] 0x1200_2000 0x1200_2FFF Timer4/Timer5 register 4 KB 
+        [*] 0x1200_3000 0x1200_3FFF Reserved 4 KB 
+        [*] 0x1200_4000 0x1200_FFFF Reserved 48 KB 
+        [*] 0x1201_0000 0x1201_FFFF CRG register 64 KB 
+        [*] 0x1202_0000 0x1202_FFFF SYSCTRL register 64 KB 
+        [*] 0x1203_0000 0x1203_FFFF MISC register 64 KB 
+        [*] 0x1204_0000 0x1204_07FF I/O MUX configuration register 2 KB Multiplexing relationship
+        [*] 0x1204_0800 0x1204_FFFF I/O CTRL configuration register 62 KB Drive current
+        [*] 0x1205_0000 0x1205_0FFF DDRT register 4 KB 
+        [*] 0x1205_1000 0x1205_1FFF Reserved 60 KB 
+        [*] 0x1206_0000 0x1206_FFFF MDDRC/DDR PHY register 64 KB 
+        [*] 0x1207_0000 0x1207_07FF Reserved 2 KB 
+        [*] 0x1207_0800 0x1207_FFFF OTP key control register 62 KB 
+        [*] 0x1208_0000 0x1208_FFFF WDG register 64 KB 
+        [*] 0x1209_0000 0x1209_7FFF RTC register 32 KB 
+        [*] 0x1209_8000 0x1209_FFFF Power Controller register 32KB 
+        [*] 0x120A_0000 0x120A_FFFF PMC register 64 KB 
+        [*] 0x120B_0000 0x120B_FFFF RSA register 64 KB 
+        [*] 0x120C_0000 0x120C_FFFF TRNG register 64 KB 
+        [*] 0x120D_0000 0x120D_FFFF SYSCNT register 64 KB 
+        [*] 0x120E_0000 0x120E_FFFF LSADC register 64 KB 
+        [*] 0x120F_0000 0x120F_FFFF IR register 64 KB 
+        [*] 0x1210_0000 0x1210_0FFF UART0 register 4 KB 
+        [*] 0x1210_1000 0x1210_1FFF UART1 register 4 KB 
+        [*] 0x1210_2000 0x1210_2FFF UART2 register 4 KB 
+        [*] 0x1210_3000 0x1210_3FFF UART3 register 4 KB 
+        [*] 0x1210_4000 0x1210_4FFF UART4 register 4 KB
+        [*] 0x1210_5000 0x1210_FFFF Reserved 44 KB
+        [*] 0x1211_0000 0x1211_0FFF I2C0 register 4 KB
+        [*] 0x1211_1000 0x1211_1FFF I2C1 register 4 KB
+        [*] 0x1211_2000 0x1211_2FFF I2C2 register 4 KB
+        [*] 0x1211_3000 0x1211_3FFF I2C3 register 4 KB
+        [*] 0x1211_4000 0x1211_4FFF Reserved 4 KB
+        [*] 0x1211_5000 0x1211_FFFF Reserved 44 KB
+        [*] 0x1212_0000 0x1212_0FFF SSP0 register 4 KB
+        [*] 0x1212_1000 0x1212_1FFF SSP1 register 4 KB
+        [*] 0x1212_2000 0x1212_2FFF SSP2 register 4 KB
+        [*] 0x1212_3000 0x1212_3FFF SSP3 register 4 KB
+        [*] 0x1212_4000 0x1212_4FFF spi_3wire0 register 4 KB
+        [*] 0x1212_5000 0x1212_5FFF spi_3wire1 register 4 KB
+        [*] 0x1212_6000 0x1212_FFFF Reserved 40 KB
+        [*] 0x1213_0000 0x1213_FFFF PWM register 64 KB
+        [*] 0x1214_0000 0x1214_0FFF GPIO0 register 4 KB
+        [*] 0x1214_1000 0x1214_1FFF GPIO1 register 4 KB
+        [*] 0x1214_2000 0x1214_2FFF GPIO2 register 4 KB
+        [*] 0x1214_3000 0x1214_3FFF GPIO3 register 4 KB
+        [*] 0x1214_4000 0x1214_4FFF GPIO4 register 4 KB
+        [*] 0x1214_5000 0x1214_5FFF GPIO5 register 4 KB
+        [*] 0x1214_6000 0x1214_6FFF GPIO6 register 4 KB
+        [*] 0x1214_7000 0x1214_7FFF GPIO7 register 4 KB
+        [*] 0x1214_8000 0x1214_8FFF GPIO8 register 4 KB
+        [*] 0x1214_9000 0x1214_9FFF GPIO9 register 4 KB
+        [*] 0x1214_A000 0x1214_AFFF GPIO10 register 4 KB
+        [*] 0x1214_B000 0x1214_BFFF GPIO11 register 4 KB
+        [*] 0x1214_C000 0x1214_CFFF GPIO12 register 4 KB
+        [*] 0x1214_D000 0x1214_DFFF GPIO13 register 4 KB
+        [*] 0x1214_E000 0x1214_EFFF GPIO14 register 4 KB
+        [*] 0x1214_F000 0x1214_FFFF Reserved 4 KB
+        [*] 0x1215_0000 0x1215_0FFF GPIO16 register 4 KB
+        [*] 0x1215_1000 0x1215_FFFF Reserved 60 KB
+        [*] 0x1216_0000 0x1216_FFFF PCIe register 64 KB
+        [*] 0x1217_0000 0x1217_FFFF Reserved 64 KB
+        [*] 0x1218_0000 0x12FF_FFFF Reserved -
+        [*] 0x1300_0000 0x13FF_FFFF Reserved -
+        [*] 0x1400_0000 0x14FF_FFFF FMC storage address space 16 MB
+        [*] 0x1500_0000 0x1EFF_FFFF Reserved -
+        [*] 0x1F00_0000 0x1F0F_FFFF CCI register 1 MB
+        [*] 0x1F10_FFFF 0x1FFE_FFFF Reserved -
+        [*] 0x2000_0000 0x27FF_FFFF PCIe configuration space 128 MB
+        [*] 0x2800_0000 0x2FFF_FFFF PCIe memory space 128 MB
+        [*] 0x3000_0000 0x37FF_FFFF Reserved 128 MB
+        [*] 0x3800_0000 0x3FFF_FFFF Reserved 128 MB
+        [*] 0x4000_0000 0x7FFF_FFFF Reserved 1 GB
+        [*] 0x8000_0000 0xFFFF_FFFF DDR address space 2 GB
+        [/list]
+    ";
+
+    //eWDG        WDG         @   0x12080000;
+    //eTIMER      TIMER0      @   0x12000000;
+    //eTIMER      TIMER1      @   0x12000020;
+    //eTIMER      TIMER2      @   0x12001000;
+    //eTIMER      TIMER3      @   0x12001020;
+    //eTIMER      TIMER4      @   0x12002000;
+    //eTIMER      TIMER5      @   0x12002020;
+    //eDMAC       DMAC        @   0x10030000;
+
+    ePERI_CRG   	PERI_CRG    	@ 0x12010000;
+    eSC3519v101        	SC          	@ 0x12020000;
+    eMISC_CTRL  	MISC_CTRL   	@ 0x12030000;
+    eMUX        	MUX         	@ 0x12040000;
+    ePAD                PAD             @ 0x12040800;
+
+    //eMMDRC_DDR_PHY 	MMDRC_DDR_PHY	@ 0x12060000; //TODO 0x1206 //0x1206_0000 0x1206_FFFF MDDRC/DDR PHY register 64 KB
+	
+    ePERI_PMC   	PERI_PMC    	@ 0x120A0000;
+
+    //TODO 0x120D //0x120D_0000 0x120D_FFFF SYSCNT register 64 KB
+    //TODO 0x1214 //0x1214_F000 0x1214_FFFF Reserved 4 KB
+};
+

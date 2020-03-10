@@ -1,0 +1,896 @@
+regfile ePAD {
+	name = "I/O CTRL configuration register";
+
+    reg {
+        name = "FLASH_TRIG pin drive strength control register.";
+	//reset = 0x00000130;
+
+	field {
+		name = "FLASH_TRIG pin internal pull-down control";
+		enum pulldown_enum {
+			disable = 0x0 { desc = "disable"; };
+                        enable = 0x01 { desc = "enable"; };
+		};
+		encode = pulldown_enum;
+	} pulldown[10:10];
+
+	field {
+		name = "FLASH_TRIG pin internal pull-up control";
+		enum pullup_enum {
+			disable = 0x0 { desc = "disable"; };
+			enable = 0x01 { desc = "enable"; };
+		};
+		encode = pullup_enum;
+	} pullup [9:9];
+
+	field {
+		name = "FLASH_TRIG pin slew rate contol";
+		enum slew_rate_enum {
+			no_slow = 0x0 { desc = "no slow rate"; };
+			slow = 0x1 { desc = "slow rate"; };
+		};
+		encode = slew_rate_enum;
+	} slew_rate[8:8];
+
+	field {
+		name = "FLASH_TRIG pin drive current selection";
+		enum current_enum {
+			io2_level4 = 4'b000 { desc = "IO2_level4"; };
+			io2_level3 = 4'b001 { desc = "IO2_level3"; };
+			io2_level2 = 4'b010 { desc = "IO2_level2"; };
+			io2_level1 = 4'b011 { desc = "IO2_level1"; };
+		};
+		encode = current_enum;
+
+	} current[7:4];
+    } pad_ctrl_reg0 @ 0x000;
+
+    reg {
+        name = "SHUTTER_TRIG pin drive strength control register.";
+	field {
+		name = "TODO";
+	} todo[31:0];
+    } pad_ctrl_reg1 @ 0x004;
+
+    reg {
+        name = "SENSOR1_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg2 @ 0x008;
+    
+    reg {
+        name = "SENSOR1_RSTN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg3 @ 0x00C;
+
+    reg {
+        name = "SENSOR1_HS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg4 @ 0x010;
+
+    reg {
+        name = "SENSOR1_VS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg5 @ 0x014;
+
+    reg {
+        name = "SPI1_SCLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg6 @ 0x018;
+
+    reg {
+        name = "SPI1_SDO pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg7 @ 0x01C;
+
+    reg {
+        name = "SPI1_SDI pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg8 @ 0x020;
+
+    reg {
+        name = "SPI1_CSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg9 @ 0x024;
+
+    reg {
+        name = "VI1_HS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg10 @ 0x028;
+
+    reg {
+        name = "VI1_VS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg11 @ 0x02C;
+
+    reg {
+        name = "VI1_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg12 @ 0x030;
+
+    reg {
+        name = "VI1_DATA0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg13 @ 0x034;
+
+    reg {
+        name = "VI1_DATA1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg14 @ 0x038;
+
+    reg {
+        name = "VI1_DATA2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg15 @ 0x03C;
+
+    reg {
+        name = "VI1_DATA3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg16 @ 0x040;
+
+    reg {
+        name = "VI1_DATA4 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg17 @ 0x044;
+
+    reg {
+        name = "VI1_DATA5 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg18 @ 0x048;
+
+    reg {
+        name = "SPI2_SCLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg19 @ 0x04C;
+
+    reg {
+        name = "SPI2_SDO pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg20 @ 0x050;
+
+    reg {
+        name = "SPI2_SDI pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg21 @ 0x054;
+
+    reg {
+        name = "SPI2_CSN0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg22 @ 0x058;
+
+    reg {
+        name = "I2C2_SDA pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg23 @ 0x05C;
+
+    reg {
+        name = "I2C2_SCL pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg24 @ 0x060;
+
+    reg {
+        name = "JTAG_TRSTN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg25 @ 0x064;
+
+    reg {
+        name = "JTAG_TCK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg26 @ 0x068;
+
+    reg {
+        name = "JTAG_TMS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg27 @ 0x06C;
+
+    reg {
+        name = "JTAG_TDO pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg28 @ 0x070;
+
+    reg {
+        name = "JTAG_TDI pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg29 @ 0x074;
+
+    reg {
+        name = "PWM0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg31 @ 0x07C;
+
+    reg {
+        name = "PWM1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg32 @ 0x080;
+
+    reg {
+        name = "PWM2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg33 @ 0x084;
+
+    reg {
+        name = "PWM3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg34 @ 0x088;
+
+    reg {
+        name = "UART0_RXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg35 @ 0x08C;
+
+    reg {
+        name = "UART0_TXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg36 @ 0x090;
+
+    reg {
+        name = "UART1_RTSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg37 @ 0x094;
+
+    reg {
+        name = "UART1_RXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg38 @ 0x098;
+
+    reg {
+        name = "UART1_CTSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg39 @ 0x09C;
+
+    reg {
+        name = "UART1_TXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg40 @ 0x0A0;
+
+    reg {
+        name = "UART2_RXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg41 @ 0x0A4;
+
+    reg {
+        name = "UART2_TXD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg42 @ 0x0A8;
+
+    reg {
+        name = "UART2_RTSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg43 @ 0x0AC;
+
+    reg {
+        name = "UART2_CTSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg44 @ 0x0B0;
+
+    reg {
+        name = "USB3_PWREN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg45 @ 0x08B4;
+
+    reg {
+        name = "SDIO0_CARD_POWER_EN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg46 @ 0x0B8;
+
+    reg {
+        name = "SDIO0_CARD_DETECT pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg47 @ 0x0BC;
+
+    reg {
+        name = "SDIO0_CWPR pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg48 @ 0x0C0;
+
+    reg {
+        name = "SDIO0_CCLK_OUT pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg49 @ 0x0C4;
+
+    reg {
+        name = "SDIO0_CCMD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg50 @ 0x0C8;
+
+    reg {
+        name = "SDIO0_CDATA0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg51 @ 0x0CC;
+
+    reg {
+        name = "SDIO0_CDATA1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg52 @ 0x0D0;
+
+    reg {
+        name = "SDIO0_CDATA2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg53 @ 0x0D4;
+
+    reg {
+        name = "SDIO0_CDATA3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg54 @ 0x0D8;
+
+    reg {
+        name = "SDIO1_CARD_POWER_EN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg55 @ 0x0DC;
+
+    reg {
+        name = "SDIO1_CARD_DETECT pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg56 @ 0x0E0;
+
+    reg {
+        name = "SDIO1_CWPR pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg57 @ 0x0E4;
+
+    reg {
+        name = "SDIO1_CCLK_OUT pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg58 @ 0x0E8;
+
+    reg {
+        name = "SDIO1_CCMD pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg59 @ 0x0EC;
+
+    reg {
+        name = "SDIO1_CDATA0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg60 @ 0x0F0;
+
+    reg {
+        name = "SDIO1_CDATA1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg61 @ 0x0F4;
+
+    reg {
+        name = "SDIO1_CDATA2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg62 @ 0x0F8;
+
+    reg {
+        name = "SDIO1_CDATA3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg63 @ 0x0FC;
+
+    reg {
+        name = "USB2_PWREN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg64 @ 0x100;
+
+    reg {
+        name = "VO_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg65 @ 0x104;
+
+    reg {
+        name = "VO_DATA0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg66 @ 0x108;
+
+    reg {
+        name = "VO_DATA1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg67 @ 0x10C;
+
+    reg {
+        name = "VO_DATA2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg68 @ 0x110;
+
+    reg {
+        name = "VO_DATA3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg69 @ 0x114;
+
+    reg {
+        name = "VO_DATA4 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg70 @ 0x118;
+
+    reg {
+        name = "VO_DATA5 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg71 @ 0x11C;
+
+    reg {
+        name = "VO_DATA6 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg72 @ 0x120;
+
+    reg {
+        name = "VO_DATA7 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg73 @ 0x124;
+
+    reg {
+        name = "VO_DATA8 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg74 @ 0x128;
+
+    reg {
+        name = "VO_DATA9 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg75 @ 0x12C;
+
+    reg {
+        name = "VO_DATA10 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg76 @ 0x130;
+
+    reg {
+        name = "VO_DATA11 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg77 @ 0x134;
+
+    reg {
+        name = "VO_DATA12 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg78 @ 0x138;
+
+    reg {
+        name = "VO_DATA13 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg79 @ 0x13C;
+
+    reg {
+        name = "VO_DATA14 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg80 @ 0x140;
+
+    reg {
+        name = "VO_DATA15 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg81 @ 0x144;
+
+    reg {
+        name = "RGMII_TX_EN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg82 @ 0x148;
+
+    reg {
+        name = "RGMII_TX_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg83 @ 0x14C;
+
+    reg {
+        name = "RGMII_TXD0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg84 @ 0x150;
+
+    reg {
+        name = "RGMII_TXD1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg85 @ 0x154;
+
+    reg {
+        name = "RGMII_TXD2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg86 @ 0x158;
+
+    reg {
+        name = "RGMII_TXD3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg87 @ 0x15C;
+
+    reg {
+        name = "RGMII_RX_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg88 @ 0x160;
+
+    reg {
+        name = "RGMII_RX_DV pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg89 @ 0x164;
+
+    reg {
+        name = "RGMII_RXD0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg90 @ 0x168;
+
+    reg {
+        name = "RGMII_RXD1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg91 @ 0x16C;
+
+    reg {
+        name = "RGMII_RXD2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg92 @ 0x170;
+
+    reg {
+        name = "RGMII_RXD3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg93 @ 0x174;
+
+    reg {
+        name = "EPHY_RSTN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg94 @ 0x178;
+
+    reg {
+        name = "EPHY_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg95 @ 0x17C;
+
+    reg {
+        name = "MDCK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg96 @ 0x180;
+
+    reg {
+        name = "MDIO pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg97 @ 0x184;
+
+    reg {
+        name = "SENSOR0_CLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg98 @ 0x188;
+
+    reg {
+        name = "SENSOR0_RSTN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg99 @ 0x18C;
+
+    reg {
+        name = "SENSOR0_HS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg100 @ 0x190;
+
+    reg {
+        name = "SENSOR0_VS pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg101 @ 0x194;
+
+    reg {
+        name = "SPI0_SCLK pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg102 @ 0x198;
+
+    reg {
+        name = "SPI0_SDO pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg103 @ 0x19C;
+
+    reg {
+        name = "SPI0_SDI pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg104 @ 0x1A0;
+
+    reg {
+        name = "SPI0_CSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg105 @ 0x1A4;
+
+    reg {
+        name = "NF_DQ0 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg106 @ 0x1A8;
+
+    reg {
+        name = "NF_DQ1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg107 @ 0x1AC;
+
+    reg {
+        name = "NF_DQ2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg108 @ 0x1B0;
+
+    reg {
+        name = "NF_DQ3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg109 @ 0x1B4;
+
+    reg {
+        name = "NF_DQ4 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg110 @ 0x1B8;
+
+    reg {
+        name = "NF_DQ5 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg111 @ 0x1BC;
+
+    reg {
+        name = "NF_DQ6 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg112 @ 0x1C0;
+
+    reg {
+        name = "NF_DQ7 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg113 @ 0x1C4;
+
+    reg {
+        name = "NF_RDY pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg114 @ 0x1C8;
+
+    reg {
+        name = "NF_REN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg115 @ 0x1CC;
+
+    reg {
+        name = "NF_CSN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg116 @ 0x1D0;
+
+    reg {
+        name = "NF_CLE pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg117 @ 0x1D4;
+
+    reg {
+        name = "NF_ALE pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg118 @ 0x1D8;
+
+    reg {
+        name = "NF_WEN pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg119 @ 0x1DC;
+
+    reg {
+        name = "SAR_ADC_CH1 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg121 @ 0x1E4;
+
+    reg {
+        name = "SAR_ADC_CH2 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg122 @ 0x1E8;
+
+    reg {
+        name = "SAR_ADC_CH3 pin drive strength control register.";
+	field {
+                name = "TODO";
+        } todo[31:0]; 
+    } pad_ctrl_reg123 @ 0x1EC;
+
+};
+
