@@ -1,0 +1,768 @@
+regfile eMUX {
+
+	name = "I/O MUX configuration register";
+
+    reg {
+        name = "Pin multiplexing control register.";
+
+        enum muxctrl_enum {
+            GPIO8_5       = 0x0  { desc = "GPIO8_5"; };
+            VI_ADC_CLK    = 0x1  { desc = "VI_ADC_CLK"; };
+            CLK_TEST_OUT  = 0x2  { desc = "CLK_TEST_OUT"; };
+            CLK_TEST_OUT1 = 0x3  { desc = "CLK_TEST_OUT1"; };
+            CLK_TEST_OUT2 = 0x4  { desc = "CLK_TEST_OUT2"; };
+            CLK_TEST_OUT3 = 0x5  { desc = "CLK_TEST_OUT3"; };
+            RTC_TEST_CLK  = 0x6  { desc = "RTC_TEST_CLK"; };
+        };
+        field {
+            name = "muxctrl_reg0";
+            desc = "The specific reuse of VI_ADC_CLK pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg0[2:0];
+
+    } muxctrl_reg0 @ 0x0000;
+
+
+    reg { 
+        name = "VI_ADC_CLK pin mux control register.";
+        field {
+            desc = "TODO: Figure out how to write this one";
+        } todo = 0;
+    } muxctrl_reg1 @ 0x0004;
+
+    reg {
+        name = "VIU0_CLK pin mux control register.";
+        field {
+            desc = "TODO: Figure out how to write this one";
+        } todo = 0;
+    } muxctrl_reg2 @ 0x0008;
+
+    reg {
+        name = "VGA_HS pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO2_0 = 0x0  { desc = "GPIO2_0"; };
+            VGA_HS  = 0x1  { desc = "VGA_HS"; };
+        };
+        field {
+            name = "muxctrl_reg3";
+            desc = "The specific reuse of VGA_HS pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg3[0:0];
+
+    } muxctrl_reg3 @ 0x000C;
+
+    reg {
+        name = "VGA_VS pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_5 = 0x0  { desc = "GPIO1_5"; };
+            VGA_VS  = 0x1  { desc = "VGA_VS"; };
+        };
+        field {
+            name = "muxctrl_reg4";
+            desc = "The specific reuse of VGA_VS pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg4[0:0];
+
+    } muxctrl_reg4 @ 0x0010;
+
+    reg {
+        name ="AIO_MCLK pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_MCLK = 0x0  { desc = "AIO_MCLK"; };
+            GPIO7_0  = 0x1  { desc = "GPIO7_0"; };
+            BOOT_SEL = 0x2  { desc = "BOOT_SEL"; };
+        };
+        field {
+            name = "muxctrl_reg5";
+            desc = "The specific reuse of AIO_MCLK pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg5[1:0];
+
+    } muxctrl_reg5 @ 0x0014;
+
+    reg {
+        name = "AIO_BCLK_TX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_BCLK_TX = 0x0  { desc = "AIO_BCLK_TX"; };
+            GPIO7_1     = 0x1  { desc = "GPIO7_1"; };
+        };
+        field {
+            name = "muxctrl_reg6";
+            desc = "The specific reuse of AIO_BCLK_TX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg6[0:0];
+
+    } muxctrl_reg6 @ 0x0018;
+
+    reg {
+        name = "AIO_WS_TX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_WS_TX = 0x0  { desc = "AIO_WS_TX"; };
+            GPIO7_2   = 0x1  { desc = "GPIO7_2"; };
+        };
+        field {
+            name = "muxctrl_reg7";
+            desc = "The specific reuse of AIO_WS_TX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg7[0:0];
+
+    } muxctrl_reg7 @ 0x001C;
+
+    reg {
+        name = "AIO_SD_TX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_SD_TX = 0x0  { desc = "AIO_SD_TX"; };
+            GPIO7_3   = 0x1  { desc = "GPIO7_3"; };
+            JTAG_SEL  = 0x2  { desc = "JTAG_SEL"; };
+        };
+        field {
+            name = "muxctrl_reg8";
+            desc = "The specific reuse of AIO_SD_TX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg8[1:0];
+
+    } muxctrl_reg8 @ 0x0020;
+
+    reg {
+        name = "AIO_BCLK_RX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_BCLK_RX = 0x0  { desc = "AIO_BCLK_RX"; };
+            GPIO7_4     = 0x1  { desc = "GPIO7_4"; };
+        };
+        field {
+            name = "muxctrl_reg9";
+            desc = "The specific reuse of AIO_BCLK_RX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg9[0:0];
+
+    } muxctrl_reg9 @ 0x0024;
+
+    reg {
+        name = "AIO_WS_RX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_WS_RX = 0x0  { desc = "AIO_WS_RX"; };
+            GPIO7_5   = 0x1  { desc = "GPIO7_5"; };
+        };
+        field {
+            name = "muxctrl_reg10";
+            desc = "The specific reuse of AIO_WS_RX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg10[0:0];
+
+    } muxctrl_reg10 @ 0x0028;
+
+    reg {
+        name = "AIO_SD_RX pin mux control register.";
+
+        enum muxctrl_enum {
+            AIO_SD_RX = 0x0  { desc = "AIO_SD_RX"; };
+            GPIO7_6   = 0x1  { desc = "GPIO7_6"; };
+        };
+        field {
+            name = "muxctrl_reg11";
+            desc = "The specific reuse of AIO_SD_RX pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg11[0:0];
+
+    } muxctrl_reg11 @ 0x002C;
+
+    reg {
+        name = "SPI_SCLK pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO8_0  = 0x0  { desc = "GPIO8_0"; };
+            SPI_SCLK = 0x1  { desc = "SPI_SCLK"; };
+        };
+        field {
+            name = "muxctrl_reg12";
+            desc = "The specific reuse of SPI_SCLK pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg12[0:0];
+
+    } muxctrl_reg12 @ 0x0030;
+
+    reg {
+        name = "SPI_SDO pin mux control register.";
+
+        enum muxctrl_enum {
+            PLL_TEST_OUT0 = 0x0  { desc = "PLL_TEST_OUT0"; };
+            SPI_SDO       = 0x1  { desc = "SPI_SDO"; };
+            PLL_TEST_OUT1 = 0x2  { desc = "PLL_TEST_OUT1"; };
+            PLL_TEST_OUT2 = 0x3  { desc = "PLL_TEST_OUT2"; };
+            GPIO8_1       = 0x4  { desc = "GPIO8_1"; };
+        };
+        field {
+            name = "muxctrl_reg13";
+            desc = "The specific reuse of SPI_SDO pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg13[2:0];
+
+    } muxctrl_reg13 @ 0x0034;
+
+    reg {
+        name = "SPI_SDI pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO8_2 = 0x0  { desc = "GPIO8_2"; };
+            SPI_SDI = 0x1  { desc = "SPI_SDI"; };
+        };
+        field {
+            name = "muxctrl_reg14";
+            desc = "The specific reuse of SPI_SDI pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg14[0:0];
+
+    } muxctrl_reg14 @ 0x0038;
+
+    reg {
+        name = "Multiplexing control register for SPI_CSN0 pin.";
+
+        enum muxctrl_enum {
+            GPIO8_3 = 0x0  { desc = "GPIO8_3"; };
+            SPI_CSN0 = 0x1  { desc = "SPI_CSN0"; };
+        };
+        field {
+            name = "muxctrl_reg15";
+            desc = "The specific reuse of SPI_CSN0 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg15[0:0];
+
+    } muxctrl_reg15 @ 0x003C;
+
+    reg {
+        name = "Multiplexing control register for SPI_CSN1 pin.";
+
+        enum muxctrl_enum {
+            GPIO8_4  = 0x0  { desc = "GPIO8_4"; };
+            SPI_CSN1 = 0x1  { desc = "SPI_CSN1"; };
+            PWM_SVB  = 0x2  { desc = "PWM_SVB"; };
+        };
+        field {
+            name = "muxctrl_reg16";
+            desc = "The specific reuse of SPI_CSN1 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg16[1:0];
+
+    } muxctrl_reg16 @ 0x0040;
+
+    reg {
+        name = "I2C_SDA pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_6 = 0x0  { desc = "GPIO1_6"; };
+            I2C_SDA = 0x1  { desc = "I2C_SDA"; };
+        };
+        field {
+            name = "muxctrl_reg17";
+            desc = "The specific reuse of I2C_SDA pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg17[0:0];
+
+    } muxctrl_reg17 @ 0x0044;
+
+    reg {
+        name = "I2C_SCL pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_7 = 0x0  { desc = "GPIO1_7"; };
+            I2C_SCL = 0x1  { desc = "I2C_SCL"; };
+        };
+        field {
+            name = "muxctrl_reg18";
+            desc = "The specific reuse of I2C_SCL pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg18[0:0];
+
+    } muxctrl_reg18 @ 0x0048;
+
+    reg {
+        name = "UART1_RTSN pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO5_0    = 0x0  { desc = "GPIO5_0"; };
+            UART1_RSTN = 0x1  { desc = "UART1_RTSN"; };
+        };
+        field {
+            name = "muxctrl_reg19";
+            desc = "The specific reuse of UART1_RTSN pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg19[0:0];
+
+    } muxctrl_reg19 @ 0x004C;
+
+    reg {
+        name = "UART1_RXD pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO5_1   = 0x0  { desc = "GPIO5_1"; };
+            UART1_RXD = 0x1  { desc = "UART1_RXD"; };
+        };
+        field {
+            name = "muxctrl_reg20";
+            desc = "The specific reuse of UART1_RXD pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg20[0:0];
+
+    } muxctrl_reg20 @ 0x0050;
+
+    reg {
+        name = "Mux control register for UART1_CTSN pin.";
+
+        enum muxctrl_enum {
+            GPIO5_2    = 0x0  { desc = "GPIO5_2"; };
+            UART1_CTSN = 0x1  { desc = "UART1_CTSN"; };
+            PWM_SVB    = 0x2  { desc = "PWM_SVB"; };
+        };
+        field {
+            name = "muxctrl_reg21";
+            desc = "The specific reuse of UART1_CTSN pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg21[1:0];
+
+    } muxctrl_reg21 @ 0x0054;
+
+    reg {
+        name = "UART1_TXD pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO5_3   = 0x0  { desc = "GPIO5_3"; };
+            UART1_TXD = 0x1  { desc = "UART1_TXD"; };
+        };
+        field {
+            name = "muxctrl_reg22";
+            desc = "The specific reuse of UART1_TXD pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg22[0:0];
+
+    } muxctrl_reg22 @ 0x0058;
+
+    reg {
+        name = "UART2_RXD pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO5_4   = 0x0  { desc = "GPIO5_4"; };
+            UART2_RXD = 0x1  { desc = "UART2_RXD"; };
+        };
+        field {
+            name = "muxctrl_reg23";
+            desc = "The specific reuse of UART2_RXD pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg23[0:0];
+
+    } muxctrl_reg23 @ 0x005C;
+
+    reg {
+        name = "UART2_TXD pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO5_5   = 0x0  { desc = "GPIO5_5"; };
+            UART2_TXD = 0x1  { desc = "UART2_TXD"; };
+        };
+        field {
+            name = "muxctrl_reg24";
+            desc = "The specific reuse of UART2_TXD pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg24[0:0];
+
+    } muxctrl_reg24 @ 0x0060;
+
+    reg {
+        name = "IR_IN pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO7_7 = 0x0  { desc = "GPIO7_7"; };
+            IR_IN   = 0x1  { desc = "IR_IN"; };
+        };
+        field {
+            name = "muxctrl_reg25";
+            desc = "The specific reuse of IR_IN pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg25[0:0];
+
+    } muxctrl_reg25 @ 0x0064;
+
+    reg {
+        name = "USB0_OVRCUR pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_0     = 0x0  { desc = "GPIO6_0"; };
+            USB0_OVRCUR = 0x1  { desc = "USB0_OVRCUR"; };
+        };
+        field {
+            name = "muxctrl_reg26";
+            desc = "The specific reuse of USB0_OVRCUR pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg26[0:0];
+
+    } muxctrl_reg26 @ 0x0068;
+
+    reg {
+        name = "USB0_PWREN pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_1     = 0x0  { desc = "GPIO6_1"; };
+            USB0_PWREN = 0x1  { desc = "USB0_PWREN"; };
+        };
+        field {
+            name = "muxctrl_reg27";
+            desc = "The specific reuse of USB0_PWREN pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg27[0:0];
+
+    } muxctrl_reg27 @ 0x006C;
+
+    reg {
+        name = "USB1_OVRCUR pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_2     = 0x0  { desc = "GPIO6_2"; };
+            USB1_OVRCUR = 0x1  { desc = "USB1_OVRCUR"; };
+        };
+        field {
+            name = "muxctrl_reg28";
+            desc = "The specific reuse of USB1_OVRCUR pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg28[0:0];
+
+    } muxctrl_reg28 @ 0x0070;
+
+    reg {
+        name = "USB1_PWREN pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_3    = 0x0  { desc = "GPIO6_3"; };
+            USB1_PWREN = 0x1  { desc = "USB1_PWREN"; };
+        };
+        field {
+            name = "muxctrl_reg29";
+            desc = "The specific reuse of USB1_PWREN pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg29[0:0];
+
+    } muxctrl_reg29 @ 0x0074;
+
+    reg {
+        name = "HDMI_HOTPLUG pin multiplexing control register.";
+
+        enum muxctrl_enum {
+            GPIO6_4      = 0x0  { desc = "GPIO6_4"; };
+            HDMI_HOTPLUG = 0x1  { desc = "HDMI_HOTPLUG"; };
+        };
+        field {
+            name = "muxctrl_reg30";
+            desc = "The specific reuse of HDMI_HOTPLUG pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg30[0:0];
+
+    } muxctrl_reg30 @ 0x0078;
+
+    reg {
+        name = "HDMI_CEC pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_5  = 0x0  { desc = "GPIO6_5"; };
+            HDMI_CEC = 0x1  { desc = "HDMI_CEC"; };
+        };
+        field {
+            name = "muxctrl_reg31";
+            desc = "The specific reuse of HDMI_CEC pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg31[0:0];
+
+    } muxctrl_reg31 @ 0x007C;
+
+    reg {
+        name = "HDMI_SDA pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_6  = 0x0  { desc = "GPIO6_6"; };
+            HDMI_SDA = 0x1  { desc = "HDMI_SDA"; };
+        };
+        field {
+            name = "muxctrl_reg32";
+            desc = "The specific reuse of HDMI_SDA pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg32[0:0];
+
+    } muxctrl_reg32 @ 0x0080;
+
+    reg {
+        name = "HDMI_SCL pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO6_7  = 0x0  { desc = "GPIO6_7"; };
+            HDMI_SCL = 0x1  { desc = "HDMI_SCL"; };
+        };
+        field {
+            name = "muxctrl_reg33";
+            desc = "The specific reuse of HDMI_SCL pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg33[0:0];
+
+    } muxctrl_reg33 @ 0x0084;
+
+    reg {
+        name = "Multiplexing control register for SATA_LED_N0 pin.";
+
+        enum muxctrl_enum {
+            GPIO2_1     = 0x0  { desc = "GPIO2_1"; };
+            SATA_LED_N0 = 0x1  { desc = "SATA_LED_N0"; };
+        };
+        field {
+            name = "muxctrl_reg34";
+            desc = "The specific reuse of SATA_LED_N0 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg34[0:0];
+
+    } muxctrl_reg34 @ 0x0088;
+
+    reg {
+        name = "Multiplexing control register for SATA_LED_N1 pin.";
+
+        enum muxctrl_enum {
+            GPIO2_2     = 0x0  { desc = "GPIO2_2"; };
+            SATA_LED_N1 = 0x1  { desc = "SATA_LED_N1"; };
+        };
+        field {
+            name = "muxctrl_reg35";
+            desc = "The specific reuse of SATA_LED_N1 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg35[0:0];
+
+    } muxctrl_reg35 @ 0x008C;
+
+    reg {
+        name = "Multiplexing control register for ETH_LED1 pin.";
+
+        enum muxctrl_enum {
+            GPIO5_6  = 0x0  { desc = "GPIO5_6"; };
+            ETH_LED1 = 0x1  { desc = "ETH_LED1"; };
+        };
+        field {
+            name = "muxctrl_reg36";
+            desc = "The specific reuse of ETH_LED1 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg36[0:0];
+
+    } muxctrl_reg36 @ 0x0090;
+
+    reg {
+        name = "ETH_LED0 pin multiplexing control register.";
+
+        enum muxctrl_enum {
+            GPIO5_7  = 0x0  { desc = "GPIO5_7"; };
+            ETH_LED0 = 0x1  { desc = "ETH_LED0"; };
+        };
+        field {
+            name = "muxctrl_reg37";
+            desc = "The specific reuse of ETH_LED0 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg37[0:0];
+
+    } muxctrl_reg37 @ 0x0094;
+
+    reg {
+        name = "GPIO0_0 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_0  = 0x0  { desc = "GPIO0_0"; };
+            RMII_CLK = 0x1  { desc = "RMII_CLK"; };
+        };
+        field {
+            name = "muxctrl_reg38";
+            desc = "The specific reuse of GPIO0_0 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg38[0:0];
+
+    } muxctrl_reg38 @ 0x0098;
+
+    reg {
+        name = "UGPIO0_1 pin mux control register.";
+
+        enum muxctrl_enum {
+            UGPIO0_1   = 0x0  { desc = "UGPIO0_1"; };
+            RMII_TX_EN = 0x1  { desc = "RMII_TX_EN"; };
+        };
+        field {
+            name = "muxctrl_reg39";
+            desc = "The specific reuse of UGPIO0_1 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg39[0:0];
+
+    } muxctrl_reg39 @ 0x009C;
+
+    reg {
+        name = "GPIO0_2 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_2   = 0x0  { desc = "GPIO0_2"; };
+            RMII_TXD0 = 0x1  { desc = "RMII_TXD0"; };
+        };
+        field {
+            name = "muxctrl_reg40";
+            desc = "The specific reuse of GPIO0_2 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg40[0:0];
+
+    } muxctrl_reg40 @ 0x00A0;
+
+    reg {
+        name = "GPIO0_3 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_3   = 0x0  { desc = "GPIO0_3"; };
+            RMII_TXD1 = 0x1  { desc = "RMII_TXD1"; };
+        };
+        field {
+            name = "muxctrl_reg41";
+            desc = "The specific reuse of GPIO0_3 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg41[0:0];
+
+    } muxctrl_reg41 @ 0x00A4;
+
+    reg {
+        name = "GPIO0_4 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_4     = 0x0  { desc = "GPIO0_4"; };
+            RMII_CRS_DV = 0x1  { desc = "RMII_CRS_DV"; };
+        };
+        field {
+            name = "muxctrl_reg42";
+            desc = "The specific reuse of GPIO0_4 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg42[0:0];
+
+    } muxctrl_reg42 @ 0x00A8;
+
+    reg {
+        name = "GPIO0_5 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_5   = 0x0  { desc = "GPIO0_5"; };
+            RMII_RXD0 = 0x1  { desc = "RMII_RXD0"; };
+        };
+        field {
+            name = "muxctrl_reg43";
+            desc = "The specific reuse of GPIO0_5 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg43[0:0];
+
+    } muxctrl_reg43 @ 0x00AC;
+
+    reg {
+        name = "GPIO0_6 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_6   = 0x0  { desc = "GPIO0_6"; };
+            RMII_RXD1 = 0x1  { desc = "RMII_RXD1"; };
+        };
+        field {
+            name = "muxctrl_reg44";
+            desc = "The specific reuse of GPIO0_6 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg44[0:0];
+
+    } muxctrl_reg44 @ 0x00B0;
+
+    reg {
+        name = "GPIO0_7 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO0_7    = 0x0  { desc = "GPIO0_7"; };
+            RMII_RX_ER = 0x1  { desc = "RMII_RX_ER"; };
+        };
+        field {
+            name = "muxctrl_reg45";
+            desc = "The specific reuse of GPIO0_7 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg45[0:0];
+
+    } muxctrl_reg45 @ 0x00B4;
+
+    reg {
+        name = "GPIO1_0 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_0   = 0x0  { desc = "GPIO1_0"; };
+            UART3_TXD = 0x1  { desc = "UART3_TXD"; };
+        };
+        field {
+            name = "muxctrl_reg46";
+            desc = "The specific reuse of GPIO1_0 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg46[0:0];
+
+    } muxctrl_reg46 @ 0x00B8;
+
+    reg {
+        name = "GPIO1_1 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_1   = 0x0  { desc = "GPIO1_1"; };
+            UART3_RXD = 0x1  { desc = "UART3_RXD"; };
+        };
+        field {
+            name = "muxctrl_reg47";
+            desc = "The specific reuse of GPIO1_1 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg47[0:0];
+
+    } muxctrl_reg47 @ 0x00BC;
+
+    reg {
+        name = "GPIO1_2 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_2   = 0x0  { desc = "GPIO1_2"; };
+            TEMPER_DQ = 0x1  { desc = "TEMPER_DQ"; };
+        };
+        field {
+            name = "muxctrl_reg48";
+            desc = "The specific reuse of GPIO1_2 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg48[0:0];
+
+    } muxctrl_reg48 @ 0x00C0;
+
+    reg {
+        name = "GPIO1_3 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_3 = 0x0  { desc = "GPIO1_3"; };
+            MDCK    = 0x1  { desc = "MDCK"; };
+        };
+        field {
+            name = "muxctrl_reg49";
+            desc = "The specific reuse of GPIO1_3 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg49[0:0];
+
+    } muxctrl_reg49 @ 0x00C4;
+
+    reg {
+        name = "GPIO1_4 pin mux control register.";
+
+        enum muxctrl_enum {
+            GPIO1_4 = 0x0  { desc = "GPIO1_4"; };
+            AVERAGE = 0x1  { desc = "AVERAGE"; };
+        };
+        field {
+            name = "muxctrl_reg50";
+            desc = "The specific reuse of GPIO1_4 pin.";
+            encode = muxctrl_enum;
+        } muxctrl_reg50[0:0];
+
+    } muxctrl_reg50 @ 0x00C8;
+
+};
+

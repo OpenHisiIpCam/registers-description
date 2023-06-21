@@ -1,0 +1,2292 @@
+regfile eDDRC {
+    name = "DDRC register";
+    desc = "
+       DDRC (DDR2/3 SDRAM Controller) realizes the access control to the dynamic memory DDR2/3 SDRAM. In the following, DDRn SDRAM will be used instead of DDR2/3 SDRAM.
+
+       !!! NOTE
+           Hi3520D/Hi3515A has 1 DDRC, which supports 16bit DDR bit width.
+   ";
+
+    /* Useful enums to keep from having to keep copying them */
+    enum DDRC_zero_enable_enum {
+        ENABLE  = 0x0 { desc = "Enable"; };
+        DISABLE = 0x1 { desc = "Disable"; };
+    };
+
+    enum DDRC_one_enable_enum {
+        ENABLE  = 0x0 { desc = "Enable"; };
+        DISABLE = 0x1 { desc = "Disable"; };
+    };
+
+    /* Fields */
+
+    reg {
+        name = "DDRC_STATUS";
+        desc = "";
+
+        enum DDRC_STATUS_in_init_enum {
+            NORMAL         = 0x0 { desc = "Normal."; };
+            INITIALIZATION = 0x1 { desc = "Initialization state."; };
+        };
+
+        field {
+            name = "in_init";
+            desc = "Controller self-refresh status.";
+            encode = DDRC_STATUS_in_init_enum;
+        } in_init[3:3];
+
+        enum DDRC_STATUS_in_sr_enum {
+            NORMAL       = 0x0 { desc = "Normal."; };
+            SELF_REFRESH = 0x1 { desc = "Self-refresh state."; };
+        };
+
+        field {
+            name = "in_sr";
+            desc = "Controller self-refresh status.";
+            encode = DDRC_STATUS_in_sr_enum;
+        } in_sr[2:2];
+
+        enum DDRC_STATUS_busy_enum {
+            IDLE       = 0x0 { desc = "Idle."; };
+            PROCESSING = 0x1 { desc = "Command processing."; };
+        };
+
+        field {
+            name = "busy";
+            desc = "Controller busy status register.";
+            encode = DDRC_STATUS_busy_enum;
+        } busy[0:0];
+
+    } DDRC_STATUS @ 0x0000;
+
+    reg {
+        name = "DDRC self-refresh control register";
+        desc = "";
+
+        enum DDRC_SREFCTRL_sr_req_enum {
+            EXIT  = 0x0 { desc = "Exit self-refresh state."; };
+            ENTER = 0x1 { desc = "Enter self-refresh state."; };
+        };
+
+        field {
+            name = "sr_req";
+            desc = "SDRAM self-refresh request.";
+            encode = DDRC_SREFCTRL_sr_req_enum;
+        } sr_req[0:0];
+
+    } DDRC_SREFCTRL @ 0x0004;
+
+    reg {
+        name = "DDRC initialization control register";
+        desc = "";
+
+        enum DDRC_INITCTRL_init_req_enum {
+            COMPLETED = 0x0 { desc = "Completed initialization or in normal working state."; };
+            START     = 0x1 { desc = "Start SDRAM initialization operation."; };
+        };
+
+        field {
+            name = "init_req";
+            desc = "Initialization starts.";
+            encode = DDRC_INITCTRL_init_req_enum;
+        } init_req[0:0];
+
+    } DDRC_INITCTRL @ 0x0008;
+
+    reg {
+        name = "DDRC Control Register";
+        desc = "";
+
+        enum DDRC_CTRL_ddr_rst_n_enum {
+            VALID   = 0x0 { desc = "Reset is valid."; };
+            INVALID = 0x1 { desc = "reset is invalid."; };
+        };
+
+        field {
+            name = "ddr_rst_n";
+            desc = "
+                DDR3 SDRAM reset.
+
+                !!! NOTE:
+                    Only valid for DDR3 SDRAM, the default configuration is 0.
+            ";
+            encode = DDRC_CTRL_ddr_rst_n_enum;
+        } ddr_rst_n[0:0];
+
+    } DDRC_CTRL @ 0x0010;
+
+    reg {
+        name = "Mode configuration register for DDR";
+        desc = "";
+
+        field {
+            name = "emrs1";
+            desc = "
+                DDRn SDRAM Extended Mode Register 1.
+                Corresponds to Mode Register 1 (MR1) [15:0] in DDRn SDRAM manual. Among them, MR1[15:14] of most DDR devices is not used, and [31:30] of DDRC_EMRS01 is reserved and set to 0b00.
+
+                !!! NOTE:
+                    For the specific explanation of MR1 , please refer to the manual of the DDRn SDRAM used.
+            ";
+        } emrs1[31:16];
+
+        field {
+            name = "mrs";
+            desc = "
+                DDRn SDRAM mode register.
+                Corresponds to Mode Register 0 (MR0) [15:0] in DDRn SDRAM manual. Among them, MR0[15:14] of most DDR devices is not used, then DDRC_EMRS01 [15:14] is reserved and set to 0b00.
+
+                !!! NOTE:
+                    For the specific explanation of MR0 , please refer to the manual of the DDRn SDRAM used.
+            ";
+        } mrs[15:0];
+
+    } DDRC_EMRS01 @ 0x0014;
+
+    reg {
+        name = "Extended Mode Configuration Register for DDR";
+        desc = "";
+
+        field {
+            name = "emrs3";
+            desc = "
+                DDRn SDRAM Extended Mode Register 3.
+                Corresponds to Mode Register 3 (MR3) [15:0] in DDRn SDRAM manual. Among them, MR3[15:14] of most DDR devices is not used, and DDRC_EMRS23 [31:30] is reserved and set to 0b00.
+
+                !!! NOTE:
+                    For the specific explanation of MR3 , please refer to the manual of the DDRn SDRAM used.
+            ";
+        } emrs3[31:16];
+
+        field {
+            name = "emrs2";
+            desc = "
+                DDRn SDRAM Extended Mode Register 2.
+                Corresponds to Mode Register 2 (MR2) [15::0] in DDRn SDRAM manual. Among them, MR2[15:14] of most DDR devices is not used, and DDRC_EMRS23 [15:14] is reserved and set to 0b00.
+
+                !!! NOTE:
+                    For the specific explanation of MR2 , please refer to the manual of the DDRn SDRAM used.
+            ";
+        } emrs2[15:0];
+
+    } DDRC_EMRS23 @ 0x0018;
+
+    reg {
+        name = "Configure register 0 of DDRC function";
+        desc = "";
+
+        field {
+            name = "init_arefnum";
+            desc = "
+                Number of auto-refresh operations issued during DDRn SDRAM initialization.
+                0x0-0x2: 2 times
+                0x3-0xF: n times
+            ";
+        } init_arefnum[31:28];
+
+        field {
+            name = "pd_prd";
+            desc = "
+                SDRAM low power consumption (Power Down) cycle configuration. When DDRC does not receive a command in consecutive pd_prd cycles, it controls SDRAM to enter a low power consumption state, and when a new command arrives, it controls SDRAM to exit a low power consumption state.
+                0x00: 1 clock cycle;
+                0x01-0xFF: n clock cycles.
+                !!! NOTE
+                    This parameter is only valid when pd_en is 1 ; the clock cycle is the DDRC bus clock cycle.
+            ";
+        } pd_prd[27:20];
+
+        enum DDRC_CONFIG0_rcv_pdr_enum {
+            FORBIDDEN = 0x0 { desc = "Forbidden."; };
+            ENABLE    = 0x1 { desc = "Enable."; };
+        };
+
+        field {
+            name = "rcv_pdr";
+            desc = "DDR receive IO dynamic Power Down control enable. When enabled, DDRC will turn off the receive buffer of DDR data IO in the non-read state.";
+            encode = DDRC_CONFIG0_rcv_pdr_enum;
+        } rcv_pdr[19:19];
+
+        enum DDRC_CONFIG0_sr_cc_enum {
+            CLK_ENABLE  = 0x0 { desc = "Do not turn off the SDRAM clock."; };
+            CLK_DISABLE = 0x1 { desc = "Disable SDRAM clock."; };
+        };
+
+        field {
+            name = "sr_cc";
+            desc = "Self-refresh mode, SDRAM clock control.";
+            encode = DDRC_CONFIG0_sr_cc_enum;
+        } sr_cc[18:18];
+
+        enum DDRC_CONFIG0_pd_cc_enum {
+            CLK_ENABLE  = 0x0 { desc = "Do not turn off the SDRAM clock."; };
+            CLK_DISABLE = 0x1 { desc = "Disable SDRAM clock."; };
+        };
+
+        field {
+            name = "pd_cc";
+            desc = "
+                Low power mode (PowerDown), SDRAM clock control.
+
+                !!! NOTE
+                    This parameter is only valid when the external DDR is LPDDR/LPDDR2 SDRAM.
+            ";
+            encode = DDRC_CONFIG0_pd_cc_enum;
+        } pd_cc[17:17];
+
+        field {
+            name = "pd_en";
+            desc = "
+                SDRAM automatic low power enable.
+            ";
+            encode = DDRC_one_enable_enum;
+        } pd_en[16:16];
+
+        enum DDRC_CONFIG0_ddrc_2t_sel_enum {
+            VALID_ONE  = 0x0 { desc = "On the DDR interface, the CS_N signal is valid for one cycle, RAS_N, CAS_N and WE_N are valid for two cycles, and the address is valid for two cycles."; };
+            ALWAYS_LOW = 0x1 { desc = "On the DDR interface, the CS_N signal is always active low, and RAS_N, CAS_N and WE_N are valid for one cycle , the address is valid for two cycles."; };
+        };
+
+        field {
+            name = "ddrc_2t_sel";
+            desc = "2t timing mode selection.";
+            encode = DDRC_CONFIG0_ddrc_2t_sel_enum;
+        } ddrc_2t_sel[15:15];
+
+        field {
+            name = "ddrc_2t_en";
+            desc = "2t timing enable control.";
+            encode = DDRC_one_enable_enum;
+        } ddrc_2t_en[14:14];
+
+        enum DDRC_CONFIG0_rank_enum {
+            RANK_1 = 0x0 { desc = "1 Rank"; };
+            RANK_2 = 0x1 { desc = "2 Ranks"; };
+            RANK_3 = 0x2 { desc = "3 Ranks"; };
+            RANK_4 = 0x3 { desc = "4 Ranks"; };
+        };
+
+        field {
+            name = "rank";
+            desc = "Controller Rank configuration.";
+            encode = DDRC_CONFIG0_rank_enum;
+        } rank[13:12];
+
+        enum DDRC_CONFIG0_dram_type_enum {
+            DDR2 = 0x5 { desc = "DDR2"; };
+            DDR3 = 0x6 { desc = "DDR3"; };
+        };
+
+        field {
+            name = "dram_type";
+            desc = "External memory type.";
+            encode = DDRC_CONFIG0_dram_type_enum;
+        } dram_type[10:8];
+
+        enum DDRC_CONFIG0_mem_width_enum {
+            BIT_16 = 0x0 { desc = "16 Bit"; };
+            BIT_32 = 0x1 { desc = "32 Bit"; };
+        };
+
+        field {
+            name = "mem_width";
+            desc = "Store data bus width.";
+            encode = DDRC_CONFIG0_mem_width_enum;
+        } mem_width[5:4];
+
+        field {
+            name = "brst_a12";
+            desc = "
+                DDR3 SDRAM A12 command enable.
+                !!! NOTE
+                    The recommended configuration is 0.
+            ";
+            encode = DDRC_one_enable_enum;
+        } brst_a12[1:1];
+
+        enum DDRC_CONFIG0_brushes_enum {
+            BL4 = 0x0 { desc = "BL4"; };
+            BL8 = 0x1 { desc = "BL8"; };
+        };
+
+        field {
+            name = "brushes";
+            desc = "
+                Controller Burst Length configuration.
+                When the frequency ratio of DDRC to PHY is 1:1, DDR2 can be configured as Burst4 and Burst8, and DDR3 can only be configured as Burst8 mode.
+                When the frequency ratio of DDRC to PHY is 1:2, both DDR2 and DDR3 can only be configured as Burst4 mode.
+            ";
+            encode = DDRC_CONFIG0_brushes_enum;
+        } brushes[0:0];
+
+    } DDRC_CONFIG0 @ 0x001C;
+
+    reg {
+        name = "Register 1 for configuring the DDRC function";
+        desc = "";
+
+        enum DDRC_CONFIG1_pin_output_disable_enum {
+            NO_DISABLE = 0x0 { desc = "Do not turn off the pin output."; };
+            DISABLE    = 0x1 { desc = "Disable pin output."; };
+        };
+
+        field {
+            name = "sref_arefnum";
+            desc = "
+                DDRn SDRAM In the DFS process, the number of auto-refresh operations issued after exiting self-refresh.
+                0x0-0x1: Send 1 Auto Refresh operation.
+                0x2-0xF: Send n Auto Refresh operations.
+                !!! NOTE
+                    Valid when train_en=1.
+                    When train_en=0, self-refresh will be exited directly, and no Auto Refresh operation will be sent.
+            ";
+        } sref_arefnum[31:28];
+
+        field {
+            name = "sref_zqc_en";
+            desc = "
+                ZQ Calibration Long is enabled when DDR exits self-refresh.
+
+                !!! NOTE
+                    Valid for DDR3 and LPDDR2 modes. If the DDR is in the self-refresh state for a long time, it needs to be configured as 1.
+            ";
+            encode = DDRC_one_enable_enum;
+        } sref_zqc_en[22:22];
+
+        enum DDRC_CONFIG1_clk_switch_enum {
+            NO_BACK_PRESSURE = 0x0 { desc = "No back pressure command, directly return ERROR corresponding."; };
+            BACK_PRESSURE    = 0x1 { desc = "Back pressure interface command, after the clock switching is completed, continue to execute the original command."; };
+        };
+
+        field {
+            name = "clk_switch";
+            desc = "DDRC Low Power Clock Switching Control. Whether DDRC enters the low power consumption state (DDR Self Refresh) and back pressures the AXI interface command.";
+            encode = DDRC_CONFIG1_clk_switch_enum;
+        } clk_switch[20:20];
+
+        field {
+            name = "odis_ddrio";
+            desc = "
+                Output shutdown configuration for DDR command and data IO.
+
+                !!! NOTE
+                    This configuration is a static configuration. It is recommended that after configuring DDR to enter self_refresh , it can be configured as 1 to turn off the output of DDR command and data IO . Before configuring DDR to exit self_refresh , configure it as 0 to enable the output of DDR commands and data IO.
+            ";
+            encode = DDRC_CONFIG1_pin_output_disable_enum;
+        } odis_ddrio[17:17];
+
+        field {
+            name = "pd_ac";
+            desc = "
+                Low power mode (PowerDown), SDRAM address command dynamic shutdown control.
+
+                !!! NOTE
+                    It is valid when pd_en is enabled, and the control pins do not include CKE, ODT, CSN and RESET_N.
+            ";
+            encode = DDRC_CONFIG1_pin_output_disable_enum;
+        } pd_ac[16:16];
+
+        enum DDRC_CONFIG1_pd_pst_opn_enum {
+            CYCLE_0 = 0x0 { desc = "Advance no clock cycles."; };
+            CYCLE_1 = 0x1 { desc = "Advance 1 clock cycle."; };
+            CYCLE_2 = 0x2 { desc = "Advance 2 clock cycles."; };
+            CYCLE_3 = 0x3 { desc = "Advance 3 clock cycles."; };
+        };
+
+        field {
+            name = "pd_pst_opn";
+            desc = "
+                Before exiting the low power consumption mode (PowerDown), the SDRAM address command pin is turned on in advance.
+
+                !!! NOTE
+                    It is valid when pd_en is enabled, and the control pins do not include CKE and RESET_N; this clock cycle is the DDR SDRAMn working clock cycle.
+            ";
+            encode = DDRC_CONFIG1_pd_pst_opn_enum;
+        } pd_pst_opn[15:14];
+
+        enum DDRC_CONFIG1_pd_pre_cls_enum {
+            CYCLE_0 = 0x0 { desc = "Delay no clock cycles."; };
+            CYCLE_1 = 0x1 { desc = "Delay 1 clock cycle."; };
+            CYCLE_2 = 0x2 { desc = "Delay 2 clock cycles."; };
+            CYCLE_3 = 0x3 { desc = "Delay 3 clock cycles."; };
+        };
+
+        field {
+            name = "pd_pre_cls";
+            desc = "
+                SDRAM address command shutdown delay after entering low power consumption mode (PowerDown).
+
+                !!! NOTE
+                    It is valid when pd_en is enabled, and the control pins do not include CKE and RESET_N; this clock cycle is the DDR SDRAMn working clock cycle.
+            ";
+            encode = DDRC_CONFIG1_pd_pre_cls_enum;
+        } pd_pre_cls[13:12];
+
+        field {
+            name = "auto_pre_en";
+            desc = "The Auto Precharge function is enabled.";
+            encode = DDRC_one_enable_enum;
+        } auto_pre_en[10:10];
+
+        enum DDRC_CONFIG1_wr_rcv_mode_enum {
+            DIRECT = 0x0 { desc = "Write command direct receiving mode."; };
+            WAIT   = 0x1 { desc = "Write command needs to wait for the corresponding write data to arrive before being received."; };
+        };
+
+        field {
+            name = "wr_rcv_mode";
+            desc = "DDRC AXI port write command receive mode selection.";
+            encode = DDRC_CONFIG1_wr_rcv_mode_enum;
+        } wr_rcv_mode[9:9];
+
+        field {
+            name = "exclu_en";
+            desc = "Exclusive commands are enabled.";
+            encode = DDRC_one_enable_enum;
+        } exclu_en[8:8];
+
+        field {
+            name = "lock_en";
+            desc = "WRAP command lock enable.";
+            encode = DDRC_one_enable_enum;
+        } lock_en[7:7];
+
+        enum DDRC_CONFIG1_aref_mode_enum {
+            EVERY_CYCLE = 0x0 { desc = "Perform 1 auto-refresh operation every 1 tREFI cycle."; };
+            CYCLES_9    = 0x1 { desc = "Perform 8 auto-refresh operations every 9 tREFI cycles."; };
+        };
+
+        field {
+            name = "aref_mode";
+            desc = "Auto refresh mode selection.";
+            encode = DDRC_CONFIG1_aref_mode_enum;
+        } aref_mode[6:6];
+
+        field {
+            name = "wrlvl_en";
+            desc = "DDR3 WriteLVL hardware automatic control enable.";
+            encode = DDRC_one_enable_enum;
+        } wrlvl_en[5:5];
+
+        enum DDRC_CONFIG1_read_mode_enum {
+            ALONG_ROAD = 0x0 { desc = "Read along with the road mode."; };
+            DELAYED    = 0x1 { desc = "Delayed read mode. The read-associated mode means that the controller completes data sampling according to the data valid signal sent by the PHY. Delayed read mode refers to the internal delay of the controller to wait for the completion of sampling the data sent by the PHY."; };
+        };
+
+        field {
+            name = "read_mode";
+            desc = "
+                Controller read mode selection.
+
+                !!! NOTE
+                    This value must be configured as 0 when DDRC_DTRCTRL[train_mode] is configured as 0.
+            ";
+            encode = DDRC_CONFIG1_read_mode_enum;
+        } read_mode[3:3];
+
+        enum DDRC_CONFIG1_clkratio_enum {
+            ONE_TO_ONE = 0x0 { desc = "The frequency ratio of DDRC and PHY is 1:1."; };
+            ONE_TO_TWO = 0x1 { desc = "The frequency ratio of DDRC and PHY is 1:2."; };
+        };
+
+        field {
+            name = "clkratio";
+            desc = "Controller working mode.";
+            encode = DDRC_CONFIG1_clkratio_enum;
+        } clkratio[2:2];
+
+        field {
+            name = "ecc_en";
+            desc = "Controller ECC enabled.";
+            encode = DDRC_one_enable_enum;
+        } ecc_en[1:1];
+
+    } DDRC_CONFIG1 @ 0x0020;
+
+    reg {
+        name = "DDRC Command Configuration Register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_CMDCFG @ 0x0024;
+
+    reg {
+        name = "DDRC Software Configuration Command Start Register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_CMDEXE @ 0x0028;
+
+    reg {
+        name = "Registers to configure DDR features";
+        desc = "";
+
+        enum DDRC_RNKCFG_mem_map_enum {
+            COMPLETED = 0x0 { desc = "Completed initialization or in normal working state."; };
+            START     = 0x1 { desc = "Start SDRAM initialization operation."; };
+        };
+
+        field {
+            name = "mem_map";
+            desc = "SDRAM address decoding mode.";
+            encode = DDRC_RNKCFG_mem_map_enum;
+        } mem_map[13:12];
+
+        enum DDRC_RNKCFG_mem_bank_enum {
+            BANK_4 = 0x0 { desc = "4 Bank."; };
+            BANK_8 = 0x1 { desc = "8 Bank."; };
+        };
+
+        field {
+            name = "mem_bank";
+            desc = "
+                Single chip SDRAM Bank number.
+
+                !!! NOTE
+                    When there are multiple ranks, different configurations are supported for each rank in the same channel. But in dual-channel mode, both channels must use the same configuration.
+            ";
+            encode = DDRC_RNKCFG_mem_bank_enum;
+        } mem_bank[8:8];
+
+        enum DDRC_RNKCFG_mem_row_enum {
+            BIT_11 = 0x0 { desc = "11 Bit."; };
+            BIT_12 = 0x1 { desc = "12 Bit."; };
+            BIT_13 = 0x2 { desc = "13 Bit."; };
+            BIT_14 = 0x3 { desc = "14 Bit."; };
+            BIT_15 = 0x4 { desc = "15 Bit."; };
+            BIT_16 = 0x5 { desc = "16 Bit."; };
+        };
+
+        field {
+            name = "mem_row";
+            desc = "Single-chip SDRAM row address bit width configuration.";
+            encode = DDRC_RNKCFG_mem_row_enum;
+        } mem_row[6:4];
+
+        enum DDRC_RNKCFG_mem_col_enum {
+            BIT_8  = 0x0 { desc = "8 Bit."; };
+            BIT_9  = 0x1 { desc = "9 Bit."; };
+            BIT_10 = 0x2 { desc = "10 Bit."; };
+            BIT_11 = 0x3 { desc = "11 Bit."; };
+            BIT_12 = 0x4 { desc = "12 Bit."; };
+        };
+
+        field {
+            name = "mem_col";
+            desc = "Single-chip SDRAM column address bit width configuration.";
+            encode = DDRC_RNKCFG_mem_col_enum;
+        } mem_col[2:0];
+
+    } DDRC_RNKCFG @ 0x002C;
+
+    reg {
+        name = "DDR space base address configuration register";
+        desc = "";
+
+        field {
+            name = "mem_base_addr";
+            desc = "The starting base address configuration of DDR memory space in the whole chip system.";
+        } mem_base_addr[31:0];
+
+    } DDRC_BASEADDR @ 0x0040;
+
+    reg {
+        name = "DDR Timing Parameter Register 0";
+        desc = "";
+
+        enum DDRC_TIMING2_clk_cycles_1_enum {
+            CYCLE_1_0 = 0x0 { desc = "1 Clock Cycle"; };
+            CYCLE_1_1 = 0x1 { desc = "1 Clock Cycle"; };
+            CYCLE_2   = 0x2 { desc = "2 Clock Cycles"; };
+            CYCLE_3   = 0x3 { desc = "3 Clock Cycles"; };
+            CYCLE_4   = 0x4 { desc = "4 Clock Cycles"; };
+            CYCLE_5   = 0x5 { desc = "5 Clock Cycles"; };
+            CYCLE_6   = 0x6 { desc = "6 Clock Cycles"; };
+            CYCLE_7   = 0x7 { desc = "7 Clock Cycles"; };
+            CYCLE_8   = 0x8 { desc = "8 Clock Cycles"; };
+            CYCLE_9   = 0x9 { desc = "9 Clock Cycles"; };
+            CYCLE_10  = 0xA { desc = "10 Clock Cycles"; };
+            CYCLE_11  = 0xB { desc = "11 Clock Cycles"; };
+            CYCLE_12  = 0xC { desc = "12 Clock Cycles"; };
+            CYCLE_13  = 0xD { desc = "13 Clock Cycles"; };
+            CYCLE_14  = 0xE { desc = "14 Clock Cycles"; };
+            CYCLE_15  = 0xF { desc = "15 Clock Cycles"; };
+        };
+
+        enum DDRC_TIMING2_clk_cycles_2_enum {
+            CYCLE_3_0 = 0x0 { desc = "3 Clock Cycles"; };
+            CYCLE_3_1 = 0x1 { desc = "3 Clock Cycles"; };
+            CYCLE_3_2 = 0x2 { desc = "3 Clock Cycles"; };
+            CYCLE_3_3 = 0x3 { desc = "3 Clock Cycles"; };
+            CYCLE_4   = 0x4 { desc = "4 Clock Cycles"; };
+            CYCLE_5   = 0x5 { desc = "5 Clock Cycles"; };
+            CYCLE_6   = 0x6 { desc = "6 Clock Cycles"; };
+            CYCLE_7   = 0x7 { desc = "7 Clock Cycles"; };
+            CYCLE_8   = 0x8 { desc = "8 Clock Cycles"; };
+            CYCLE_9   = 0x9 { desc = "9 Clock Cycles"; };
+            CYCLE_10  = 0xA { desc = "10 Clock Cycles"; };
+            CYCLE_11  = 0xB { desc = "11 Clock Cycles"; };
+            CYCLE_12  = 0xC { desc = "12 Clock Cycles"; };
+            CYCLE_13  = 0xD { desc = "13 Clock Cycles"; };
+            CYCLE_14  = 0xE { desc = "14 Clock Cycles"; };
+            CYCLE_15  = 0xF { desc = "15 Clock Cycles"; };
+        };
+
+        field {
+            name = "tmrd";
+            desc = "Wait period for the Load Mode Register (LMR) command";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } tmrd[31:28];
+
+        field {
+            name = "trrd";
+            desc = "Waiting period from opening BANK A to opening BANK B (ACT bank a to ACT bank b)";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } trrd[27:24];
+
+        field {
+            name = "trp";
+            desc = "The wait period for the shutdown (PRE period) command.";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } trp[23:20];
+
+        field {
+            name = "trcd";
+            desc = "Same as BANK activation to read or write (ACT to READ or WRITE) command wait period.";
+            encode = DDRC_TIMING2_clk_cycles_2_enum;
+        } trcd[19:16];
+
+        field {
+            name = "trc";
+            desc = "It is the same as the wait period from active command to active command (active a bank to active a bank) of BANK.";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } trc[13:8];
+
+        field {
+            name = "tras";
+            desc = "It is the same as the wait period from BANK activation command to close command (ACT to PRE).";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } tras[4:0];
+
+    } DDRC_TIMING0 @ 0x0050;
+
+    reg {
+        name = "DDR Timing Parameter Register 1";
+        desc = "";
+
+        enum DDRC_TIMING2_clk_cycles_1_enum {
+            CYCLE_1_0 = 0x0 { desc = "1 Clock Cycle"; };
+            CYCLE_1_1 = 0x1 { desc = "1 Clock Cycle"; };
+            CYCLE_2   = 0x2 { desc = "2 Clock Cycles"; };
+            CYCLE_3   = 0x3 { desc = "3 Clock Cycles"; };
+            CYCLE_4   = 0x4 { desc = "4 Clock Cycles"; };
+            CYCLE_5   = 0x5 { desc = "5 Clock Cycles"; };
+            CYCLE_6   = 0x6 { desc = "6 Clock Cycles"; };
+            CYCLE_7   = 0x7 { desc = "7 Clock Cycles"; };
+            CYCLE_8   = 0x8 { desc = "8 Clock Cycles"; };
+            CYCLE_9   = 0x9 { desc = "9 Clock Cycles"; };
+            CYCLE_10  = 0xA { desc = "10 Clock Cycles"; };
+            CYCLE_11  = 0xB { desc = "11 Clock Cycles"; };
+            CYCLE_12  = 0xC { desc = "12 Clock Cycles"; };
+            CYCLE_13  = 0xD { desc = "13 Clock Cycles"; };
+            CYCLE_14  = 0xE { desc = "14 Clock Cycles"; };
+            CYCLE_15  = 0xF { desc = "15 Clock Cycles"; };
+        };
+
+        field {
+            name = "tsre";
+            desc = "
+                Exit the wait cycle from Self-Refresh to Read Command.
+                0x0: 1 clock cycle
+                0x01-0xFF: nx2 clock cycles.
+                For DDR3 SDRAM, this value configures the tXSDLL value.
+            ";
+        } tsre[31:24];
+
+        field {
+            name = "trdlat";
+            desc = "
+                DDRPHY inherent latency.
+                0x0-0xF: n+1 cycles.
+                When using Dolphin PHY, it is configured as 0x5.
+                Valid when read_mode=1 (delayed read mode).
+            ";
+        } trdlat[23:20];
+
+        field {
+            name = "trtw";
+            desc = "
+                Latency from last read data to first write data.
+                0x0-0x1: 1 clock cycle;
+                0x2-0xF: n+1 clock cycle.
+            ";
+        } trtw[19:16];
+
+        field {
+            name = "twl";
+            desc = "
+                Wait period from write command to write data.
+
+                !!! NOTE
+                    In DDR2 mode, twl is configured as tcl-1, and twl –taond ≥1 should be satisfied when twl is configured.
+                    The time parameter is calculated according to the ddr sram clock cycle.
+            ";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } twl[15:12];
+
+        field {
+            name = "tcl";
+            desc = "DDR read command to read data delay (CAS Latency).";
+            encode = DDRC_TIMING2_clk_cycles_1_enum;
+        } tcl[11:8];
+
+        field {
+            name = "trfc";
+            desc = "
+                Auto refresh command period and auto refresh to active (AREF period or AREF to ACT) command wait period. This register selects a large value for configuration max{trfc,tzqcs}.
+                0x00-0x01: 1 clock cycle;
+                0x02-0xFF: n clock cycles.
+            ";
+        } trfc[7:0];
+
+    } DDRC_TIMING1 @ 0x0054;
+
+    reg {
+        name = "DDR Timing Parameter Register 2";
+        desc = "";
+
+        enum DDRC_TIMING2_clk_cycles_enum {
+            CYCLE_0  = 0x0 { desc = "1 Clock Cycle"; };
+            CYCLE_1  = 0x1 { desc = "1 Clock Cycle"; };
+            CYCLE_2  = 0x2 { desc = "2 Clock Cycles"; };
+            CYCLE_3  = 0x3 { desc = "3 Clock Cycles"; };
+            CYCLE_4  = 0x4 { desc = "4 Clock Cycles"; };
+            CYCLE_5  = 0x5 { desc = "5 Clock Cycles"; };
+            CYCLE_6  = 0x6 { desc = "6 Clock Cycles"; };
+            CYCLE_7  = 0x7 { desc = "7 Clock Cycles"; };
+            CYCLE_8  = 0x8 { desc = "8 Clock Cycles"; };
+            CYCLE_9  = 0x9 { desc = "9 Clock Cycles"; };
+            CYCLE_10 = 0xA { desc = "10 Clock Cycles"; };
+            CYCLE_11 = 0xB { desc = "11 Clock Cycles"; };
+            CYCLE_12 = 0xC { desc = "12 Clock Cycles"; };
+            CYCLE_13 = 0xD { desc = "13 Clock Cycles"; };
+            CYCLE_14 = 0xE { desc = "14 Clock Cycles"; };
+            CYCLE_15 = 0xF { desc = "15 Clock Cycles"; };
+        };
+
+        field {
+            name = "tcke";
+            desc = "
+                The minimum time to maintain a low power state
+                This value needs to configure the maximum value among tCKESR, tCKSRE, tCKSRX, and tCKE. When using Dophin's DDRPHY, the value of this register is configured as max{tCKSRx,tCKE}+3.
+            ";
+            encode = DDRC_TIMING2_clk_cycles_enum;
+        } tcke[31:28];
+
+        field {
+            name = "twtr";
+            desc = "The wait cycle for the last write data to read command (write to read) of the write operation.";
+            encode = DDRC_TIMING2_clk_cycles_enum;
+        } twtr[27:24];
+
+        field {
+            name = "tower";
+            desc = "
+                Write recovery wait period.
+
+                !!! NOTE
+                    When DFS is required, the tWR parameter needs to be configured according to the highest possible frequency of the chip in DFS . And the configuration of tWR cannot be modified with the frequency change of DDR .
+            ";
+            encode = DDRC_TIMING2_clk_cycles_enum;
+        } tower[23:20];
+
+        field {
+            name = "tfaw";
+            desc = "
+                4 consecutive active command cycles.
+                0x00-0x3F: n clock cycles
+            ";
+        } tfaw[17:12];
+
+        field {
+            name = "taref";
+            desc = "
+                Automatic refresh cycle.
+                0x000: Automatic refresh disabled.
+                0x001-0x7FF: SDRAM refresh cycle time is 16xn clock cycles.
+
+                The configuration interval time is (tREFI = 7800ns)/16/tclk. Tclk is twice the operating cycle when SDRAM is used.
+                When DDRC_CONFIG1[aref_mode]=1, this register needs to be configured with an interval time of 8 x tREFI.
+            ";
+        } taref[10:0];
+
+    } DDRC_TIMING2 @ 0x0058;
+
+    reg {
+        name = "DDR Timing Parameter Register 3";
+        desc = "";
+
+        field {
+            name = "tzq_prd";
+            desc = "
+                ZQCS command cycle.
+                0x000: ZQCS command disabled
+                0x001-0x3FF: nx128 AREF cycles.
+                ZQCS command cycle time is nx128 taref clock cycles.
+            ";
+        } tzq_prd[31:22];
+
+        field {
+            name = "tzqinit";
+            desc = "
+                ZQ initialization delay period.
+                0x0-0x1ff: n+1 clock cycles.
+                This value configures the maximum value of tZQINIT, tDLLK.
+            ";
+        } tzqinit[21:12];
+
+        enum DDRC_TIMING3_taond_enum {
+            CYCLE_0  = 0x0 { desc = "2/2.5"; };
+            CYCLE_1  = 0x1 { desc = "3/3.5"; };
+            CYCLE_2  = 0x2 { desc = "4/4.5"; };
+            CYCLE_3  = 0x3 { desc = "5/5.5"; };
+        };
+
+        field {
+            name = "taond";
+            desc = "
+                ODT (On-die termination) open and close cycle.
+                In DDR2 mode (taond/taofd), enum applies.
+                In DDR3 mode, this value is configured as tWL-1.
+                !!! NOTE
+                    This time parameter is calculated according to ddr sram clock cycle.
+            ";
+            encode = DDRC_TIMING3_taond_enum;
+        } taond[11:8];
+
+        field {
+            name = "xard";
+            desc = "
+                Exit DDR low-power state wait cycle.
+                0x0-0xF: n clock cycles, n represents a decimal number
+                Take the maximum value among {tXP,tXARD,tXARDS,tXS}. In DDR3 mode, when this register is configured as tXS, txard only needs to be configured as an equivalent clock cycle of 10ns.
+            ";
+        } xard[7:4];
+
+        enum DDRC_TIMING3_trtp_enum {
+            CYCLE_2_0 = 0x0 { desc = "2 Clock Cycles"; };
+            CYCLE_2_1 = 0x1 { desc = "2 Clock Cycles"; };
+            CYCLE_2_2 = 0x2 { desc = "2 Clock Cycles"; };
+            CYCLE_3   = 0x3 { desc = "3 Clock Cycles"; };
+            CYCLE_4   = 0x4 { desc = "4 Clock Cycles"; };
+            CYCLE_5   = 0x5 { desc = "5 Clock Cycles"; };
+            CYCLE_6   = 0x6 { desc = "6 Clock Cycles"; };
+            CYCLE_7   = 0x7 { desc = "7 Clock Cycles"; };
+        };
+
+        field {
+            name = "trtp";
+            desc = "
+                Exit DDR low-power state wait cycle.
+                Take the maximum value among {tXP,tXARD,tXARDS,tXS}. In DDR3 mode, when this register is configured as tXS, txard only needs to be configured as an equivalent clock cycle of 10ns.
+            ";
+            encode = DDRC_TIMING3_trtp_enum;
+        } trtp[3:0];
+
+    } DDRC_TIMING3 @ 0x005C;
+
+    reg {
+        name = "DDRC Gating Training Control Register";
+        desc = "";
+
+        field {
+            name = "dt_byte";
+            desc = "
+                Byte training enabled.
+                0: Disable byte training.
+                1: Enable byte training.
+
+                bit[31]-bit[24]: corresponding to DDRC Byte7~DDRC Byte0 training enable in sequence.
+            ";
+        } dt_byte[31:24];
+
+        field {
+            name = "rinse";
+            desc = "
+                Read enable latency period.
+                000-011: n clock cycles.
+            ";
+        } rinse[11:9];
+
+        enum DDRC_DTRCTRL_train_mode_enum {
+            OTHER_TRAINING  = 0x0 { desc = "Other training methods."; };
+            NORMAL_TRAINING = 0x1 { desc = "Normal training method."; };
+        };
+
+        field {
+            name = "train_mode";
+            desc = "Gated training method.";
+            encode = DDRC_DTRCTRL_train_mode_enum;
+        } train_mode[8:8];
+
+        enum DDRC_DTRCTRL_track_en_enum {
+            FORBIDDEN = 0x0 { desc = "Forbidden."; };
+            ENABLE    = 0x1 { desc = "Enable."; };
+        };
+
+        field {
+            name = "track_en";
+            desc = "
+                Gated position auto-update enabled.
+
+                !!! NOTE
+                    There must be a set of read operations between two train operations, and the continuous access length is greater than DDRBURST8.
+            ";
+            encode = DDRC_DTRCTRL_track_en_enum;
+        } track_en[2:2];
+
+        field {
+            name = "train_en";
+            desc = "Gated position training enabled.";
+            encode = DDRC_one_enable_enum;
+        } train_en[1:1];
+
+    } DDRC_DTRCTRL @ 0x00AC;
+
+    reg {
+        name = "DDRC interface status register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_AXISTATUS @ 0x00F0;
+
+    reg {
+        name = "DDR ODT Feature Configuration Register";
+        desc = "";
+
+        enum DDRC_ODTCFG_rodt0_enum {
+            DISABLE_READING = 0x0 { desc = "Disable reading ODT."; };
+            ENABLE_READING  = 0x1 { desc = "Enable read ODT."; };
+        };
+
+        field {
+            name = "rodt0";
+            desc = "Rank0 reads ODT configuration.";
+            encode = DDRC_ODTCFG_rodt0_enum;
+        } rodt0[16:16];
+
+        enum DDRC_ODTCFG_wodt0_enum {
+            ENABLE_WRITING  = 0x0 { desc = "Enable writing ODT."; };
+            DISABLE_WRITING = 0x1 { desc = "Disable writing ODT."; };
+        };
+
+        field {
+            name = "wodt0";
+            desc = "Rank0 reads ODT configuration.";
+            encode = DDRC_ODTCFG_wodt0_enum;
+        } wodt0[0:0];
+
+    } DDRC_ODTCFG @ 0x00F4;
+
+    reg {
+        name = "DDRC QoS algorithm configuration register 0";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_QOSCFG0 @ 0x0100;
+
+    reg {
+        name = "DDRC QoS algorithm configuration register 1";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_QOSCFG1 @ 0x0104;
+
+    // TODO: Figure out how to write the code for DDRC_QOS
+    // TODO: Figure out how to write the code for DDRC_FLUX
+
+    reg {
+        name = "DDRC Test Status Register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST0 @ 0x0240;
+
+    reg {
+        name = "DDRC performance statistics control register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST7 @ 0x0260;
+
+    reg {
+        name = "DDRC write command statistics register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST8 @ 0x0264;
+
+    reg {
+        name = "DDRC read command statistics register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST9 @ 0x0268;
+
+    reg {
+        name = "DDRC DMC command waiting number statistics register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST10 @ 0x026C;
+
+    reg {
+        name = "DDRC Test Status Register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_TEST12 @ 0x0280;
+
+    reg {
+        name = "DDRPHY soft reset control signal";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_PHYSRST @ 0x0400;
+
+    reg {
+        name = "DDRPHY status register";
+        desc = "";
+
+        enum DDRC_PHYSTATUS_phy_init_done_enum {
+            INCOMPLETE = 0x0 { desc = "DDRPHY initialization is not completed."; };
+            COMPLETE   = 0x1 { desc = "DDRPHY initialization is complete."; };
+        };
+
+        field {
+            name = "phy_init_done";
+            desc = "DDRPHY initialization request.";
+            encode = DDRC_PHYSTATUS_phy_init_done_enum;
+        } phy_init_done[0:0];
+
+    } DDRC_PHYSTATUS @ 0x0404;
+
+    reg {
+        name = "DDRPHY Control Register";
+        desc = "";
+
+        enum DDRC_PHYCTRL_phy_init_start_enum {
+            VALID   = 0x0 { desc = "The request is valid."; };
+            INVALID = 0x1 { desc = "Invalid request."; };
+        };
+
+        field {
+            name = "phy_init_start";
+            desc = "DDRPHY initialization request.";
+            encode = DDRC_PHYCTRL_phy_init_start_enum;
+        } phy_init_start[0:0];
+
+    } DDRC_PHYCTRL @ 0x0408;
+
+    reg {
+        name = "DDRPHY register 1";
+        desc = "";
+
+        enum DDRC_PHY_REG1_phy_rfifo_en_enum {
+            BITS_8  = 0x1 { desc = "8 bits read DQ signal;"; };
+            BITS_16 = 0x3 { desc = "16 bits read DQ signal."; };
+        };
+
+        field {
+            name = "phy_rfifo_en";
+            desc = "RX FIFO enable.";
+            encode = DDRC_PHY_REG1_phy_rfifo_en_enum;
+        } phy_rfifo_en[5:4];
+
+    } DDRC_PHY_REG1 @ 0x0800;
+
+    reg {
+        name = "DDRPHY register 2";
+        desc = "";
+
+        enum DDRC_PHY_REG2_phy_mem_type_enum {
+            DDR3 = 0x0 { desc = "DDR3"; };
+            DDR2 = 0x1 { desc = "DDR2"; };
+        };
+
+        field {
+            name = "phy_mem_type";
+            desc = "Memory selection.";
+            encode = DDRC_PHY_REG2_phy_mem_type_enum;
+        } phy_mem_type[6:6];
+
+        enum DDRC_PHY_REG2_cal_mode_enum {
+            NON_BYPASS = 0x0 { desc = "Non-Bypass Mode"; };
+            BYPASS     = 0x1 { desc = "Bypass Mode"; };
+        };
+
+        field {
+            name = "cal_mode";
+            desc = "
+                DQS squelch correction mode selection.
+
+                !!! NOTE
+                    DQS squelch correction, that is, the internal logic of the chip automatically repeatedly increases or decreases the delay training for the external asynchronous signal reading DQS gating signal, and finally the gating signal can be properly gated to read DQS.
+            ";
+            encode = DDRC_PHY_REG2_cal_mode_enum;
+        } cal_mode[1:1];
+
+        field {
+            name = "cal_start";
+            desc = "DQS squelch auto-calibration enable, valid in non-bypass mode.";
+            encode = DDRC_one_enable_enum;
+        } cal_start[0:0];
+
+    } DDRC_PHY_REG2 @ 0x0808;
+
+    reg {
+        name = "DDRPHY register 3";
+        desc = "";
+
+        enum DDRC_PHY_REG3_phy_bl_enum {
+            BURST_4 = 0x0 { desc = "Burst 4"; };
+            BURST_8 = 0x1 { desc = "Burst 8"; };
+        };
+
+        field {
+            name = "phy_bl";
+            desc = "Correct burst length selection.";
+            encode = DDRC_PHY_REG3_phy_bl_enum;
+        } phy_bl[0:0];
+
+    } DDRC_PHY_REG3 @ 0x0804;
+
+    reg {
+        name = "DDRPHY register 4";
+        desc = "";
+
+        field {
+            name = "phy_ck_en";
+            desc = "CK/CKB I/O Enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_ck_en[6:6];
+
+        field {
+            name = "phy_odt_en";
+            desc = "ODT I/O enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_odt_en[3:3];
+
+        field {
+            name = "phy_cs_en";
+            desc = "CS I/O enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_cs_en[2:2];
+
+        enum DDRC_PHY_REG4_phy_cmd_en_enum {
+            ALWAYS       = 0x0 { desc = "Always Enable"; };
+            WHEN_COMMAND = 0x1 { desc = "Enabled when a command is received."; };
+        };
+
+        field {
+            name = "phy_cmd_en";
+            desc = "CMD I/O enable.";
+            encode = DDRC_PHY_REG4_phy_cmd_en_enum;
+        } phy_cmd_en[1:1];
+
+        field {
+            name = "phy_cke_en";
+            desc = "CKE I/O Enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_cke_en[0:0];
+
+    } DDRC_PHY_REG4 @ 0x0824;
+
+    reg {
+        name = "DDRPHY Register 4A";
+        desc = "";
+
+        field {
+            name = "phy_cl";
+            desc = "
+                CL (CAS latency) delay value.
+                DDR2/DDR3 CL latency.
+            ";
+        } phy_cl[7:4];
+
+        field {
+            name = "phy_al";
+            desc = "
+                AL (additive latency) value.
+                DDR2/DDR3 AL latency.
+            ";
+        } phy_al[3:0];
+
+    } DDRC_PHY_REG4A @ 0x0838;
+
+    reg {
+        name = "DDRPHY Register 4B";
+        desc = "";
+
+        field {
+            name = "phy_dqssq_dly_h";
+            desc = "In bypass mode, DQS gate delay selection for upper eight data bits DQ[15:8].";
+        } phy_dqssq_dly_h[5:3];
+
+        field {
+            name = "phy_dqssq_dly_l";
+            desc = "In bypass mode, the DQS gate delay selection of the lower eight bits of data DQ[15:8].";
+        } phy_dqssq_dly_l[2:0];
+
+    } DDRC_PHY_REG4B @ 0x083C;
+
+    reg {
+        name = "DDRPHY Register 6";
+        desc = "";
+
+        enum DDRC_PHY_REG6_phy_ltxdqdll_byph_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            DELAY_90 = 0x1 { desc = "90° Delay"; };
+        };
+
+        field {
+            name = "phy_ltxdqdll_byph";
+            desc = "In bypass mode, left channel transmit DQ DLL phase selection.";
+            encode = DDRC_PHY_REG6_phy_ltxdqdll_byph_enum;
+        } phy_ltxdqdll_byph[4:4];
+
+        field {
+            name = "phy_ltxdqdll_en";
+            desc = "Left channel transmit DQ DLL enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_ltxdqdll_en[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_ltxdqdll_dly";
+            desc = "Left channel transmit DQ DLL phase delay selection.";
+        } phy_ltxdqdll_dly[2:0];
+
+    } DDRC_PHY_REG6 @ 0x08D4;
+
+    reg {
+        name = "DDRPHY Register 7";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } DDRC_PHY_REG7 @ 0x08D8;
+
+    reg {
+        name = "DDRPHY Register 8";
+        desc = "";
+
+        field {
+            name = "phy_ldqssqdll_en";
+            desc = "Left channel receive DQS squelch DLL enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_ldqssqdll_en[6:6];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_ldqssqdll_dly";
+            desc = "Left channel receive DQS squelch DLL phase delay selection.";
+        } phy_ldqssqdll_dly[5:3];
+
+        field {
+            name = "phy_lrxdqsdll_en";
+            desc = "Left channel receive DQS latching DLL enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_lrxdqsdll_en[2:2];
+
+        enum DDRC_PHY_REG8_phy_lrxdqsdll_dly_enum {
+            NO_DELAY   = 0x0 { desc = "No Delay"; };
+            DELAY_22_5 = 0x1 { desc = "22.5° Delay"; };
+            DELAY_45   = 0x2 { desc = "45° Delay"; };
+            DELAY_67_5 = 0x3 { desc = "67.5° Delay"; };
+        };
+
+        field {
+            name = "phy_lrxdqsdll_dly";
+            desc = "The left channel receives DQS latching DLL phase delay selection.";
+            encode = DDRC_PHY_REG8_phy_lrxdqsdll_dly_enum;
+        } phy_lrxdqsdll_dly[1:0];
+
+    } DDRC_PHY_REG8 @ 0x08E0;
+
+    reg {
+        name = "DDRPHY Register 9";
+        desc = "";
+
+        enum DDRC_PHY_REG9_phy_rtxdqdll_byph_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            DELAY_90 = 0x1 { desc = "90° Delay"; };
+        };
+
+        field {
+            name = "phy_rtxdqdll_byph";
+            desc = "In bypass mode, right channel transmit DQ DLL phase delay selection.";
+            encode = DDRC_PHY_REG9_phy_rtxdqdll_byph_enum;
+        } phy_rtxdqdll_byph[4:4];
+
+        field {
+            name = "phy_rtxdqdll_en";
+            desc = "Right channel transmit DQ DLL enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_rtxdqdll_en[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_rtxdqdll_dly";
+            desc = "Right channel transmit DQ DLL phase delay selection.";
+        } phy_rtxdqdll_dly[2:0];
+
+    } DDRC_PHY_REG9 @ 0x0914;
+
+    reg {
+        name = "DDRPHY Register 10";
+        desc = "";
+
+        enum DDRC_PHY_REG10_phy_rtxdqsdll_byph_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            DELAY_90 = 0x1 { desc = "90° Delay"; };
+        };
+
+        field {
+            name = "phy_rtxdqsdll_byph";
+            desc = "In bypass mode, the right channel transmits DQS DLL phase delay selection.";
+            encode = DDRC_PHY_REG10_phy_rtxdqsdll_byph_enum;
+        } phy_rtxdqsdll_byph[4:4];
+
+        field {
+            name = "phy_rtxdqsdll_en";
+            desc = "Right channel transmit DQS DLL";
+            encode = DDRC_one_enable_enum;
+        } phy_rtxdqsdll_en[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_rtxdqsdll_dly";
+            desc = "Right channel transmit DQS DLL phase delay select.";
+        } phy_rtxdqsdll_dly[2:0];
+
+    } DDRC_PHY_REG10 @ 0x0918;
+
+    reg {
+        name = "DDRPHY Register 11";
+        desc = "";
+
+        field {
+            name = "phy_rdqssqdll_en";
+            desc = "Right channel receive DQS squelch DLL";
+            encode = DDRC_zero_enable_enum;
+        } phy_rdqssqdll_en[6:6];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_rdqssqdll_dly";
+            desc = "Right channel receive DQS squelch DLL phase delay selection.";
+        } phy_rdqssqdll_dly[5:3];
+
+        field {
+            name = "phy_rrxdqsdll_en";
+            desc = "Right channel receive DQS latching DLL";
+            encode = DDRC_zero_enable_enum;
+        } phy_rrxdqsdll_en[2:2];
+
+        enum DDRC_PHY_REG11_phy_rrxdqsdll_dly_enum {
+            NO_DELAY   = 0x0 { desc = "No Delay"; };
+            DELAY_22_5 = 0x1 { desc = "22.5° Delay"; };
+            DELAY_67_5 = 0x2 { desc = "67.5° Delay"; };
+        };
+
+        field {
+            name = "phy_rrxdqsdll_dly";
+            desc = "The left channel receives DQS latching DLL phase delay selection.";
+            encode = DDRC_PHY_REG11_phy_rrxdqsdll_dly_enum;
+        } phy_rrxdqsdll_dly[1:0];
+
+    } DDRC_PHY_REG11 @ 0x0920;
+
+    reg {
+        name = "DDRPHY Register 12";
+        desc = "";
+
+        field {
+            name = "phy_cmd0pu_str";
+            desc = "CMD0 I/O pull-up drive strength control.";
+        } phy_cmd0pu_str[0:0];
+
+    } DDRC_PHY_REG12 @ 0x0840;
+
+    reg {
+        name = "DDRPHY Register 13";
+        desc = "";
+
+        field {
+            name = "phy_cmd0_rsl";
+            desc = "CMD0 I/O rising slope control.";
+        } phy_cmd0_rsl[7:4];
+
+        field {
+            name = "phy_cmd0_fsl";
+            desc = "CMD0 I/O falling slope control.";
+        } phy_cmd0_fsl[3:0];
+
+    } DDRC_PHY_REG13 @ 0x0844;
+
+    reg {
+        name = "DDRPHY Register 14";
+        desc = "";
+
+        field {
+            name = "phy_cmd0sdll_lpen";
+            desc = "CMD0 Slave DLL low power";
+            encode = DDRC_zero_enable_enum;
+        } phy_cmd0sdll_lpen[7:7];
+
+        enum DDRC_PHY_REG14_phy_cmd0dly_en_enum {
+            NO_DELAY = 0x0 { desc = "No delay"; };
+            CYCLE_1  = 0x1 { desc = "1 Cycle"; };
+        };
+
+        field {
+            name = "phy_cmd0dly_en";
+            desc = "CMD0 One clock (2xclk) cycle delay selection.";
+            encode = DDRC_PHY_REG14_phy_cmd0dly_en_enum;
+        } phy_cmd0dly_en[6:6];
+
+        field {
+            name = "phy_rstn_pu";
+            desc = "RESETN Weak pull-up enable.";
+            encode = DDRC_zero_enable_enum;
+        } phy_rstn_pu[5:5];
+
+        field {
+            name = "phy_rstn_pd";
+            desc = "RESETN Weak pull-down.";
+            encode = DDRC_one_enable_enum;
+        } phy_rstn_pd[4:4];
+
+        field {
+            name = "phy_cmd0_pu";
+            desc = "CMD0 weak pull-up";
+            encode = DDRC_zero_enable_enum;
+        } phy_cmd0_pu[3:3];
+
+        field {
+            name = "phy_cmd0_pd";
+            desc = "CMD0 weak pull-down enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd0_pd[2:2];
+
+        field {
+            name = "phy_cmd0pd_str";
+            desc = "CMD0 pull-up drive strength control, the highest bit.";
+        } phy_cmd0pu_msb[1:1];
+
+        field {
+            name = "phy_cmd0pd_msb";
+            desc = "CMD0 pull-down drive strength control, the highest bit.";
+        } phy_cmd0pd_msb[0:0];
+
+    } DDRC_PHY_REG14 @ 0x0848;
+
+    reg {
+        name = "DDRPHY Register 15";
+        desc = "";
+
+        field {
+            name = "phy_cmd0fb_en";
+            desc = "CMD0 feedback enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd0fb_en[5:5];
+
+        enum DDRC_PHY_REG15_phy_cmd0sdll_inv_enum {
+            NO_REVERSE = 0x0 { desc = "No Reverse"; };
+            REVERSE    = 0x1 { desc = "Reverse"; };
+        };
+
+        field {
+            name = "phy_cmd0sdll_inv";
+            desc = "CMD0 is selected from DLL reverse";
+            encode = DDRC_PHY_REG15_phy_cmd0sdll_inv_enum;
+        } phy_cmd0sdll_inv[4:4];
+
+        field {
+            name = "phy_cmd0sdll_en";
+            desc = "CMD0 is enabled from DLL.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd0sdll_en[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_cmd0txsdll_dl";
+            desc = "CMD0 Transmit Slave DLL Phase Delay";
+        } phy_cmd0txsdll_dl[2:0];
+
+    } DDRC_PHY_REG15 @ 0x084C;
+
+    reg {
+        name = "DDRPHY Register 16";
+        desc = "";
+
+        field {
+            name = "phy_cmd1pu_str";
+            desc = "CMD1 pull-up drive strength control.";
+        } phy_cmd1pu_str[7:4];
+
+        field {
+            name = "phy_cmd0_fsl";
+            desc = "CMD1 pull-down drive strength control.";
+        } phy_cmd1pd_str[3:0];
+
+    } DDRC_PHY_REG16 @ 0x0854;
+
+    reg {
+        name = "DDRPHY Register 17";
+        desc = "";
+
+        field {
+            name = "phy_cmd1_rsl";
+            desc = "CMD1 rising slope control.";
+        } phy_cmd1pu_str[7:4];
+
+        field {
+            name = "phy_cmd1_fsl";
+            desc = "CMD1 falling slope control.";
+        } phy_cmd1_fsl[3:0];
+
+    } DDRC_PHY_REG17 @ 0x0858;
+
+    reg {
+        name = "DDRPHY Register 18";
+        desc = "";
+
+        field {
+            name = "phy_cmd1sdll_lpen";
+            desc = "CMD1 Slave DLL low power";
+            encode = DDRC_zero_enable_enum;
+        } phy_cmd1sdll_lpen[7:7];
+
+        enum DDRC_PHY_REG18_phy_cmd1dly_en_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            CYCLE_1  = 0x1 { desc = "1 Cycle"; };
+        };
+
+        field {
+            name = "phy_cmd1dly_en";
+            desc = "CMD1 One clock (2xclk) cycle delay selection.";
+            encode = DDRC_PHY_REG18_phy_cmd1dly_en_enum;
+        } phy_cmd1dly_en[6:6];
+
+        field {
+            name = "phy_rstn_pu";
+            desc = "CKE Weak pull-up control.";
+            encode = DDRC_zero_enable_enum;
+        } phy_rstn_pu[5:5];
+
+        field {
+            name = "phy_rstn_pd";
+            desc = "CKE weak pull-down enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_rstn_pd[4:4];
+
+        field {
+            name = "phy_cmd1_pu";
+            desc = "CMD1 weak pull-up";
+            encode = DDRC_zero_enable_enum;
+        } phy_cmd1_pu[3:3];
+
+        field {
+            name = "phy_cmd1_pd";
+            desc = "CMD1 weak pull-down enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd1_pd[2:2];
+
+        field {
+            name = "phy_cmd1pu_msb";
+            desc = "CMD1 pull-up drive strength control, the highest bit.";
+        } phy_cmd1pu_msb[1:1];
+
+        field {
+            name = "phy_cmd1pd_msb";
+            desc = "CMD1 pull-down drive strength control, highest bit.";
+        } phy_cmd1pd_msb[0:0];
+
+    } DDRC_PHY_REG18 @ 0x085C;
+
+    reg {
+        name = "DDRPHY Register 19";
+        desc = "";
+
+        field {
+            name = "phy_cmd1fb_en";
+            desc = "CMD1 feedback enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd1fb_en[5:5];
+
+        enum DDRC_PHY_REG19_phy_cmd1sdll_inv_enum {
+            NO_REVERSE = 0x0 { desc = "No Reverse"; };
+            REVERSE    = 0x1 { desc = "Reverse"; };
+        };
+
+        field {
+            name = "phy_cmd1sdll_inv";
+            desc = "CMD1 Select from DLL reverse mode.";
+            encode = DDRC_PHY_REG19_phy_cmd1sdll_inv_enum;
+        } phy_cmd1sdll_inv[4:4];
+
+        field {
+            name = "phy_cmd1sdll_en";
+            desc = "CMD1 Enable from DLL.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd1sdll_en[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_cktxsdll_dly";
+            desc = "CK transmit from DLL phase delay select.";
+        } phy_cktxsdll_dly[2:0];
+
+    } DDRC_PHY_REG19 @ 0x0860;
+
+    reg {
+        name = "DDRPHY Register 20";
+        desc = "";
+
+        field {
+            name = "phy_cmd1obv_en";
+            desc = "CMD1 observation enable.";
+            encode = DDRC_one_enable_enum;
+        } phy_cmd1obv_en[3:3];
+
+        enum DDRC_PHY_REG20_phy_ckdly_en_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            CYCLE_1  = 0x1 { desc = "1 Cycle"; };
+        };
+
+        field {
+            name = "phy_ckdly_en";
+            desc = "CK One clock (2xclk) cycle delay selection.";
+            encode = DDRC_PHY_REG20_phy_ckdly_en_enum;
+        } phy_ckdly_en[0:0];
+
+    } DDRC_PHY_REG20 @ 0x0864;
+
+    reg {
+        name = "DDRPHY Register 21";
+        desc = "";
+
+        enum DDRC_PHY_REG21_phy_cksdll_inv_enum {
+            NO_REVERSE = 0x0 { desc = "No Reverse"; };
+            REVERSE    = 0x1 { desc = "Reverse"; };
+        };
+
+        field {
+            name = "phy_cksdll_inv";
+            desc = "CK is selected from DLL reverse";
+            encode = DDRC_PHY_REG21_phy_cksdll_inv_enum;
+        } phy_cksdll_inv[3:3];
+
+        /*
+            TODO: Create an array for this.
+            Confuses me due to what the datasheet says this value means.
+             00:     no delay;
+             01:  22.5° delay;
+             10:    45° delay;
+             11:  67.5° delay;
+            000:    90° delay;
+            001: 112.5° delay;
+            010:   135° delay;
+            011: 157.5° delay.
+        */
+        field {
+            name = "phy_cktxsdll_dly";
+            desc = "CK transmit from DLL phase delay select.";
+        } phy_cktxsdll_dly[2:0];
+
+    } DDRC_PHY_REG21 @ 0x0868;
+
+    reg {
+        name = "DDRPHY Register 22";
+        desc = "";
+
+        field {
+            name = "phy_ckpu_str";
+            desc = "CK pull-up drive strength control.";
+        } phy_ckpu_str[7:4];
+
+        field {
+            name = "phy_ckpd_str";
+            desc = "CK pull-down drive strength control.";
+        } phy_ckpd_str[3:0];
+
+    } DDRC_PHY_REG22 @ 0x0870;
+
+    reg {
+        name = "DDRPHY Register 23";
+        desc = "";
+
+        field {
+            name = "phy_ck_rsl";
+            desc = "CK rising slope control.";
+        } phy_ck_rsl[7:4];
+
+        field {
+            name = "phy_ck_fsl";
+            desc = "CK falling slope control.";
+        } phy_ck_fsl[3:0];
+
+    } DDRC_PHY_REG23 @ 0x0874;
+
+    reg {
+        name = "DDRPHY Register 24";
+        desc = "";
+
+        field {
+            name = "phy_ckpu_msb";
+            desc = "CK pull-up drive strength control, highest bit.";
+        } phy_ckpu_msb[1:1];
+
+        field {
+            name = "phy_ckpd_msb";
+            desc = "CK pull-down drive strength control, MSB.";
+        } phy_ckpd_msb[0:0];
+
+    } DDRC_PHY_REG24 @ 0x0878;
+
+    reg {
+        name = "DDRPHY Register 25";
+        desc = "";
+
+        field {
+            name = "phy_dqpu_str";
+            desc = "DQ pull-up drive strength control.";
+        } phy_dqpu_str[7:4];
+
+        field {
+            name = "phy_dqpd_str";
+            desc = "DQ pull-down drive strength control.";
+        } phy_dqpd_str[3:0];
+
+    } DDRC_PHY_REG25 @ 0x0880;
+
+    reg {
+        name = "DDRPHY Register 26";
+        desc = "";
+
+        field {
+            name = "phy_dq_rsl";
+            desc = "DQ rising slope control.";
+        } phy_dq_rsl[7:4];
+
+        field {
+            name = "phy_dq_fsl";
+            desc = "DQ falling slope control.";
+        } phy_dq_fsl[3:0];
+
+    } DDRC_PHY_REG26 @ 0x0884;
+
+    reg {
+        name = "DDRPHY Register 27";
+        desc = "";
+
+        field {
+            name = "phy_dqpu_odt";
+            desc = "DQ pull-up ODT control.";
+        } phy_dqpu_odt[5:3];
+
+        field {
+            name = "phy_dqpd_odt";
+            desc = "DQ pull-down ODT control.";
+        } phy_dqpd_odt[2:0];
+
+    } DDRC_PHY_REG27 @ 0x0888;
+
+    reg {
+        name = "DDRPHY Register 28";
+        desc = "";
+
+        field {
+            name = "phy_dqpd_msb";
+            desc = "DQ pull-down drive strength control, highest bit.";
+        } phy_dqpd_msb[5:5];
+
+        field {
+            name = "phy_dqpu_msb";
+            desc = "DQ pull-up drive strength control, the highest bit.";
+        } phy_dqpu_msb[4:4];
+
+        field {
+            name = "phy_dqpu_en";
+            desc = "DQ weak pull-up";
+            encode = DDRC_zero_enable_enum;
+        } phy_dqpu_en[3:3];
+
+        field {
+            name = "phy_dqpd_en";
+            desc = "DQ weak pull-down";
+            encode = DDRC_one_enable_enum;
+        } phy_dqpd_en[2:2];
+
+        field {
+            name = "phy_dqpu_odtmsb";
+            desc = "DQ pull-up ODT control, the highest bit.";
+        } phy_dqpu_odtmsb[1:1];
+
+        field {
+            name = "phy_dqpd_odtmsb";
+            desc = "DQ pull-down ODT control, highest bit.";
+        } phy_dqpd_odtmsb[0:0];
+
+    } DDRC_PHY_REG28 @ 0x088C;
+
+    reg {
+        name = "DDRPHY Register 29";
+        desc = "";
+
+        enum DDRC_PHY_REG29_delay_cycles_enum {
+            NO_DELAY = 0x0 { desc = "No Delay"; };
+            CYCLE_1  = 0x1 { desc = "One Cycle"; };
+            CYCLE_2  = 0x2 { desc = "Two Cycles"; };
+            CYCLE_3  = 0x3 { desc = "Three Cycles"; };
+        };
+
+        field {
+            name = "phy_dqssq_2xdly_h";
+            desc = "The upper eight bits receive the clock (2xclk) cycle delay selection for the DQS squelch.";
+            encode = DDRC_PHY_REG29_delay_cycles_enum;
+        } phy_dqssq_2xdly_h[4:3];
+
+        field {
+            name = "phy_dqssq_2xdly_l";
+            desc = "The lower eight bits receive the clock (2xclk) cycle delay selection for the DQS squelch";
+            encode = DDRC_PHY_REG29_delay_cycles_enum;
+        } phy_dqssq_2xdly_l[1:0];
+
+    } DDRC_PHY_REG29 @ 0x09C0;
+
+    reg {
+        name = "DDRPHY Register 30";
+        desc = "";
+
+        field {
+            name = "phy_skew_a1";
+            desc = "A1 delay.";
+        } phy_skew_a1[5:3];
+
+        field {
+            name = "phy_skew_a0";
+            desc = "A0 delay.";
+        } phy_skew_a0[2:0];
+
+    } DDRC_PHY_REG30 @ 0x0AC4;
+
+    reg {
+        name = "DDRPHY Register 31";
+        desc = "";
+
+        field {
+            name = "phy_skew_a3";
+            desc = "A3 delay.";
+        } phy_skew_a3[5:3];
+
+        field {
+            name = "phy_skew_a2";
+            desc = "A2 delay.";
+        } phy_skew_a2[2:0];
+
+    } DDRC_PHY_REG31 @ 0x0AC8;
+
+    reg {
+        name = "DDRPHY Register 32";
+        desc = "";
+
+        field {
+            name = "phy_skew_a5";
+            desc = "A5 delay.";
+        } phy_skew_a5[5:3];
+
+        field {
+            name = "phy_skew_a4";
+            desc = "A4 delay.";
+        } phy_skew_a4[2:0];
+
+    } DDRC_PHY_REG32 @ 0x0ACC;
+
+    reg {
+        name = "DDRPHY Register 33";
+        desc = "";
+
+        field {
+            name = "phy_skew_a7";
+            desc = "A7 delay.";
+        } phy_skew_a7[5:3];
+
+        field {
+            name = "phy_skew_a6";
+            desc = "A6 delay.";
+        } phy_skew_a6[2:0];
+
+    } DDRC_PHY_REG33 @ 0x0AD0;
+
+    reg {
+        name = "DDRPHY Register 34";
+        desc = "";
+
+        field {
+            name = "phy_skew_a9";
+            desc = "A9 delay.";
+        } phy_skew_a9[5:3];
+
+        field {
+            name = "phy_skew_a8";
+            desc = "A8 delay.";
+        } phy_skew_a8[2:0];
+
+    } DDRC_PHY_REG34 @ 0x0AD4;
+
+    reg {
+        name = "DDRPHY Register 35";
+        desc = "";
+
+        field {
+            name = "phy_skew_a11";
+            desc = "A11 delay.";
+        } phy_skew_a11[5:3];
+
+        field {
+            name = "phy_skew_a10";
+            desc = "A10 delay.";
+        } phy_skew_a10[2:0];
+
+    } DDRC_PHY_REG35 @ 0x0AD8;
+
+    reg {
+        name = "DDRPHY Register 36";
+        desc = "";
+
+        field {
+            name = "phy_skew_a13";
+            desc = "A13 delay.";
+        } phy_skew_a13[5:3];
+
+        field {
+            name = "phy_skew_a12";
+            desc = "A12 delay.";
+        } phy_skew_a12[2:0];
+
+    } DDRC_PHY_REG36 @ 0x0ADC;
+
+    reg {
+        name = "DDRPHY Register 37";
+        desc = "";
+
+        field {
+            name = "phy_skew_b1";
+            desc = "B1 delay.";
+        } phy_skew_b1[5:3];
+
+        field {
+            name = "phy_skew_b0";
+            desc = "B0 delay.";
+        } phy_skew_b0[2:0];
+
+    } DDRC_PHY_REG37 @ 0x0AE0;
+
+    reg {
+        name = "DDRPHY Register 38";
+        desc = "";
+
+        field {
+            name = "phy_skew_rasb";
+            desc = "RASB delay.";
+        } phy_skew_rasb[5:3];
+
+        field {
+            name = "phy_skew_b2";
+            desc = "B2 delay.";
+        } phy_skew_b2[2:0];
+
+    } DDRC_PHY_REG38 @ 0x0AE4;
+
+    reg {
+        name = "DDRPHY Register 39";
+        desc = "";
+
+        field {
+            name = "phy_skew_web";
+            desc = "WEB delay.";
+        } phy_skew_web[5:3];
+
+        field {
+            name = "phy_skew_casb";
+            desc = "CASB delay.";
+        } phy_skew_casb[2:0];
+
+    } DDRC_PHY_REG39 @ 0x0AE8;
+
+    reg {
+        name = "DDRPHY Register 40";
+        desc = "";
+
+        field {
+            name = "phy_skew_ckb1";
+            desc = "CKB1 delay.";
+        } phy_skew_ckb1[5:3];
+
+        field {
+            name = "phy_skew_ck1";
+            desc = "CK1 delay.";
+        } phy_skew_ck1[2:0];
+
+    } DDRC_PHY_REG40 @ 0x0AEC;
+
+    reg {
+        name = "DDRPHY Register 41";
+        desc = "";
+
+        field {
+            name = "phy_skew_cke";
+            desc = "CKE delay.";
+        } phy_skew_cke[5:3];
+
+        field {
+            name = "phy_skew_odt";
+            desc = "ODT delay.";
+        } phy_skew_odt[2:0];
+
+    } DDRC_PHY_REG41 @ 0x0AF0;
+
+    reg {
+        name = "DDRPHY Register 42";
+        desc = "";
+
+        field {
+            name = "phy_skew_rstn";
+            desc = "RESETN delay.";
+        } phy_skew_rstn[2:0];
+
+    } DDRC_PHY_REG42 @ 0x0AF4;
+
+    reg {
+        name = "DDRPHY Register 43";
+        desc = "";
+
+        field {
+            name = "phy_txskew_dm1";
+            desc = "TX DM1 delay.";
+        } phy_txskew_dm1[5:3];
+
+        field {
+            name = "phy_txskew_dm0";
+            desc = "TX DM0 delay.";
+        } phy_txskew_dm0[2:0];
+
+    } DDRC_PHY_REG43 @ 0x0AF8;
+
+
+    // TODO: Figure out how to write the code for DDRC_PHY_TXDQSKEW
+
+    reg {
+        name = "DDRPHY Register 52";
+        desc = "";
+
+        field {
+            name = "phy_txskew_dqs1";
+            desc = "TX DQS1 delay.";
+        } phy_txskew_dqs1[5:3];
+
+        field {
+            name = "phy_txskew_dqs0";
+            desc = "TX DQS0 delay.";
+        } phy_txskew_dqs0[2:0];
+
+    } DDRC_PHY_REG52 @ 0x0B1C;
+
+    reg {
+        name = "DDRPHY Register 53";
+        desc = "";
+
+        field {
+            name = "phy_skew_a14";
+            desc = "A14 delay.";
+        } phy_skew_a14[5:3];
+
+    } DDRC_PHY_REG53 @ 0x0B20;
+
+    reg {
+        name = "DDRPHY Register 54";
+        desc = "";
+
+        field {
+            name = "phy_skew_ckb0";
+            desc = "CKB0 delay.";
+        } phy_skew_ckb0[5:3];
+
+        field {
+            name = "phy_skew_ck0";
+            desc = "CK0 delay.";
+        } phy_skew_ck0[2:0];
+
+    } DDRC_PHY_REG54 @ 0x0B24;
+
+    reg {
+        name = "DDRPHY Register 55";
+        desc = "";
+
+        field {
+            name = "phy_rxskew_dm1";
+            desc = "RX DM1 delay.";
+        } phy_rxskew_dm1[5:3];
+
+        field {
+            name = "phy_rxskew_dm0";
+            desc = "RX DM0 delay.";
+        } phy_rxskew_dm0[2:0];
+
+    } DDRC_PHY_REG55 @ 0x0B28;
+
+    // TODO: Figure out how to write the code for DDRC_PHY_RXDQSKEW
+
+    reg {
+        name = "DDRPHY register 5E";
+        desc = "";
+
+        field {
+            name = "phy_rxskew_dqs1";
+            desc = "RX DQS1 latency.";
+        } phy_rxskew_dqs1[5:3];
+
+        field {
+            name = "phy_rxskew_dqs0";
+            desc = "RX DQS0 delay.";
+        } phy_rxskew_dqs0[2:0];
+
+    } DDRC_PHY_REG5E @ 0x0B4C;
+
+    // TODO: Figure out how to write the code for DDRC_PHY_REG60
+
+    reg {
+        name = "DDRPHY Register 61";
+        desc = "";
+
+        field {
+            name = "phy_cal_done_h";
+            desc = "DQS gating signal correction completion signal of high eight-bit data DQ[15:8].";
+        } phy_cal_done_h[1:1];
+
+        field {
+            name = "phy_cal_done_l";
+            desc = "DQS gate control signal of the lower eight bits of data DQ[15:8] Calibration complete signal.";
+        } phy_cal_done_l[0:0];
+
+    } DDRC_PHY_REG61 @ 0x0BE8;
+
+    reg {
+        name = "DDRPHY Register 62";
+        desc = "";
+
+        field {
+            name = "phy_idqe_h";
+            desc = "DQS gate signal sampling DQS value of high eight-bit data DQ[15:8].";
+        } phy_idqe_h[1:1];
+
+        field {
+            name = "phy_idqs_l";
+            desc = "DQS gate signal sampling DQS value of the lower eight bits of data DQ[7:0].";
+        } phy_idqs_l[0:0];
+
+    } DDRC_PHY_REG62 @ 0x0BC4;
+
+};
+
