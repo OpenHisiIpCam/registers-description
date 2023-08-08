@@ -1,0 +1,106 @@
+addrmap hi3520dv200 {
+    name = "hi3520dv200 registers";
+    desc = "
+        [list]
+        [*] 0x0000_0000 0x03FF_FFFF Memory selected for address remapping. The address points to the on-chip RAM after remapping is cleared. 64 MB
+        [*] 0x0400_0000 0x0400_FFFF BOOTROM address space 64 KB The actual size is 4 KB.
+        [*] 0x0401_0000 0x0401_FFFF BOOTRAM address space 64 KB The actual size is 10 KB.
+        [*] 0x0402_0000 0x0FFF_FFFF Reserved 192 MB
+        [*] 0x1000_0000 0x1000_FFFF Reserved 64 KB
+        [*] 0x1001_0000 0x1001_FFFF SPI NOR FLASH register 64 KB
+        [*] 0x1002_0000 0x1007_FFFF Reserved 384 KB
+        [*] 0x1008_0000 0x1008_FFFF SATA register 64 KB
+        [*] 0x1009_0000 0x1009_FFFF ETH register 64 KB
+        [*] 0x100A_0000 0x100A_FFFF USB OHCI register 64 KB
+        [*] 0x100B_0000 0x100B_FFFF USB EHCI register 64 KB
+        [*] 0x100C_0000 0x100C_FFFF CIPHER register 64 KB
+        [*] 0x100D_0000 0x1014_FFFF Reserved 512 KB
+        [*] 0x1015_0000 0x1015_FFFF Reserved 64 KB
+        [*] 0x1016_0000 0x101D_FFFF Reserved 512 KB
+        [*] 0x101E_0000 0x1FFF_FFFF Reserved 256 MB
+        [*] 0x2000_0000 0x2000_FFFF Timer0 register 64 KB
+        [*] 0x2001_0000 0x2001_FFFF Timer1 register 64 KB
+        [*] 0x2002_0000 0x2002_FFFF Reserved 64 KB
+        [*] 0x2003_0000 0x2003_FFFF CRG register 64 KB
+        [*] 0x2004_0000 0x2004_FFFF WDG register 64 KB
+        [*] 0x2005_0000 0x2005_FFFF SYS_CTRL register 64 KB
+        [*] 0x2006_0000 0x2006_FFFF RTC register 64 KB
+        [*] 0x2007_0000 0x2007_FFFF IR register 64 KB
+        [*] 0x2008_0000 0x2008_FFFF UART 0 register 64 KB
+        [*] 0x2009_0000 0x2009_FFFF UART 1 register 64 KB
+        [*] 0x200A_0000 0x200A_FFFF UART 2 register 64 KB
+        [*] 0x200B_0000 0x200B_FFFF UART 3 register 64 KB
+        [*] 0x200C_0000 0x200C_FFFF SPI register 64 KB
+        [*] 0x200D_0000 0x200D_FFFF I2C register 64 KB
+        [*] 0x200E_0000 0x200E_FFFF Reserved 64 KB
+        [*] 0x200F_0000 0x200F_FFFF IO config register 64 KB
+        [*] 0x2010_0000 0x2010_FFFF Reserved 64 KB
+        [*] 0x2011_0000 0x2011_FFFF DDRC register 64 KB
+        [*] 0x2012_0000 0x2012_FFFF PWM register 64 KB
+        [*] 0x2013_0000 0x2013_FFFF Timer2 register 64 KB
+        [*] 0x2014_0000 0x2014_FFFF Timer3 register 64 KB
+        [*] 0x2015_0000 0x2015_FFFF GPIO0 register 64 KB
+        [*] 0x2016_0000 0x2016_FFFF GPIO1 register 64 KB
+        [*] 0x2017_0000 0x2017_FFFF GPIO2 register 64 KB
+        [*] 0x2018_0000 0x2018_FFFF GPIO3 register 64 KB
+        [*] 0x2019_0000 0x2019_FFFF GPIO4 register 64 KB
+        [*] 0x201A_0000 0x201A_FFFF GPIO5 register 64 KB
+        [*] 0x201B_0000 0x201B_FFFF GPIO6 register 64 KB
+        [*] 0x201C_0000 0x201C_FFFF GPIO7 register 64 KB
+        [*] 0x201D_0000 0x201D_FFFF GPIO8 register 64 KB
+        [*] 0x201E_0000 0x201E_FFFF Reserved 64 KB
+        [*] 0x201F_0000 0x201F_FFFF HDMI register 64 KB
+        [*] 0x2020_0000 0x202F_FFFF Reserved 1024 KB
+        [*] 0x2030_0000 0x2030_FFFF ARM WDG/Timer/GIC & other internal registers 64 KB
+        [*] 0x2031_0000 0x203F_FFFF Reserved 896 KB
+        [*] 0x2040_0000 0x2051_FFFF Reserved 1152 KB
+        [*] 0x2052_0000 0x2057_FFFF Reserved 384 KB
+        [*] 0x2058_0000 0x205B_FFFF VICAP register 256 KB
+        [*] 0x205C_0000 0x205C_FFFF VDP register 64 KB
+        [*] 0x205D_0000 0x205D_FFFF Reserved 64 KB
+        [*] 0x205E_0000 0x205E_FFFF IVE register 64 KB
+        [*] 0x205F_0000 0x205F_FFFF Reserved 64 KB
+        [*] 0x2060_0000 0x2060_FFFF VPSS register 64 KB
+        [*] 0x2061_0000 0x2061_FFFF TDE register 64 KB
+        [*] 0x2062_0000 0x2062_FFFF VEDU register 64 KB
+        [*] 0x2063_0000 0x2063_FFFF Reserved 64 KB
+        [*] 0x2064_0000 0x2064_FFFF VOIE register 448 KB
+        [*] 0x2065_0000 0x2065_FFFF AIO register 64 KB
+        [*] 0x2066_0000 0x2066_FFFF JPGE register 64 KB
+        [*] 0x2067_0000 0x2067_FFFF JPGD register 64 KB
+        [*] 0x2068_0000 0x206A_FFFF Reserved 192 KB
+        [*] 0x206B_0000 0x206B_FFFF VCMP register 64 KB
+        [*] 0x206C_0000 0x206C_FFFF MD register 64 KB
+        [*] 0x206D_0000 0x206D_FFFF DDR test module 64 KB
+        [*] 0x206E_0000 0x206F_FFFF Reserved 128 KB
+        [*] 0x2070_0000 0x207F_FFFF L2 Cache Space 1 MB
+        [*] 0x2080_0000 0x2080_FFFF Reserved 64 KB
+        [*] 0x2081_0000 0x2081_FFFF Reserved 64 KB
+        [*] 0x2082_0000 0x2FFF_FFFF Reserved 248 MB
+        [*] 0x3000_0000 0x3FFF_FFFF Reserved 256 MB
+        [*] 0x4000_0000 0x4FFF_FFFF Reserved 256 MB
+        [*] 0x5000_0000 0x53FF_FFFF Reserved 64 MB
+        [*] 0x5400_0000 0x57FF_FFFF Reserved 64 MB
+        [*] 0x5800_0000 0x5BFF_FFFF SPI FLASH storage space 64 MB
+        [*] 0x5C00_0000 0x7FFF_FFFF Reserved 576 MB
+        [*] 0x8000_0000 0xBFFF_FFFF DDR External DDR device address is empty 1 GB
+        [*] 0xC000_0000 0xFFFF_FFFF Reserved 1 GB
+        [/list]
+    ";
+
+    //eWDG        WDG         @   0x20040000;
+    //eTIMER      TIMER0      @   0x20000000;
+    //eTIMER      TIMER1      @   0x20000020;
+    //eTIMER      TIMER2      @   0x20010000;
+    //eTIMER      TIMER3      @   0x20010020;
+    //eTIMER      TIMER4      @   0x20130000;
+    //eTIMER      TIMER5      @   0x20130020;
+    //eTIMER      TIMER6      @   0x20140000;
+    //eTIMER      TIMER7      @   0x20140020;
+
+    ePERI_CRG   	PERI_CRG    	@ 0x20030000;
+    eSYSCTL       	SYS_CTRL    	@ 0x20050000;
+    eDDRC           DDRC            @ 0x20110000;
+    eMUX            MUX             @ 0x200F0000;
+};
+

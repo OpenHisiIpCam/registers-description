@@ -1,0 +1,864 @@
+regfile eSYSCTL {
+    name = "System Controller Registers";
+
+    /* Useful enums to keep from having to keep copying them */
+    enum SYSCTL_zero_enable_enum {
+        ENABLE  = 0x0 { desc = "Enable"; };
+        DISABLE = 0x1 { desc = "Disable"; };
+    };
+
+    enum SYSCTL_one_enable_enum {
+        ENABLE  = 0x0 { desc = "Enable"; };
+        DISABLE = 0x1 { desc = "Disable"; };
+    };
+
+    /* Fields */
+
+    reg {
+        name = "System control register";
+        desc = "It is used to specify the operations to be performed by the system.";
+
+        enum SC_CTRL_timerenNsel_enum {
+            MHz3 = 0x0 { desc = "Use 3MHz clock for counting"; };
+            // RESERVED = 0x1 { desc = "Reserved"; };
+        };
+
+        enum SC_CTRL_timeren7ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren7sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren7ov";
+            desc = "Timer7 count clock selection.";
+            encode = SC_CTRL_timeren7ov_enum;
+        } timeren7ov[31:31];
+
+        field {
+            name = "timeren7sel";
+            desc = " Timer7 counting clock frequency selection. Must be configured as 0. ";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren7sel[30:30];
+
+        enum SC_CTRL_timeren6ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren6sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren6ov";
+            desc = "Timer6 count clock selection.";
+            encode = SC_CTRL_timeren6ov_enum;
+        } timeren6ov[29:29];
+
+        field {
+            name = "timeren6sel";
+            desc = "Timer6 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren6sel[28:28];
+
+        enum SC_CTRL_timeren5ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren5sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren5ov";
+            desc = " Timer5 count clock selection.";
+            encode = SC_CTRL_timeren5ov_enum;
+        } timeren5ov[27:27];
+
+        enum SC_CTRL_timeren5sel_enum {
+            MHz3 = 0x0 { desc = "Use 3MHz clock for counting"; };
+            // RESERVED = 0x1 { desc = "Reserved"; };
+        };
+
+        field {
+            name = "timeren5sel";
+            desc = "Timer5 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren5sel[26:26];
+
+        enum SC_CTRL_timeren4ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren4sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren4ov";
+            desc = "Timer4 count clock selection.";
+            encode = SC_CTRL_timeren4ov_enum;
+        } timeren4ov[25:25];
+
+        field {
+            name = "timeren4sel";
+            desc = "Timer4 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren4sel[24:24];
+
+        enum SC_CTRL_wdogenov_enum {
+            MHz3    = 0x0 { desc = "WDG uses 3MHz clock for counting."; };
+            BUS_CLK = 0x1 { desc = "WDG uses the bus clock for counting."; };
+        };
+
+        field {
+            name = "wdogenov";
+            desc = "WDG count clock selection.";
+            encode = SC_CTRL_wdogenov_enum;
+        } wdogenov[23:23];
+
+        enum SC_CTRL_timeren3ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren3sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren3ov";
+            desc = "Timer3 count clock selection.";
+            encode = SC_CTRL_timeren3ov_enum;
+        } timeren3ov[22:22];
+
+        field {
+            name = "timeren3sel";
+            desc = "Timer3 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren3sel[21:21];
+
+        enum SC_CTRL_timeren2ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren2sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren2ov";
+            desc = "Timer2 count clock selection.";
+            encode = SC_CTRL_timeren2ov_enum;
+        } timeren2ov[20:20];
+
+        field {
+            name = "timeren2sel";
+            desc = "Timer2 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren2sel[19:19];
+
+        enum SC_CTRL_timeren1ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren1sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren1ov";
+            desc = "Timer1 count clock selection.";
+            encode = SC_CTRL_timeren1ov_enum;
+        } timeren1ov[18:18];
+
+        field {
+            name = "timeren1sel";
+            desc = "Timer1 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren1sel[17:17];
+
+        enum SC_CTRL_timeren0ov_enum {
+            REF_CLK = 0x0 { desc = "The enable signal is obtained by using the reference clock, and the selection of the reference clock is specified by [timeren0sel]"; };
+            BUS_CLK = 0x1 { desc = "Counting by the bus clock."; };
+        };
+
+        field {
+            name = "timeren0ov";
+            desc = "Timer0 count clock selection.";
+            encode = SC_CTRL_timeren0ov_enum;
+        } timeren0ov[16:16];
+
+        field {
+            name = "timeren0sel";
+            desc = "Timer0 counting clock frequency selection. Must be configured as 0.";
+            encode = SC_CTRL_timerenNsel_enum;
+        } timeren0sel[15:15];
+
+        enum SC_CTRL_remapstat_enum {
+            NO_REMAP = 0x0 { desc = "No address remapping."; };
+            REMAP    = 0x1 { desc = "Perform address remapping. bootrom or SFC CS1 is remapped to address 0."; };
+        };
+
+        field {
+            name = "remapstat";
+            desc = "Status of address remapping.";
+            encode = SC_CTRL_remapstat_enum;
+            //sw=r;
+        } remapstat[9:9];
+
+        enum SC_CTRL_remapclear_enum {
+            NO_REMAP = 0x0 { desc = "Keep Remap status."; };
+            REMAP    = 0x1 { desc = "Clear Remap."; };
+        };
+
+        field {
+            name = "remapclear";
+            desc = "
+                Address remapping clears the selection.
+                For the address mapping relationship before and after Clear Remap, see Address Allocation.
+            ";
+            encode = SC_CTRL_remapclear_enum;
+        } remapclear[8:8];
+
+        enum SC_CTRL_modestatus_enum {
+            // Reserved       = 0x0 { desc = "Reserved"; };
+            DOZE            = 0x1 { desc = "DOZE"; };
+            SLOW            = 0x2 { desc = "SLOW"; };
+            XTAL_CTL        = 0x3 { desc = "XTAL CTL"; };
+            NORMAL          = 0x4 { desc = "NORMAL"; };
+            // Reserved       = 0x5 { desc = "Reserved"; };
+            PLL_CTL         = 0x6 { desc = "PLL CTL"; };
+            // Reserved       = 0x7 { desc = "Reserved"; };
+            // Reserved       = 0x8 { desc = "Reserved"; };
+            SW_from_XTAL    = 0x9 { desc = "SW from XTAL"; };
+            SW_from_PLL     = 0xA { desc = "SW from PLL"; };
+            SW_to_XTAL      = 0xB { desc = "SW to XTAL"; };
+            // Reserved       = 0xC { desc = "Reserved"; };
+            // Reserved       = 0xD { desc = "Reserved"; };
+            SW_to_PLL       = 0xE { desc = "SW to PLL"; };
+            // Reserved       = 0xF { desc = "Reserved"; };
+        };
+
+        field {
+            name = "modestatus";
+            desc = "
+                Address remapping clears the selection.
+                For the address mapping relationship before and after Clear Remap, see Address Allocation.
+            ";
+            encode = SC_CTRL_remapclear_enum;
+        } modestatus[6:3];
+
+        enum SC_CTRL_modectrl_enum {
+            // Reserved   = 0x0 { desc = "Reserved"; };
+            DOZE        = 0x1 { desc = "DOZE"; };
+            SLOW        = 0x2 { desc = "SLOW"; };
+            NORMAL      = 0x4 { desc = "NORMAL"; };
+        };
+
+        field {
+            name = "modectrl";
+            desc = "Mode control bit. Defines the operating modes that the system controller is required to enter.";
+            encode = SC_CTRL_modectrl_enum;
+        } modectrl[2:0];
+
+    } SC_CTRL @ 0x0000;
+
+    reg {
+        name = "System soft reset register";
+        desc = "
+            When a value is written to this register, the system controller 
+            sends a system soft reset request to the reset module. 
+            Then the reset module resets the system.
+
+            !!! Caution
+                Write protection for this register can be enabled by configuring 
+                SC_LOCKEN. This register can be written only when write protection 
+                is disabled.
+        ";
+
+        field {
+            name = "softresreq";
+            desc = "Any write operation to this register will cause a soft reset of the system.";
+            //sw=w;
+        } softresreq[31:0];
+
+    } SC_SYSRES @ 0x0004;
+
+    reg {
+        name = "Interrupt mode control register";
+        desc = "The interrupt mode control register. Used to control the system mode when an interrupt occurs.";
+
+        enum itmdctrl_inmdtype_enum {
+            FIQ_ONLY    = 0x0 { desc = "Only FIQ interrupt can make the system enter interrupt mode."; };
+            FIQ_AND_IRQ = 0x1 { desc = "Both FIQ interrupt and IRQ interrupt can make the system enter interrupt mode."; };
+        };
+
+        field {
+            name = "inmdtype";
+            desc = "The type of interrupt that triggers the system to enter interrupt mode.";
+            encode = itmdctrl_inmdtype_enum;
+        } inmdtype[7:7];
+
+        enum itmdctrl_modectrl_enum {
+            SLEEP   = 0x0 { desc = "SLEEP"; };
+            DOZE    = 0x1 { desc = "DOZE"; };
+            SLOW    = 0x2 { desc = "SLOW"; };
+            NORMAL  = 0x3 { desc = "NORMAL"; };
+        };
+
+        field {
+            name = "itmdctrl";
+            desc = "The lowest working mode of the system in interrupt mode, the value of this register is ORed with the value of SC_CTRL[modectrl] as the working mode of the system after the interrupt occurs.";
+            encode = itmdctrl_modectrl_enum;
+        } modectrl[3:1];
+
+        enum itmdctrl_itm_enum {
+            FORBIDDEN = 0x0 { desc = "Forbidden."; };
+            ENABLE    = 0x1 { desc = "Enable (enter interrupt mode when interrupt occurs)."; };
+        };
+
+        field {
+            name = "itm";
+            desc = "Interrupt mode enable.";
+            encode = itmdctrl_itm_enum;
+        } itm[0:0];
+
+    } itmdctrl @ 0x0008;
+
+    reg {
+        name = "Interrupt mode status register";
+        desc = "
+            The interrupt mode status register. It is used to monitor whether the system is in the interrupt mode, and the system can also be forced to enter the interrupt mode by configuring this register.
+
+            !!! Caution
+                The interrupt mode must be cleared manually when the interrupt service routine is finished.
+        ";
+
+        field {
+            name = "itmdstat";
+            desc = "
+                Interrupt mode status. Can be used for software control to directly enter interrupt mode.
+
+                When reading this register:
+                0: Not currently in interrupt mode.
+                1: Currently in interrupt mode.
+
+                When writing this register:
+                0: Software does not control to enter interrupt mode.
+                1: Software controls to enter interrupt mode.
+            ";
+        } itmdstat[0:0];
+
+    } SC_IMSTAT @ 0x000C;
+
+    reg {
+        name = "Crystal oscillator control register";
+        desc = "The crystal oscillator control register. It is used to control the stable waiting time of the initialization clock module, that is, the waiting time for jumping from the XTAL CTL intermediate state to the SW to XTAL intermediate state.";
+
+        field {
+            name = "xtaltime";
+            desc = "
+                Crystal switching wait time.
+                The value of this field is used to specify the waiting time for switching from XTAL CTL state to SW to XTAL state when the system mode is switched. The number of waiting cycles can be calculated (T46.8K is a 46.8KHz low-frequency clock cycle): (65536 – xtaltime)xT46.8K.
+            ";
+        } xtaltime[18:3];
+
+    } SC_XTALCTRL @ 0x0010;
+
+    reg {
+        name = "PLL control register";
+        desc = "
+            The PLL control register. It is used to control the enable control of the on-chip ARM phase-locked loop (ARMPLL), which is enabled by software control or by system mode switching. In addition, this register is also used to set the ARMPLL PLL stabilization wait time.
+
+            !!! Caution
+                This register can be write-protected by the register SC_LOCKEN, and the write operation to this register is valid only when the write protection is disabled.
+
+            When it is in the 'Enable ARMPLL phase-locked loop controlled by system mode switching' (controlled by SC_PLLCTRL[pllover]), ARMPLL is automatically turned off when the system is in non-NORMAL mode. The clock frequency of ARMPLL is controlled by CRG registers PERI_CRG0 and PERI_CRG1. The system requires the PLL to wait for 0.5ms to output a stable clock when changing the frequency configuration. Therefore, the plltime configuration of this register must meet this requirement.
+        ";
+
+        field {
+            name = "plltime";
+            desc = "
+                ARMPLL PLL stabilization wait time. This period of time is used to wait for the PLL to start and the PLL output to reach a stable state, which is to specify the waiting time for switching from the PLL CTL state to the SW to PLL state when switching from the system mode. The timeout value is calculated by the following formula (TXIN is the clock cycle of the external crystal oscillator): (33554432 - plltime)xTXIN.
+            ";
+        } plltime[27:3];
+
+        enum SC_PLLCTRL_pllover_enum {
+            ENABLE = 0x0 { desc = "Enable the ARMPLL phase-locked loop by switching the system mode."; };
+            // RESERVED = 0x1 { desc = "Reserved."; };
+        };
+
+        field {
+            name = "pllover";
+            desc = "Allows the ARLPLL PLL to be enabled directly under software control, rather than being controlled by system mode state changes. Must be configured as 0.";
+            encode = SC_PLLCTRL_pllover_enum;
+        } pllover[0:0];
+
+    } SC_PLLCTRL @ 0x0014;
+
+    reg {
+        name = "Peripheral control register 0";
+        desc = "
+            The peripheral control register 0.
+
+            !!! Caution
+                This register can be write-protected by the register SC_LOCKEN, and the write operation to this register is valid only when the write protection is disabled.
+        ";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL0 @ 0x001C;
+
+    reg {
+        name = "Peripheral control register 1";
+        desc = "Soft interrupt register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL1 @ 0x0020;
+
+    reg {
+        name = "Peripheral control register 2";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL2 @ 0x0034;
+
+    reg {
+        name = "Peripheral control register 3";
+        desc = "SATA PHY control register device";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL3 @ 0x0038;
+
+    reg {
+        name = "Peripheral control register 4";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL4 @ 0x003C;
+
+    reg {
+        name = "Peripheral control register 5";
+        desc = "MEDIA0 bus master port timeout control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL5 @ 0x0040;
+
+    reg {
+        name = "Lock register of the critical system control register";
+        desc = "";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SC_LOCK @ 0x0044;
+
+    reg {
+        name = "Peripheral control register 6";
+        desc = "MEDIA0 bus master port timeout control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL6 @ 0x0048;
+
+    reg {
+        name = "Peripheral control register 9";
+        desc = "MEDIA0 bus master port priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL9 @ 0x0054;
+
+    reg {
+        name = "Peripheral control register 10";
+        desc = "System bus master port timeout control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL10 @ 0x0058;
+
+    reg {
+        name = "Peripheral control register 11";
+        desc = "System bus master port timeout control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL11 @ 0x005C;
+
+    reg {
+        name = "Peripheral control register 13";
+        desc = "System bus master port timeout control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL13 @ 0x0064;
+
+    reg {
+        name = "Peripheral control register 14";
+        desc = "System bus slave end port priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL14 @ 0x0068;
+
+    reg {
+        name = "Peripheral control register 15";
+        desc = "CHIP ID Register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL15 @ 0x006C;
+
+    reg {
+        name = "Peripheral control register 16";
+        desc = "MEDIA1 bus master port timeout control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL16 @ 0x0070;
+
+    reg {
+        name = "Peripheral control register 17";
+        desc = "MEDIA1 bus master port timeout control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL17 @ 0x0074;
+
+    reg {
+        name = "Peripheral control register 18";
+        desc = "MEDIA1 bus master port timeout control register 2";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL18 @ 0x0078;
+
+    reg {
+        name = "Peripheral control register 19";
+        desc = "MEDIA1 bus master port priority control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL19 @ 0x007C;
+
+    reg {
+        name = "Peripheral control register 20";
+        desc = "USB control register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL20 @ 0x0080;
+
+    reg {
+        name = "Peripheral control register 21";
+        desc = "USB PHY control register 0";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL21 @ 0x0084;
+
+    reg {
+        name = "Peripheral control register 22";
+        desc = "USB PHY control register 1";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL22 @ 0x0088;
+
+    reg {
+        name = "System status register";
+        desc = "PLL_LOCK";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } SYSSTAT @ 0x008C;
+
+    reg {
+        name = "Peripheral control register 23";
+        desc = "MDDRC out-of-order configuration outtodr_ctrl register";
+        field {
+            desc = "TODO";
+        } todo = 0;
+    } PERIPHCTRL23 @ 0x0090;
+
+    reg {
+        name = "Peripheral control register 24";
+        desc = "The peripheral control register 24 (FE PHY address configuration register).";
+
+        enum PERIPHCTRL24_fephy_led_ctrl_enum {
+            NOT_REVERSED = 0x0 { desc = "Polarity is not reversed."; };
+            REVERSED     = 0x1 { desc = "Polarity is reversed."; };
+        };
+
+        field {
+            name = "fephy_led_ctrl";
+            desc = "FE PHY led light polarity control.";
+            encode = PERIPHCTRL24_fephy_led_ctrl_enum;
+        } fephy_led_ctrl[12:12];
+
+        enum PERIPHCTRL24_fephy_sel_enum {
+            NOT_REVERSED = 0x0 { desc = "Select the internally integrated FE PHY."; };
+            REVERSED     = 0x1 { desc = "Select external FE PHY."; };
+        };
+
+        field {
+            name = "fephy_sel";
+            desc = "FE PHY selection.";
+            encode = PERIPHCTRL24_fephy_sel_enum;
+        } fephy_sel[8:8];
+
+        field {
+            name = "fephy_ad";
+            desc = "PHY address of internally integrated FE PHY.";
+        } fephy_ad[4:0];
+
+    } PERIPHCTRL24 @ 0x0094;
+
+    reg {
+        name = "Peripheral control register 25";
+        desc = "The Peripheral Control Register 25 (SATA PHY Control Register 1).";
+
+        field {
+            name = "sata_test_byp_mode";
+            desc = "All the input interfaces of SATA in the enable ASIC are connected to the output terminals through pure combinational logic to improve the interface test coverage.";
+            encode = SYSCTL_one_enable_enum;
+        } sata_test_byp_mode[21:21];
+
+        field {
+            name = "sata_test_burnin_mode";
+            desc = "
+                SATA burn-in test mode is enabled.
+
+                Note: Enable as many internal logic flips as possible, use with [sata_test_byp_mode] signal during burn-in test.
+            ";
+            encode = SYSCTL_one_enable_enum;
+        } sata_test_burnin_mode[20:20];
+
+        enum PERIPHCTRL25_sata_test_pddq_enum {
+            NO_POWER_OFF = 0x0 { desc = "No Power Off"; };
+            POWER_OFF    = 0x1 { desc = "Power Off"; };
+        };
+
+        field {
+            name = "sata_test_pddq";
+            desc = "SATA PHY power on and off control.";
+            encode = PERIPHCTRL25_sata_test_pddq_enum;
+        } sata_test_pddq[2:2];
+
+    } PERIPHCTRL25 @ 0x0098;
+
+    reg {
+        name = "Peripheral control register 28";
+        desc = "Peripheral control register 28 (IO control register 0).";
+
+        enum PERIPHCTRL28_spi_sclk_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "spi_sclk_ioctrl_ds";
+            desc = "spi_sclk Output drive capability selection.";
+            encode = PERIPHCTRL28_spi_sclk_ioctrl_ds_enum;
+        } spi_sclk_ioctrl_ds[30:28];
+
+        enum PERIPHCTRL28_aio_ws_tx_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_ws_tx_ioctrl_ds";
+            desc = "aio_ws_tx output drive capability selection.";
+            encode = PERIPHCTRL28_aio_ws_tx_ioctrl_ds_enum;
+        } aio_ws_tx_ioctrl_ds[26:24];
+
+        enum PERIPHCTRL28_aio_bclk_tx_ioctrl_ds_enum {
+            mA0     = 0x0 { desc = "0mA (High Z)"; };
+            mA3     = 0x1 { desc = "3mA (Active)"; };
+            mA4_0   = 0x2 { desc = "4mA (Active)"; };
+            mA7_0   = 0x3 { desc = "7mA"; };
+            mA4_1   = 0x4 { desc = "4mA"; };
+            mA7_1   = 0x5 { desc = "7mA"; };
+            mA8     = 0x6 { desc = "8mA (Active)"; };
+            mA11    = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_bclk_tx_ioctrl_ds";
+            desc = "aio_bclk_tx output drive capability selection (@SS,125℃ 2.97V/1.08V Io1 at 0.4V).";
+            encode = PERIPHCTRL28_aio_bclk_tx_ioctrl_ds_enum;
+        } aio_bclk_tx_ioctrl_ds[22:20];
+
+        enum PERIPHCTRL28_aio_ws_rx_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_ws_rx_ioctrl_ds";
+            desc = "aio_ws_rx_ioctrl_ds Output drive capability selection.";
+            encode = PERIPHCTRL28_aio_ws_rx_ioctrl_ds_enum;
+        } aio_ws_rx_ioctrl_ds[18:16];
+
+        enum PERIPHCTRL28_aio_bclk_rx_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_bclk_rx_ioctrl_ds";
+            desc = "aio_bclk_rx Output drive capability selection.";
+            encode = PERIPHCTRL28_aio_bclk_rx_ioctrl_ds_enum;
+        } aio_bclk_rx_ioctrl_ds[14:12];
+
+        enum PERIPHCTRL28_aio_mclk_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_mclk_ioctrl_ds";
+            desc = "aio_mclk Output drive capability selection.";
+            encode = PERIPHCTRL28_aio_mclk_ioctrl_ds_enum;
+        } aio_mclk_ioctrl_ds[10:8];
+
+        enum PERIPHCTRL28_vga_hs_vs_ioctrl_ds_enum {
+            mA0     = 0x0 { desc = "0mA (High Z)"; };
+            mA4     = 0x1 { desc = "4mA"; };
+            mA8     = 0x2 { desc = "8mA"; };
+            mA12_0  = 0x3 { desc = "12mA"; };
+            mA12_1  = 0x4 { desc = "12mA"; };
+            mA16    = 0x5 { desc = "16mA"; };
+            mA20    = 0x6 { desc = "20mA"; };
+            mA24    = 0x7 { desc = "24mA"; };
+        };
+
+        field {
+            name = "vga_hs_vs_ioctrl_ds";
+            desc = "aio_mclk Output drive capability selection.";
+            encode = PERIPHCTRL28_vga_hs_vs_ioctrl_ds_enum;
+        } vga_hs_vs_ioctrl_ds[6:4];
+
+        enum PERIPHCTRL28_vi_adc_clk_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "aio_mclk_ioctrl_ds";
+            desc = "vi_adc_clk Output drive capability selection.";
+            encode = PERIPHCTRL28_vi_adc_clk_ioctrl_ds_enum;
+        } vi_adc_clk_ioctrl_ds[2:0];
+
+    } PERIPHCTRL28 @ 0x00A4;
+
+    reg {
+        name = "Peripheral control register 29";
+        desc = "Peripheral control register 29 (IO control register 1).";
+
+        enum PERIPHCTRL29_sfc_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "sfc_ioctrl_ds";
+            desc = "SFC data pad output drive capability.";
+            encode = PERIPHCTRL29_sfc_ioctrl_ds_enum;
+        } sfc_ioctrl_ds[6:4];
+
+        enum PERIPHCTRL29_spi_sdo_ioctrl_ds_enum {
+            mA0         = 0x0 { desc = "0mA (High Z)"; };
+            mA3         = 0x1 { desc = "3mA"; };
+            mA4         = 0x2 { desc = "4mA"; };
+            // RESERVED   = 0x3 { desc = "RESERVED"; };
+            // RESERVED   = 0x4 { desc = "RESERVED"; };
+            // RESERVED   = 0x5 { desc = "RESERVED"; };
+            mA8         = 0x6 { desc = "8mA"; };
+            mA11        = 0x7 { desc = "11mA"; };
+        };
+
+        field {
+            name = "spi_sdo_ioctrl_ds";
+            desc = "spi_sdo output drive capability.";
+            encode = PERIPHCTRL29_spi_sdo_ioctrl_ds_enum;
+        } spi_sdo_ioctrl_ds[2:0];
+
+    } PERIPHCTRL29 @ 0x00A8;
+
+
+    reg {
+        name = "Chip ID register 0";
+        desc = "";
+
+        field {
+            name = "sysid0";
+            desc = "Reading this register returns 0x00.";
+        } sysid0[7:0] = 0x00;
+
+    } SCSYSID0 @ 0x0EE0;
+
+    reg {
+        name = "Chip ID register 1";
+        desc = "";
+
+        field {
+            name = "sysid1";
+            desc = "Reading this register returns 0xD1.";
+        } sysid1[7:0] = 0xD1;
+
+    } SCSYSID1 @ 0x0EE4;
+
+    reg {
+        name = "Chip ID register 2";
+        desc = "";
+
+        field {
+            name = "sysid2";
+            desc = "Reading this register returns 0x20.";
+        } sysid2[7:0] = 0x20;
+
+    } SCSYSID2 @ 0x0EE8;
+
+    reg {
+        name = "Chip ID register 3";
+        desc = "";
+        
+        field {
+            name = "sysid3";
+            desc = "Reading this register returns 0x35.";
+            //sw=r;
+        } sysid3[7:0] = 0x35;
+
+    } SCSYSID3 @ 0x0EEC;
+
+};
+

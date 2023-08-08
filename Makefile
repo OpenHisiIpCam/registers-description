@@ -4,6 +4,7 @@ all: clean build generate
 
 build:
 	make -C ./hi3516av200
+	make -C ./hi3520dv200
 
 generate: build 
 	$(DOCGEN)

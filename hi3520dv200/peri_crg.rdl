@@ -1,0 +1,673 @@
+regfile ePERI_CRG {
+    name = "CRG register";
+
+    reg {
+        name = "APLL configuration register 0";
+
+        enum PERI_CRG0_apll_bypass_enum {
+            NO_BYPASS = 0x0 { desc = "No bypass."; };
+            BYPASS    = 0x1 { desc = "Bypass."; };
+        };
+
+        field {
+            name = "APLL clock divider bypass (bypass) control.";
+            encode = PERI_CRG0_apll_bypass_enum;
+        } apll_bypass[30:30];
+
+        field {
+            name = "Level-2 output frequency divider of the APLL";
+        } apll_postdiv2[29:27];
+
+        field {
+            name = "Level-1 output frequency divider of the APLL";
+        } apll_postdiv1[26:24];
+
+        field {
+            name = "Decimal part of the APLL frequency multiplication coefficient";
+        } apll_frac[23:0];
+
+    } PERI_CRG0 @ 0x0000;
+
+    reg {
+        name = "APLL configuration register 1";
+
+        field {
+            enum apll_dacpd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "APLL test signal control";
+            encode = apll_dacpd_enum;
+        } apll_dacpd[23:23];
+
+        field {
+            enum apll_dsmpd_enum {
+                decimal = 0x0 { desc = "decimal frequency-division mode"; };
+                integral = 0x1 { desc = "integral frequency-division mode"; };
+            };
+            name = "APLL decimal division control";
+            encode = apll_dsmpd_enum;
+        } apll_dsmpd[22:22];
+
+        field {
+            enum apll_pd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "APLL power-down control";
+            encode = apll_pd_enum;
+
+        } apll_pd[21:21];
+
+        field {
+            enum apll_foutvcopd_enum {
+                normal = 0x0 { desc = "normal output clock"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "APLL VCO output power-down control";
+            encode = apll_foutvcopd_enum;
+        } apll_foutvcopd [20:20];
+
+        field {
+		enum apll_postdivpd_enum {
+			normal = 0x0 { desc = "normal clock output"; };
+			no = 0x1 { desc = "no output clock"; };
+		};
+
+            	name = "APLL FOUT output power-down control";
+           	encode = apll_postdivpd_enum;
+        } apll_postdivpd[19:19];
+
+        field {
+        	enum apll_fout4phasepd_enum {
+            		normal = 0x0 { desc = "normal output clock"; };
+            		no = 0x1 { desc = "no output clock"; };
+        	};
+            name = "APLL FOUT output power-down control";
+            encode = apll_fout4phasepd_enum;
+        } apll_fout4phasepd[18:18];
+
+        field {
+            name = "Frequency divider of the APLL reference clock";
+        } apll_refdiv[17:12];
+
+        field {
+            name = "Integral part of the APLL frequency multiplication coefficient";
+        } apll_fbdiv[11:0];
+
+    } PERI_CRG1 @ 0x0004;
+
+    reg {
+        name = "VPLL0 Configuration Register 0";
+
+        field {
+            enum vpll0_bypass_enum {
+                no = 0x0 { desc = "not bypassed"; };
+                bypass = 0x1 { desc = "bypassed"; };
+            };
+            name = "VPLL0 clock frequency division bypass";
+            encode = vpll0_bypass_enum;
+        } vpll0_bypass[30:30];
+
+        field {
+            name = "Level-2 output divider of VPLL0";
+        } vpll0_postdiv2[29:27];
+
+        field {
+            name = "Level-1 output divider of VPLL0";
+        } vpll0_postdiv1[26:24];
+
+        field {
+            	name = "Decimal part of the VPLL0 frequency multiplication coefficient";
+        } vpll0_frac[23:0];
+
+    } PERI_CRG2 @ 0x008;
+
+    reg {
+        name = "VPLL0 Configuration Register 1";
+
+        field {
+            enum vpll0_dacpd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "VPLL0 test signal control";
+            encode = vpll0_dacpd_enum;
+        } vpll0_dacpd[23:23];
+
+        field {
+            enum vpll0_dsmpd_encode {
+                decimal = 0x0 { desc = "decimal frequency-division mode"; };
+                integral = 0x1 { desc = "integral frequency-division mode"; };
+            };
+            name = "VPLL0 decimal division control";
+            encode = vpll0_dsmpd_encode;
+        } vpll0_dsmpd[22:22];
+
+        field {
+            enum vpll0_pd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "VPLL0 power-down control";
+            encode = vpll0_pd_enum;
+        } vpll0_pd[21:21];
+
+        field {
+            enum vpll0_foutvcopd_enum {
+                normal = 0x0 { desc = "normal output clock"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "VPLL0 VCO output power-down control";
+            encode = vpll0_foutvcopd_enum;
+        } vpll0_foutvcopd[20:20];
+
+        field {
+            enum vpll0_postdivpd_enum {
+                normal = 0x0 { desc = "normal clock output"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "VPLL0 POSTDIV output power-down control";
+            encode = vpll0_postdivpd_enum;
+        } vpll0_postdivpd[19:19];
+
+        field {
+            enum vpll0_fout4phasepd_enum {
+                normal = 0x0 { desc = "normal output clock"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "VPLL0 FOUT output power-down control";
+            encode = vpll0_fout4phasepd_enum;
+        } vpll0_fout4phasepd[18:18];
+
+        field {
+            name = "Frequency divider of the VPLL0 reference clock";
+        } vpll0_refdiv[17:12];
+
+        field {
+            name = "Integral part of the VPLL0 frequency multiplication coefficient";
+        } vpll0_fbdiv[11:0];
+
+    } PERI_CRG3 @ 0x000C;
+
+    reg {
+        name = "EPLL Configuration Register 0";
+
+        field {
+            enum epll_bypass_enum {
+                no = 0x0 { desc = "not bypassed"; };
+                bypass = 0x1 { desc = "bypassed"; };
+            };
+            name = "EPLL clock frequency division bypass";
+            encode = epll_bypass_enum;
+        } epll_bypass[30:30];
+
+        field {
+            name = "Level-2 output divider of EPLL";
+        } epll_postdiv2[29:27];
+
+        field {
+            name = "Level-1 output divider of EPLL";
+        } epll_postdiv1[26:24];
+
+        field {
+            name = "Decimal part of the EPLL frequency multiplication coefficient";
+        } epll_frac[23:0];
+
+    } PERI_CRG8 @ 0x0020;
+
+    reg {
+        name = "EPLL Configuration Register 1";
+
+        field {
+            enum epll_dacpd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "EPLL test signal control";
+            encode = epll_dacpd_enum;
+        } epll_dacpd[23:23];
+
+        field {
+            enum epll_dsmpd_encode {
+                decimal = 0x0 { desc = "decimal frequency-division mode"; };
+                integral = 0x1 { desc = "integral frequency-division mode"; };
+            };
+            name = "EPLL decimal division control";
+            encode = epll_dsmpd_encode;
+        } epll_dsmpd[22:22];
+
+        field {
+            enum dpll_pd_enum {
+                normal = 0x0 { desc = "normal operating mode"; };
+                down = 0x1 { desc = "power-down mode"; };
+            };
+            name = "EPLL power-down control";
+            encode = dpll_pd_enum;
+        } dpll_pd[21:21];
+
+        field {
+            enum epll_foutvcopd_enum {
+                normal = 0x0 { desc = "normal output clock"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "EPLL VCO output power-down control";
+            encode = epll_foutvcopd_enum;
+        } epll_foutvcopd[20:20];
+
+        field {
+            enum epll_postdivpd_enum {
+                normal = 0x0 { desc = "normal clock output"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "EPLL POSTDIV output power-down control";
+            encode = epll_postdivpd_enum;
+        } epll_postdivpd[19:19];
+
+        field {
+            enum epll_fout4phasepd_enum {
+                normal = 0x0 { desc = "normal output clock"; };
+                no = 0x1 { desc = "no output clock"; };
+            };
+            name = "EPLL FOUT output power-down control";
+            encode = epll_fout4phasepd_enum;
+        } epll_fout4phasepd[18:18];
+
+        field {
+            name = "Frequency divider of the EPLL reference clock";
+        } epll_refdiv[17:12];
+
+        field {
+            name = "Integral part of the EPLL frequency multiplication coefficient";
+        } epll_fbdiv[11:0];
+
+    } PERI_CRG9 @ 0x0024;
+
+    reg {
+        name = "A9 Frequency mode and reset configuration register";
+
+        enum reset_enum {
+            CANCEL = 0x0 { desc = "Cancel reset"; };
+            RESET  = 0x1 { desc = "Reset"; };
+        };
+
+        field {
+            name = "CS soft reset request.";
+            encode = reset_enum;
+        } cs_srst_req[11:11];
+
+        field {
+            name = "SCU soft reset request.";
+            encode = reset_enum;
+        } cluster_scu_srst_req[10:10];
+
+        field {
+            name = "PERI soft reset request.";
+            encode = reset_enum;
+        } cluster_peri_srst_req[9:9];
+
+        field {
+            name = "WDG soft reset request.";
+            encode = reset_enum;
+        } sc_wd_srst_req[7:7];
+
+        field {
+            name = "DBG soft reset request.";
+            encode = reset_enum;
+        } cluster_dbg_srst_req[6:6];
+
+        field {
+            name = "CPU soft reset request. (Documentation says something about 'only valid in the slave loading mode')";
+            encode = reset_enum;
+        } cpu_srst_req[5:5];
+
+        field {
+            name = "A9 clock down-conversion configuration.";
+            desc = "
+                A9 frequency reduction can be realized through Mask A9 clock pulse, and the frequency ratio between it and AXI clock can be adjusted.
+                11: A9:AXI = 1:1
+                Others: A9:AXI = 2:1
+            ";
+            encode = reset_enum;
+        } freqmode_a9_sys[3:2];
+
+    } PERI_CRG10 @ 0x0028;
+
+    reg {
+        name = "VICAP Clock and Reset Configuration Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG11 @ 0x002C;
+
+    reg {
+        name = "VOU Clock and Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG13 @ 0x0034;
+
+    reg {
+        name = "PWM Clock and Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+	
+    } PERI_CRG14 @ 0x0038;
+
+    reg {
+        name = "HDMI Clock and Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG15 @ 0x003C;
+
+    reg {
+        name = "VEDU clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG16 @ 0x0040;
+
+    reg {
+        name = "VPSS Clock and Soft Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG18 @ 0x0048;
+
+    reg {
+        name = "TDE Clock and Soft Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG22 @ 0x0058;
+
+    reg {
+        name = "JPGE clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG24 @ 0x0060;
+
+    reg {
+        name = "JPGD clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG25 @ 0x0064;
+
+    reg {
+        name = "MDU clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG26 @ 0x0068;
+
+    reg {
+        name = "VAPU clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG27 @ 0x006C;
+
+    reg {
+        name = "VOIE related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG28 @ 0x0070;
+
+    reg {
+        name = "VCMP related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG29 @ 0x0074;
+
+    reg {
+        name = "CIPHER related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG31 @ 0x007C;
+
+    reg {
+        name = "AIP MCLK Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG32 @ 0x0080;
+
+    reg {
+        name = "AOP0 MCLK Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG33 @ 0x0084;
+
+    reg {
+        name = "AOP1 MCLK Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG34 @ 0x0088;
+
+    reg {
+        name = "AIO Bus Clock Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG35 @ 0x008C;
+
+    reg {
+        name = "AIP related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG36 @ 0x0090;
+
+    reg {
+        name = "AOP0 related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG37 @ 0x0094;
+
+    reg {
+        name = "AOP1 related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG38 @ 0x0098;
+
+    reg {
+        name = "SATA related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG45 @ 0x00B4;
+
+    reg {
+        name = "USB related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG46 @ 0x00B8;
+
+    reg {
+        name = "SFC related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG48 @ 0x00C0;
+
+    reg {
+        name = "Clock and soft reset control registers related to ETH interface";
+
+        enum reset_enum {
+            CANCEL = 0x0 { desc = "Cancel reset"; };
+            RESET  = 0x1 { desc = "Reset"; };
+        };
+
+        field {
+            enum eth_rmiick_sel_enum {
+                PAD = 0x0 { desc = "Select PAD input clock"; };
+                CRG = 0x1 { desc = "Select internal CRG clock"; };
+            };
+
+            name = "ETH RMII CLK clock source selection.";
+            encode = eth_rmiick_sel_enum;
+        } eth_rmiick_sel[4:4];
+
+        field {
+            enum mii_rmii_mode_enum {
+                MII  = 0x0 { desc = "MII mode"; };
+                RMII = 0x1 { desc = "RMII mode"; };
+            };
+
+            name = "ETH MII, RMII mode configuration.";
+            encode = mii_rmii_mode_enum;
+        } mii_rmii_mode[3:3];
+
+        field {
+            name = "Soft reset request for FE PHY.";
+            encode = reset_enum;
+        } fephy_srst_req[2:2];
+
+        field {
+            enum eth_cken_enum {
+                OFF = 0x0 { desc = "Turn off the clock"; };
+                ON  = 0x1 { desc = "Turn on the clock"; };
+            };
+
+            name = "ETH clock gating configuration register.";
+            encode = eth_cken_enum;
+        } eth_cken[1:1];
+
+        field {
+            name = "Soft reset request for ETH.";
+            encode = reset_enum;
+        } hrst_eth_s[0:0];
+
+    } PERI_CRG51 @ 0x00CC;
+
+    reg {
+        name = "SCD related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG53 @ 0x00D4;
+
+    reg {
+        name = "DDRTEST and EFUSE related clock and soft reset control register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG54 @ 0x00D8;
+
+    reg {
+        name = "Other CRG Interface Module Soft Reset Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+    } PERI_CRG57 @ 0x00E4;
+
+    reg {
+        name = "CRG status register";
+
+        enum lock_unlock_enum {
+            unlocked = 0x0 { desc = "unlocked"; };
+            locked = 0x1 { desc = "locked"; };
+        };
+
+        field {
+            name = "EPLL lock status";
+            encode = lock_unlock_enum;
+        } epll_lock[2:2];
+
+        field {
+            name = "VPLL0 lock status";
+            encode = lock_unlock_enum;
+        } vpll0_lock[1:1];
+
+        field {
+            name = "APLL lock status";
+            encode = lock_unlock_enum;
+        } apll_lock[0:0];
+
+    } PERI_CRG58 @ 0x00E8;
+
+	reg {
+		name = "SpeedMonitor Control Register";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+	} PERI_CRG61 @ 0x00F4;
+
+	reg {
+		name = "SpeedMonitor Status Register 1";
+
+        field {
+            desc = "TODO";
+        } todo = 0;
+
+	} PERI_CRG62 @ 0x00F8;
+
+};
+
