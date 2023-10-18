@@ -14,5 +14,5 @@ clean:
 	rm -rf ./output
 
 deps:
-	pip3 install ralbot-html
+	pip3 install peakrdl-html
 	pip3 install systemrdl-compiler
